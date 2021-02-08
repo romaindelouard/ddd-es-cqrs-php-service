@@ -1,0 +1,35 @@
+default:
+  suites:
+    default:
+      contexts:
+        - Tests\Functional\BehatContext\DemoContext: ~
+        - Tests\Functional\BehatContext\DatabaseContext: ~
+        - Tests\Functional\BehatContext\JsonRpcApiContext: ~
+        - Tests\Functional\BehatContext\RestApiContext: ~
+  extensions:
+    FriendsOfBehat\SymfonyExtension:
+      bootstrap: features/bootstrap/bootstrap.php
+      kernel:
+        class: 'Romaind\PizzaStore\Infrastructure\Symfony5\Kernel'
+        path: src/Infrastructure/Symfony5/Kernel.php
+        debug: true
+    DVDoug\Behat\CodeCoverage\Extension: # or LeanPHP\Behat\CodeCoverage\Extension if you also need to work with older versions
+      filter:
+        includeUncoveredFiles: true
+        processUncoveredFiles: false
+        include:
+          directories:
+            "src": ~
+            "tests":
+              suffix: ".php"
+      reports:
+        html:
+          target: build/coverage-behat
+        clover:
+          target: build/coverage-behat/coverage.xml
+        text:
+          showColors: true
+          showUncoveredFiles: true
+          showOnlySummary: false
+          lowUpperBound: 50
+          highLowerBound: 90

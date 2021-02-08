@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-half">
+                {% include 'components/card.html.twig' with { 'title': 'Hello!', 'text': 'This is a new project.'} only %}
+                You can access to
+                <ul>
+                    <li><a href="{{ path('app.swagger_ui') }}">Swagger User Interface</a></li>
+                    <li><a href="{{ path('liip_monitor_health_interface') }}">Monitor Health Interface</a></li>
+                    <li><a href="http://guest:guest@localhost:15672/">RabbitMQ</a></li>
+                    <li><a href="http://pgadmin4%40pgadmin.org:admin@localhost:5050/">PostgreSQL</a></li>
+                    <li><a href="http://localhost:5601/">Kibana</a></li>
+                    <li><a href="http://localhost:9100/">ElasticSearch</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

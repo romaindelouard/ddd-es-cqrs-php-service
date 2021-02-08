@@ -1,0 +1,4 @@
+#json_rpc_http_server: ~
+# Or the following in case you want to customize endpoint path
+json_rpc_http_server:
+  endpoint: '/json-rpc' # Default to '/json-rpc'

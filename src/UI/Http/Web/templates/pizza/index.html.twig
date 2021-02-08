@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pizza index{% endblock %}
+
+{% block body %}
+    <h1>Pizza index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Uuid</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>CreatedAt</th>
+            <th>UpdatedAt</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for pizza in pizzas %}
+            <tr>
+                <td>{{ pizza.uuid }}</td>
+                <td>{{ pizza.name }}</td>
+                <td>{{ pizza.description }}</td>
+                <td>{{ pizza.createdAt ? pizza.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ pizza.updatedAt ? pizza.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

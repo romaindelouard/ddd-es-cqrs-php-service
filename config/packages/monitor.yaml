@@ -1,0 +1,31 @@
+liip_monitor:
+  enable_controller: true
+  checks:
+    php_extensions:
+      - amqp
+      - apcu
+      - bcmath
+      - curl
+      - ctype
+      - date
+      - intl
+      - json
+      - mbstring
+      - pcntl
+      - pdo
+      - pdo_pgsql
+      - sockets
+      - xml
+    php_version:
+      7.4.1: ">="
+    readable_directory: [ "%kernel.cache_dir%", "%kernel.logs_dir%" ]
+    writable_directory: [ "%kernel.cache_dir%", "%kernel.logs_dir%" ]
+    doctrine_dbal: [ default ]
+    symfony_version: ~
+    rabbit_mq:
+      default:
+        host: "%env(RABBITMQ_HOST)%"
+        user: "%env(RABBITMQ_USER)%"
+        password: "%env(RABBITMQ_PASS)%"
+        port: "%env(int:RABBITMQ_PORT)%"
+        vhost: "/"

@@ -1,0 +1,92 @@
+name: push
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ${{ matrix.operating-system }}
+    name: build and tests
+    env:
+      DATABASE_URL: "postgresql://username:password@localhost:5432/pizza?serverVersion=13&charset=utf8"
+      RABBITMQ_HOST: localhost
+      MESSENGER_TRANSPORT_DSN: amqp://guest:guest@localhost:5672/%2f/messages
+      ELASTIC_ADDR: localhost:9200
+      ELASTIC_HOST: localhost
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: [ubuntu-latest]
+        php-versions: ["7.4"]
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres:13
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: username
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: pizza
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      rabbitmq:
+        image: rabbitmq:3-management
+        env:
+          RABBITMQ_NODENAME: "rabbit"
+          RABBITMQ_DEFAULT_USER: "guest"
+          RABBITMQ_DEFAULT_PASS: "guest"
+          RABBITMQ_DEFAULT_VHOST: "/"
+        ports:
+          - 15672:15672
+          - 5672:5672
+      elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+        ports:
+          - 9200:9200
+        env:
+          discovery.type: single-node
+          cluster.name: events
+          xpack.security.enabled: false
+          http.host: 0.0.0.0
+          http.port: 9200
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: amqp, apcu, bcmath, curl, ctype, date, intl, json, mbstring, pcntl, pdo, pdo_pgsql, sockets, xml
+          coverage: xdebug
+      - name: Build application
+        run: make build
+      - name: Checks the application readiness probe status
+        run: make healthz
+      - name: Unit tests
+        run: make test-unit
+      - name: Functional tests
+        run: make test-functional
+      #> with application docker container
+      - name: Create a new network
+        run: docker network create dev
+      - name: Build application in the docker container
+        run: make docker-build
+      - name: List all docker images
+        run: docker images
+      - name: List all docker containers
+        run: docker ps
+      - name: Unit tests in the docker container
+        run: docker run pizza-service:dev make test-unit
+      # Not works: Unable to create the "cache" directory (/var/www/html/var/cache/dev).
+      # - name: Functional tests
+      #  run: docker-compose run --service-ports --rm pizza-service make test-functional
+      #<

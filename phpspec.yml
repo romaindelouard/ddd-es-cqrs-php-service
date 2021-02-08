@@ -1,0 +1,21 @@
+extensions:
+    # ... other extensions ...
+    # friends-of-phpspec/phpspec-code-coverage
+    FriendsOfPhpSpec\PhpSpec\CodeCoverage\CodeCoverageExtension:
+        format:
+            - text
+            - html
+            - clover
+            #- xml
+        output:
+            html: build/coverage-phpspec
+            clover: build/coverage-phpspec/coverage.xml
+            #xml: coverage
+        whitelist:
+            - src
+suites:
+    default:
+        namespace: Romaind\PizzaStore
+        psr4_prefix: Romaind\PizzaStore
+        spec_prefix: spec
+        src_path: src

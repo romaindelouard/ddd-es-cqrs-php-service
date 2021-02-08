@@ -1,0 +1,15 @@
+<nav>
+    <div class="nav-wrapper teal lighten-2">
+        <a href="{{ path('home') }}" class="brand-logo">Project ES DDD CQRS</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+            {% if is_granted('ROLE_USER') %}
+                <li><a href="{{ path('profile') }}">Profile</a></li>
+                <li><a href="{{ path('logout') }}">Logout ({{ app.user.username }})</a></li>
+            {% else %}
+                <li><a href="{{ path('register') }}">Register</a></li>
+                <li><a href="{{ path('login') }}">Login</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

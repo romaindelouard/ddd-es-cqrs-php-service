@@ -1,0 +1,15 @@
+grumphp:
+  ascii:
+    failed: ~
+    succeeded: ~
+  tasks:
+    git_commit_message:
+      enforce_capitalized_subject: false
+    phpcsfixer:
+      config: .php_cs.php
+      allow_risky: true
+      using_cache: true
+      cache_file: .php_cs.cache
+    phpversion:
+      project: "7.4"
+    yamllint: ~
