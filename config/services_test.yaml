@@ -1,7 +1,7 @@
 services:
-    _defaults:
-        autowire: true
-        autoconfigure: true
+  _defaults:
+    autowire: true
+    autoconfigure: true
 
-    Tests\Functional\BehatContext\:
-        resource: '../features/bootstrap/*'
+  Tests\Functional\Context\:
+    resource: "../tests/Functional/Context/*"

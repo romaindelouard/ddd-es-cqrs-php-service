@@ -10,9 +10,6 @@ services:
     user: 1000:1000
     volumes:
       - .:/var/www/html:cached
-      - /var/cache
-      - /var/log
-      - /public/
     logging:
       driver: syslog
       options:

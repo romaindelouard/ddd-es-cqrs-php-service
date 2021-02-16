@@ -80,14 +80,13 @@
     ],
     "exclude-from-classmap": [
       "**/tests/",
-      "**/Tests/",
-      "spec/"
+      "**/Tests/"
     ]
   },
   "autoload-dev": {
     "psr-4": {
-      "spec\\": "spec/",
-      "Tests\\Functional\\BehatContext\\": "features/bootstrap"
+      "Tests\\Unit\\": "tests/Unit",
+      "Tests\\Functional\\": "tests/Functional"
     }
   },
   "replace": {

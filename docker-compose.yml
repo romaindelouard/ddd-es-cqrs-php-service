@@ -76,9 +76,9 @@ services:
       RABBITMQ_DEFAULT_VHOST: "/"
     ports:
       # The standard AMQP protocol port
-      - "5672:5672"
+      - 5672:5672
       # HTTP management UI
-      - "15672:15672"
+      - 15672:15672
     hostname: rabbitmq
     volumes:
       - dev-rabbitmq-data:/var/lib/rabbitmq/data

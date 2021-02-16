@@ -1,14 +1,16 @@
 default:
   suites:
     default:
+      paths:
+        - "%paths.base%/tests/Functional/features"
       contexts:
-        - Tests\Functional\BehatContext\DemoContext: ~
-        - Tests\Functional\BehatContext\DatabaseContext: ~
-        - Tests\Functional\BehatContext\JsonRpcApiContext: ~
-        - Tests\Functional\BehatContext\RestApiContext: ~
+        - Tests\Functional\Context\DemoContext: ~
+        - Tests\Functional\Context\DatabaseContext: ~
+        - Tests\Functional\Context\JsonRpcApiContext: ~
+        - Tests\Functional\Context\RestApiContext: ~
   extensions:
     FriendsOfBehat\SymfonyExtension:
-      bootstrap: features/bootstrap/bootstrap.php
+      bootstrap: tests/Functional/bootstrap/bootstrap.php
       kernel:
         class: 'Romaind\PizzaStore\Infrastructure\Symfony5\Kernel'
         path: src/Infrastructure/Symfony5/Kernel.php
