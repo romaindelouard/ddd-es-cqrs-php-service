@@ -22,14 +22,15 @@ class RestApiContext implements Context
     }
 
     /**
+     * @When I send a :method request to :path
      * @When I send a :method request to :path with JSON params:
      */
-    public function iSendARequestToWithJsonParams($method, $path, PyStringNode $parameters)
+    public function iSendARequestToWithJsonParams($method, $path, PyStringNode $parameters = null)
     {
         $request = Request::create(
           $path,
           $method,
-          (array) json_decode($parameters->getRaw()),
+          $parameters ? json_decode($parameters->getRaw(), true) : [],
           [],
           [],
           $this->headers()
@@ -42,7 +43,9 @@ class RestApiContext implements Context
      */
     public function iShouldGetHttpResponseCode($statusCode)
     {
-        var_dump($this->response->getContent());
+        $contentString = $this->response->getContent();
+        $content = json_decode($contentString, true);
+        $this->token = $content && isset($content['token']) ? $content['token'] : null;
         Assertion::eq($statusCode, $this->response->getStatusCode());
     }
 

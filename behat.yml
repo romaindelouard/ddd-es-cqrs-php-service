@@ -31,7 +31,4 @@ default:
           target: build/coverage-behat/coverage.xml
         text:
           showColors: true
-          showUncoveredFiles: true
-          showOnlySummary: false
-          lowUpperBound: 50
-          highLowerBound: 90
+          showOnlySummary: true

@@ -25,3 +25,6 @@ Feature: Login
       }
       """
     Then I should get 200 HTTP response status code
+
+    When I send a "GET" request to "/api/users/romain.delouard%40gmail.com"
+    Then I should get 200 HTTP response status code
