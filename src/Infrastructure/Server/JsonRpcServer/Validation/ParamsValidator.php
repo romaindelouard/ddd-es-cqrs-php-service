@@ -25,7 +25,6 @@ class ParamsValidator
      *
      * @param mixed $params
      * @param Constraint|Constraint[] $constraint
-     * @param array|null $groups
      *
      * @throws \Exception
      * @throws JsonRpcInvalidParamsException

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Romaind\PizzaStore\UI\JsonRpcMethod\GetPizzas;
-
 
 use Romaind\PizzaStore\Infrastructure\Server\JsonRpcServer\Validation\AbstractParamsValidator;
 use Symfony\Component\Validator\Constraint;

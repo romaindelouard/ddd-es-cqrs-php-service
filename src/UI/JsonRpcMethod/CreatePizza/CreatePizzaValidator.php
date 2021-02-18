@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Romaind\PizzaStore\UI\JsonRpcMethod\CreatePizza;
-
 
 use Romaind\PizzaStore\Infrastructure\Server\JsonRpcServer\Validation\AbstractParamsValidator;
 use Romaind\PizzaStore\UI\JsonRpcMethod\GetPizzas\GetPizzasConstraint;

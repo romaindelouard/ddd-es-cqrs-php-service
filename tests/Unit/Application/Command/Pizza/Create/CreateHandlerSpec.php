@@ -29,14 +29,14 @@ class CreateHandlerSpec extends ObjectBehavior
         $name = '4 cheeses';
         $descrition = 'it is a wonderfull pizza';
 
-        $command->uuid = $uuid; 
+        $command->uuid = $uuid;
         $command->name = $name;
         $command->description = $descrition;
 
         $pizzaRepository
             ->store(Argument::allOf(
                 Argument::type(Pizza::class),
-                Argument::that(function ($pizza) use ($uuid, $descrition, $name) {
+                Argument::that(function ($pizza) use ($uuid, $name) {
                     if ($pizza->getUuid() !== $uuid) {
                         return true;
                     }

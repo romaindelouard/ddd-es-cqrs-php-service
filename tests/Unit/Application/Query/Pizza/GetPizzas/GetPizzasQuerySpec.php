@@ -14,7 +14,7 @@ class GetPizzasQuerySpec extends ObjectBehavior
         $this->shouldImplement(QueryInterface::class);
     }
 
-    function it_should_create_a_query()
+    public function it_should_create_a_query()
     {
         $this->beConstructedWith(52, 3);
         $this->page->shouldBe(52);
