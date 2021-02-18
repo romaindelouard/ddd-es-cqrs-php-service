@@ -17,8 +17,8 @@
 ### Needed tools
 
 1. [Install Docker](https://www.docker.com/get-started)
-2. Clone the project: `git clone https://github.com/romaindlf/ddd-es-cqris-php-service`
-3. Move to the project folder: `cd ddd-es-cqris-php-service`
+2. Clone the project: `git clone https://github.com/romaindelouard/ddd-es-cqrs-php-service`
+3. Move to the project folder: `cd ddd-es-cqrs-php-service`
 
 ### Environment configuration
 
@@ -63,12 +63,12 @@ openssl rsa -in config/jwt/jwtRS256.key -pubout -outform PEM -out config/jwt/jwt
 
 ### Event BUS
 
-
 # Developer tooltip
 
 ## Using phpspec
 
 You can generate a test unit class.
+
 ```
 XDEBUG_MODE=coverage bin/phpspec describe Romaind/PizzaStore/Domain/Model/User/User
 ```
