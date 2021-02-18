@@ -86,7 +86,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\Unit\\": "tests/Unit",
+      "Tests\\Unit\\Romaind\\PizzaStore\\": "tests/Unit",
       "Tests\\Functional\\": "tests/Functional"
     }
   },

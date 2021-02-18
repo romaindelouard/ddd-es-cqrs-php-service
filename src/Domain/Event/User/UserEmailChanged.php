@@ -17,8 +17,11 @@ class UserEmailChanged implements Serializable
     public Email $email;
     public DateTime $updatedAt;
 
-    public function __construct(UuidInterface $uuid, Email $email, DateTime $updatedAt)
-    {
+    public function __construct(
+        UuidInterface $uuid,
+        Email $email,
+        DateTime $updatedAt
+    ) {
         $this->email = $email;
         $this->uuid = $uuid;
         $this->updatedAt = $updatedAt;
