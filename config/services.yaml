@@ -6,7 +6,7 @@
 parameters:
   elastic:
     hosts:
-      - '%env(ELASTIC_ADDR)%'
+      - "%env(ELASTIC_ADDR)%"
 
   exception_to_status:
     InvalidArgumentException: 400
@@ -17,41 +17,40 @@ parameters:
 
 services:
   # Needed since Since symfony/dependency-injection 5.1
-  Symfony\Component\DependencyInjection\ContainerInterface: '@service_container'
+  Symfony\Component\DependencyInjection\ContainerInterface: "@service_container"
 
   # default configuration for services in *this* file
   _defaults:
-    autowire: true      # Automatically injects dependencies in your services.
+    autowire: true # Automatically injects dependencies in your services.
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
     bind:
-      $elasticConfig: '%elastic%'
-      $eventBus: '@broadway.event_handling.event_bus'
+      $elasticConfig: "%elastic%"
+      $eventBus: "@broadway.event_handling.event_bus"
       $eventStore: '@Broadway\EventStore\Dbal\DBALEventStore'
 
   # makes classes in src/ available to be used as services
   # this creates a service per class whose id is the fully-qualified class name
   Romaind\PizzaStore\:
-    resource: '../src/'
-  #        exclude:
-  #            - '../src/DependencyInjection/'
-  #            - '../src/Entity/'
-  #            - '../src/Kernel.php'
-  #            - '../src/Tests/'
-
-  # controllers are imported separately to make sure services can be injected
-  # as action arguments even if you don't extend any base controller class
-  #    Romaind\Controller\:
-  #        resource: '../src/Controller/'
-  #        tags: ['controller.service_arguments']
-
-
-  # add more service definitions when explicit configuration is needed
-  # please note that last definitions always *replace* previous ones
+    resource: "../src/"
 
   _instanceof:
     Yoanm\JsonRpcServer\Domain\JsonRpcMethodInterface:
-      tags: [ 'app.json_rpc_method' ]
+      tags: [ "app.json_rpc_method" ]
+      calls:
+        - method: setValidator
+          arguments:
+            - '@Romaind\PizzaStore\Infrastructure\Server\JsonRpcServer\Validation\ParamsValidator'
 
+    Romaind\PizzaStore\UI\JsonRpcMethod\QueryJsonRpcMethodInterface:
+      calls:
+        - method: setQueryBus
+          arguments:
+            - '@Romaind\PizzaStore\Infrastructure\Shared\Bus\Query\MessengerQueryBus'
+    Romaind\PizzaStore\UI\JsonRpcMethod\CommandJsonRpcMethodInterface:
+      calls:
+        - method: setCommandBus
+          arguments:
+            - '@Romaind\PizzaStore\Infrastructure\Shared\Bus\Command\MessengerCommandBus'
     Romaind\PizzaStore\Application\Command\CommandHandlerInterface:
       public: true
       tags:
@@ -75,23 +74,23 @@ services:
   mapping_aware_service:
     public: true # In order to allow Behat context to load it later
     class: Romaind\PizzaStore\Infrastructure\Server\JsonRpcServer\Collector\MappingCollector
-    tags: [ 'json_rpc_http_server.method_aware' ]
+    tags: [ "json_rpc_http_server.method_aware" ]
 
   ### Event Store
   Broadway\EventStore\Dbal\DBALEventStore:
     public: true
     arguments:
-      - '@doctrine.dbal.default_connection'
-      - '@broadway.serializer.payload'
-      - '@broadway.serializer.metadata'
-      - 'events'
+      - "@doctrine.dbal.default_connection"
+      - "@broadway.serializer.payload"
+      - "@broadway.serializer.metadata"
+      - "events"
       - false
-      - '@broadway.uuid.converter'
+      - "@broadway.uuid.converter"
 
   ### Messenger command BUS
   Romaind\PizzaStore\Infrastructure\Shared\Bus\Command\MessengerCommandBus:
     arguments:
-      - '@messenger.bus.command'
+      - "@messenger.bus.command"
 
   ### Messenger async event BUS
   Romaind\PizzaStore\Infrastructure\Shared\Bus\AsyncEvent\MessengerAsyncEventBus:
@@ -101,12 +100,12 @@ services:
   ### Messenger query BUS
   Romaind\PizzaStore\Infrastructure\Shared\Bus\Query\MessengerQueryBus:
     arguments:
-      - '@messenger.bus.query'
+      - "@messenger.bus.query"
 
   ### UI
   Romaind\PizzaStore\UI\Http\Rest\Controller\:
-    resource: '../src/UI/Http/Rest/Controller/*'
-    tags: [ 'controller.service_arguments' ]
+    resource: "../src/UI/Http/Rest/Controller/*"
+    tags: [ "controller.service_arguments" ]
 
   ### UI Listeners
   Romaind\PizzaStore\UI\Http\Rest\EventSubscriber\ExceptionSubscriber:
@@ -114,8 +113,13 @@ services:
       - "%kernel.environment%"
       - "%exception_to_status%"
     tags:
-      - { name: 'kernel.event_listener', event: 'kernel.exception' }
+      - { name: "kernel.event_listener", event: "kernel.exception" }
 
   Romaind\PizzaStore\UI\Http\Rest\EventSubscriber\JsonBodyParserSubscriber:
     tags:
-      - { name: 'kernel.event_listener', event: 'kernel.request', method: 'onKernelRequest', priority: 100 }
+      - {
+        name: "kernel.event_listener",
+        event: "kernel.request",
+        method: "onKernelRequest",
+        priority: 100,
+      }

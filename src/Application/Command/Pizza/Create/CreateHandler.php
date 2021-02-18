@@ -18,7 +18,11 @@ class CreateHandler implements CommandHandlerInterface
 
     public function __invoke(CreateCommand $command): void
     {
-        $pizza = Pizza::create(Uuid::fromString($command->uuid), $command->name, $command->description);
+        $pizza = Pizza::create(
+            Uuid::fromString($command->uuid),
+            $command->name,
+            $command->description
+        );
 
         $this->pizzaRepository->store($pizza);
     }

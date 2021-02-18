@@ -4,27 +4,20 @@ namespace Romaind\PizzaStore\UI\JsonRpcMethod\GetPizzas;
 
 use Romaind\PizzaStore\Application\Query\Collection;
 use Romaind\PizzaStore\Application\Query\Pizza\GetPizzas\GetPizzasQuery;
-use Romaind\PizzaStore\Application\Query\QueryBusInterface;
-use Yoanm\JsonRpcServer\Domain\JsonRpcMethodInterface;
+use Romaind\PizzaStore\UI\JsonRpcMethod\AbstractQueryJsonRpcMethod;
+use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\Constraints\Collection as ConstraintsCollection;
+use Symfony\Component\Validator\Constraints\NotNull;
 
-class GetPizzasMethod implements JsonRpcMethodInterface
+class GetPizzasMethod extends AbstractQueryJsonRpcMethod
 {
-    private QueryBusInterface $queryBus;
-
-    public function __construct(QueryBusInterface $queryBus)
+    public function __construct(GetPizzasQuery $query)
     {
-        $this->queryBus = $queryBus;
+        $this->query = $query;
+        $this->constraint = new GetPizzasConstraint();
     }
 
-    public function apply(array $paramList = null): array
-    {
-        $query = new GetPizzasQuery();
-        $result = $this->queryBus->ask($query);
-
-        return $this->parseResult($result);
-    }
-
-    private function parseResult(Collection $collection): array
+    protected function parseResult(Collection $collection): array
     {
         return [
             'meta' => [

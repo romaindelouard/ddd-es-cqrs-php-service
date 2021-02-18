@@ -4,27 +4,16 @@ namespace Romaind\PizzaStore\UI\JsonRpcMethod\GetEvents;
 
 use Romaind\PizzaStore\Application\Query\Collection;
 use Romaind\PizzaStore\Application\Query\Event\GetEvents\GetEventsQuery;
-use Romaind\PizzaStore\Application\Query\QueryBusInterface;
-use Yoanm\JsonRpcServer\Domain\JsonRpcMethodInterface;
+use Romaind\PizzaStore\UI\JsonRpcMethod\AbstractQueryJsonRpcMethod;
 
-class GetEventsMethod implements JsonRpcMethodInterface
+class GetEventsMethod extends AbstractQueryJsonRpcMethod
 {
-    private QueryBusInterface $queryBus;
-
-    public function __construct(QueryBusInterface $queryBus)
+    public function __construct(GetEventsQuery $query)
     {
-        $this->queryBus = $queryBus;
+        $this->query = $query;
     }
 
-    public function apply(array $paramList = null): array
-    {
-        $query = new GetEventsQuery();
-        $result = $this->queryBus->ask($query);
-
-        return $this->parseResult($result);
-    }
-
-    private function parseResult(Collection $collection): array
+    protected function parseResult(Collection $collection): array
     {
         return [
             'meta' => [

@@ -18,9 +18,15 @@ class SignUpCommand implements CommandInterface
     /**
      * @throws AssertionFailedException
      */
-    public function __construct(string $uuid, string $email, string $plainPassword)
-    {
+    public function __construct(
+        string $uuid,
+        string $email,
+        string $plainPassword
+    ) {
         $this->uuid = Uuid::fromString($uuid);
-        $this->credentials = new Credentials(Email::fromString($email), HashedPassword::encode($plainPassword));
+        $this->credentials = new Credentials(
+            Email::fromString($email),
+            HashedPassword::encode($plainPassword)
+        );
     }
 }

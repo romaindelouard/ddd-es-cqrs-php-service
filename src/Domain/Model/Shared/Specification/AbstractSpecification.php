@@ -2,7 +2,10 @@
 
 namespace Romaind\PizzaStore\Domain\Model\Shared\Specification;
 
-abstract class AbstractSpecification
+/**
+ * Implement Specification design pattern.
+ */
+abstract class AbstractSpecification implements SpecificationInterface
 {
     /**
      * @param mixed $value

@@ -3,32 +3,30 @@
 namespace Romaind\PizzaStore\UI\JsonRpcMethod\CreatePizza;
 
 use Ramsey\Uuid\Uuid;
-use Romaind\PizzaStore\Application\Command\CommandBusInterface;
 use Romaind\PizzaStore\Application\Command\Pizza\Create\CreateCommand as CreatePizza;
-use Romaind\PizzaStore\Infrastructure\Shared\Persistence\Doctrine\Repository\PizzaRepository;
-use Yoanm\JsonRpcServer\Domain\JsonRpcMethodInterface;
+use Romaind\PizzaStore\Domain\Model\Pizza\PizzaRepositoryInterface;
+use Romaind\PizzaStore\UI\JsonRpcMethod\AbstractCommandJsonRpcMethod;
 
-class CreatePizzaMethod implements JsonRpcMethodInterface
+class CreatePizzaMethod extends AbstractCommandJsonRpcMethod
 {
-    private CommandBusInterface $commandBus;
-    private PizzaRepository $pizzaRepository;
+    private PizzaRepositoryInterface $pizzaRepository;
 
-    public function __construct(CommandBusInterface $commandBus, PizzaRepository $pizzaRepository)
+    public function __construct(PizzaRepositoryInterface $pizzaRepository)
     {
-        $this->commandBus = $commandBus;
         $this->pizzaRepository = $pizzaRepository;
     }
 
-    public function apply(array $paramList = null): array
+    public function apply(array $parameters = null): array
     {
         $pizzaId = Uuid::uuid4();
-        $command = new CreatePizza(
+        $this->command = new CreatePizza(
             $pizzaId,
-            $paramList['name'],
-            $paramList['description']
+            $parameters['name'],
+            $parameters['description']
         );
 
-        $this->commandBus->handle($command);
+        parent::apply($parameters);
+
         $pizza = $this->pizzaRepository->get($pizzaId);
 
         return [
