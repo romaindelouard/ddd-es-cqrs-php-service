@@ -20,7 +20,7 @@ class PizzaWasCreated implements Serializable
         return ['uuid' => $this->uuid];
     }
 
-    public static function deserialize(array $data)
+    public static function deserialize(array $data): self
     {
         return new self(Uuid::fromString($data['uuid']));
     }
