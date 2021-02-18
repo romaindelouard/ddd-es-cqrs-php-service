@@ -63,13 +63,26 @@ openssl rsa -in config/jwt/jwtRS256.key -pubout -outform PEM -out config/jwt/jwt
 
 ### Event BUS
 
-You can generate a test unit class:
 
+# Developer tooltip
+
+## Using phpspec
+
+You can generate a test unit class.
 ```
 XDEBUG_MODE=coverage bin/phpspec describe Romaind/PizzaStore/Domain/Model/User/User
 ```
 
-GitHub Actions workflow: https://docs.github.com/en/actions/quickstart
+## GitHub Actions workflow
+
+GitHub Actions workflow are defined here: https://docs.github.com/en/actions/quickstart
+
+This project uses GitHub workflow to execute the unit and functional tests.
+https://github.com/romaindelouard/ddd-es-cqrs-php-service/blob/master/.github/workflows/push.yml
+
+## GrumPHP, each commit is tested
+
+You can use a manual command to execute the GrumPHP tasks.
 
 ```
 bin/grumphp run
