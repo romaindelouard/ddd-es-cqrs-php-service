@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\Unit\Romaind\PizzaStore\UI\JsonRpcMethod\CreatePizza;
+namespace tests\Unit\Romaind\PizzaStore\UI\JsonRpc\Method\CreatePizza;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -8,8 +8,8 @@ use Ramsey\Uuid\UuidInterface;
 use Romaind\PizzaStore\Application\Command\CommandBusInterface;
 use Romaind\PizzaStore\Domain\Model\Pizza\Pizza;
 use Romaind\PizzaStore\Domain\Model\Pizza\PizzaRepositoryInterface;
-use Romaind\PizzaStore\Infrastructure\Server\JsonRpcServer\Validation\ParamsValidator;
-use Romaind\PizzaStore\UI\JsonRpcMethod\CreatePizza\CreatePizzaMethod;
+use Romaind\PizzaStore\UI\JsonRpc\Method\CreatePizza\CreatePizzaMethod;
+use Romaind\PizzaStore\UI\JsonRpc\Validation\ParamsValidator;
 
 class CreatePizzaMethodSpec extends ObjectBehavior
 {

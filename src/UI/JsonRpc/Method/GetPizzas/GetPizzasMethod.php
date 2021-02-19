@@ -1,10 +1,10 @@
 <?php
 
-namespace Romaind\PizzaStore\UI\JsonRpcMethod\GetPizzas;
+namespace Romaind\PizzaStore\UI\JsonRpc\Method\GetPizzas;
 
 use Romaind\PizzaStore\Application\Query\Collection;
 use Romaind\PizzaStore\Application\Query\Pizza\GetPizzas\GetPizzasQuery;
-use Romaind\PizzaStore\UI\JsonRpcMethod\AbstractQueryJsonRpcMethod;
+use Romaind\PizzaStore\UI\JsonRpc\Method\AbstractQueryJsonRpcMethod;
 
 class GetPizzasMethod extends AbstractQueryJsonRpcMethod
 {

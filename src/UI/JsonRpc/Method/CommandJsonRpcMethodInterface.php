@@ -1,6 +1,6 @@
 <?php
 
-namespace Romaind\PizzaStore\UI\JsonRpcMethod;
+namespace Romaind\PizzaStore\UI\JsonRpc\Method;
 
 use Romaind\PizzaStore\Application\Command\CommandBusInterface;
 

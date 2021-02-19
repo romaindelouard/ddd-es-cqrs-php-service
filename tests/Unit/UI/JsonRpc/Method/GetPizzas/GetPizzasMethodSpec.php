@@ -1,12 +1,12 @@
 <?php
 
-namespace tests\Unit\Romaind\PizzaStore\UI\JsonRpcMethod\GetPizzas;
+namespace tests\Unit\Romaind\PizzaStore\UI\JsonRpc\Method\GetPizzas;
 
 use PhpSpec\ObjectBehavior;
 use Romaind\PizzaStore\Application\Query\Pizza\GetPizzas\GetPizzasQuery;
 use Romaind\PizzaStore\Application\Query\QueryBusInterface;
-use Romaind\PizzaStore\UI\JsonRpcMethod\AbstractQueryJsonRpcMethod;
-use Romaind\PizzaStore\UI\JsonRpcMethod\GetPizzas\GetPizzasMethod;
+use Romaind\PizzaStore\UI\JsonRpc\Method\AbstractQueryJsonRpcMethod;
+use Romaind\PizzaStore\UI\JsonRpc\Method\GetPizzas\GetPizzasMethod;
 
 class GetPizzasMethodSpec extends ObjectBehavior
 {

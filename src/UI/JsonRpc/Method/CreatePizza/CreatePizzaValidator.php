@@ -1,12 +1,13 @@
 <?php
 
-namespace Romaind\PizzaStore\UI\JsonRpcMethod\GetPizzas;
+namespace Romaind\PizzaStore\UI\JsonRpc\Method\CreatePizza;
 
-use Romaind\PizzaStore\Infrastructure\Server\JsonRpcServer\Validation\AbstractParamsValidator;
+use Romaind\PizzaStore\UI\JsonRpc\Method\GetPizzas\GetPizzasConstraint;
+use Romaind\PizzaStore\UI\JsonRpc\Validation\AbstractParamsValidator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
-class GetPizzasValidator extends AbstractParamsValidator
+class CreatePizzaValidator extends AbstractParamsValidator
 {
     public function validate($value, Constraint $constraint): void
     {
@@ -19,6 +20,6 @@ class GetPizzasValidator extends AbstractParamsValidator
 
     protected function getMandatoryParams(): array
     {
-        return ['page', 'limit'];
+        return ['name', 'description'];
     }
 }

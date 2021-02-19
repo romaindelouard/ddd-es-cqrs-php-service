@@ -36,6 +36,11 @@ test-functional: APP_ENV:=test
 test-functional:
 	XDEBUG_MODE=coverage composer run-script test-functional
 
+## This target is used to check application layers
+.PHONY: test-layer
+test-layer:
+	composer run-script test-layer
+
 ## This target is used to run the application unit tests
 .PHONY: test-unit
 test-unit: APP_ENV:=test

@@ -1,12 +1,11 @@
 <?php
 
-namespace Romaind\PizzaStore\UI\JsonRpcMethod;
+namespace Romaind\PizzaStore\UI\JsonRpc\Method;
 
 use Romaind\PizzaStore\Application\Command\CommandBusInterface;
 use Romaind\PizzaStore\Application\Command\CommandInterface;
-use Romaind\PizzaStore\Infrastructure\Server\JsonRpcServer\Validation\ParamsValidator;
+use Romaind\PizzaStore\UI\JsonRpc\Validation\ParamsValidator;
 use Symfony\Component\Validator\Constraint;
-use Yoanm\JsonRpcServer\Domain\JsonRpcMethodInterface;
 
 abstract class AbstractCommandJsonRpcMethod implements JsonRpcMethodInterface, CommandJsonRpcMethodInterface, WithParamsValidatorInterface
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Romaind\PizzaStore\UI\JsonRpcMethod\CreatePizza;
+namespace Romaind\PizzaStore\UI\JsonRpc\Method\CreatePizza;
 
 use Ramsey\Uuid\Uuid;
 use Romaind\PizzaStore\Application\Command\Pizza\Create\CreateCommand as CreatePizza;
 use Romaind\PizzaStore\Domain\Model\Pizza\PizzaRepositoryInterface;
-use Romaind\PizzaStore\UI\JsonRpcMethod\AbstractCommandJsonRpcMethod;
+use Romaind\PizzaStore\UI\JsonRpc\Method\AbstractCommandJsonRpcMethod;
 
 class CreatePizzaMethod extends AbstractCommandJsonRpcMethod
 {

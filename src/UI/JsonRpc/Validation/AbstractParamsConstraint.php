@@ -1,6 +1,6 @@
 <?php
 
-namespace Romaind\PizzaStore\Infrastructure\Server\JsonRpcServer\Validation;
+namespace Romaind\PizzaStore\UI\JsonRpc\Validation;
 
 use Symfony\Component\Validator\Constraint;
 

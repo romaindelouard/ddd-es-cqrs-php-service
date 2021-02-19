@@ -1,8 +1,8 @@
 <?php
 
-namespace Romaind\PizzaStore\UI\JsonRpcMethod\GetPizzas;
+namespace Romaind\PizzaStore\UI\JsonRpc\Method\GetPizzas;
 
-use Romaind\PizzaStore\Infrastructure\Server\JsonRpcServer\Validation\AbstractParamsConstraint;
+use Romaind\PizzaStore\UI\JsonRpc\Validation\AbstractParamsConstraint;
 
 class GetPizzasConstraint extends AbstractParamsConstraint
 {

@@ -31,3 +31,4 @@
 ###< lexik/jwt-authentication-bundle ###
 
 /build/
+/.deptrac.cache
