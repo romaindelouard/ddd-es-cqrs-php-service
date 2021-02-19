@@ -20,9 +20,6 @@ abstract class AbstractCommandQueryController extends AbstractQueryController
         $this->commandBus = $commandBus;
     }
 
-    /**
-     * @throws \Throwable
-     */
     protected function handle(CommandInterface $command): void
     {
         $this->commandBus->handle($command);

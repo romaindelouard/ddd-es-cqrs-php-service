@@ -12,4 +12,13 @@ grumphp:
       cache_file: .php_cs.cache
     phpversion:
       project: "7.4"
+    phpstan:
+      autoload_file: ~
+      configuration: ~
+      level: 6
+      force_patterns: []
+      ignore_patterns: []
+      triggered_by: ['php']
+      memory_limit: "-1"
+      use_grumphp_paths: true
     yamllint: ~

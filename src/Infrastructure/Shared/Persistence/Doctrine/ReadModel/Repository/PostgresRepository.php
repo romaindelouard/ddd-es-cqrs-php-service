@@ -4,23 +4,21 @@ namespace Romaind\PizzaStore\Infrastructure\Shared\Persistence\Doctrine\ReadMode
 
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
 use Romaind\PizzaStore\Infrastructure\Shared\Persistence\ReadModel\Exception\NotFoundException;
 
 abstract class PostgresRepository
 {
-    protected EntityRepository $repository;
     protected EntityManagerInterface $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
-        $this->setEntityManager();
+        $this->defineEntityManager();
     }
 
-    abstract protected function setEntityManager(): void;
+    abstract protected function defineEntityManager(): void;
 
     /**
      * @param mixed $model

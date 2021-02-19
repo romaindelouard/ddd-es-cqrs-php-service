@@ -45,7 +45,6 @@ class GetPizzasController extends AbstractQueryController
      * @Security(name="Bearer")
      *
      * @throws AssertionFailedException
-     * @throws \Throwable
      */
     public function __invoke(Request $request): Response
     {

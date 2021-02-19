@@ -17,6 +17,8 @@ use Twig\Error\SyntaxError;
 
 class RegisterController extends AbstractRenderController
 {
+    private const REGISTER_FORM_TEMPLATE_PATH = 'register/index.html.twig';
+
     /**
      * @Route(
      *     "/register",
@@ -30,7 +32,7 @@ class RegisterController extends AbstractRenderController
      */
     public function getAction(): Response
     {
-        return $this->render('register/index.html.twig');
+        return $this->render(self::REGISTER_FORM_TEMPLATE_PATH);
     }
 
     /**
@@ -60,9 +62,17 @@ class RegisterController extends AbstractRenderController
 
             return $this->render('register/user_created.html.twig', ['uuid' => $uuid, 'email' => $email]);
         } catch (EmailAlreadyExistException $exception) {
-            return $this->render('register/index.html.twig', ['error' => 'Email already exists.'], Response::HTTP_CONFLICT);
+            return $this->render(
+                self::REGISTER_FORM_TEMPLATE_PATH,
+                ['error' => 'Email already exists.'],
+                new Response(null, Response::HTTP_CONFLICT)
+            );
         } catch (\InvalidArgumentException $exception) {
-            return $this->render('register/index.html.twig', ['error' => $exception->getMessage()], Response::HTTP_BAD_REQUEST);
+            return $this->render(
+                self::REGISTER_FORM_TEMPLATE_PATH,
+                ['error' => $exception->getMessage()],
+                new Response(null, Response::HTTP_BAD_REQUEST)
+            );
         }
     }
 }

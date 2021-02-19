@@ -36,11 +36,11 @@ services:
   _instanceof:
     Yoanm\JsonRpcServer\Domain\JsonRpcMethodInterface:
       tags: [ "app.json_rpc_method" ]
+    Romaind\PizzaStore\UI\JsonRpcMethod\WithParamsValidatorInterface:
       calls:
         - method: setValidator
           arguments:
             - '@Romaind\PizzaStore\Infrastructure\Server\JsonRpcServer\Validation\ParamsValidator'
-
     Romaind\PizzaStore\UI\JsonRpcMethod\QueryJsonRpcMethodInterface:
       calls:
         - method: setQueryBus

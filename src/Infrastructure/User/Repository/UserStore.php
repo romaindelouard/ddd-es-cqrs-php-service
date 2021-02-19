@@ -31,8 +31,16 @@ class UserStore extends EventSourcingRepository implements UserRepositoryInterfa
         $this->save($user);
     }
 
+    /**
+     * @throw \UnexpectedValueException
+     */
     public function get(UuidInterface $uuid): User
     {
-        return $this->load($uuid->toString());
+        $user = $this->load($uuid->toString());
+        if (!$user instanceof User) {
+            throw new \UnexpectedValueException('User type is not valid');
+        }
+
+        return $user;
     }
 }

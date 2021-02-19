@@ -8,7 +8,7 @@ use Romaind\PizzaStore\Infrastructure\Server\JsonRpcServer\Validation\ParamsVali
 use Symfony\Component\Validator\Constraint;
 use Yoanm\JsonRpcServer\Domain\JsonRpcMethodInterface;
 
-abstract class AbstractCommandJsonRpcMethod implements JsonRpcMethodInterface, CommandJsonRpcMethodInterface
+abstract class AbstractCommandJsonRpcMethod implements JsonRpcMethodInterface, CommandJsonRpcMethodInterface, WithParamsValidatorInterface
 {
     protected ?Constraint $constraint;
     protected ParamsValidator $validator;

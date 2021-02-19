@@ -25,8 +25,6 @@ abstract class AbstractQueryController
 
     /**
      * @return Item|Collection|string|null
-     *
-     * @throws Throwable
      */
     protected function ask(QueryInterface $query)
     {

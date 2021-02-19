@@ -9,7 +9,7 @@ use Romaind\PizzaStore\Infrastructure\Server\JsonRpcServer\Validation\ParamsVali
 use Symfony\Component\Validator\Constraint;
 use Yoanm\JsonRpcServer\Domain\JsonRpcMethodInterface;
 
-abstract class AbstractQueryJsonRpcMethod implements JsonRpcMethodInterface, QueryJsonRpcMethodInterface
+abstract class AbstractQueryJsonRpcMethod implements JsonRpcMethodInterface, QueryJsonRpcMethodInterface, WithParamsValidatorInterface
 {
     protected ?Constraint $constraint;
     protected ParamsValidator $validator;
@@ -29,7 +29,7 @@ abstract class AbstractQueryJsonRpcMethod implements JsonRpcMethodInterface, Que
 
     abstract protected function parseResult(ResultCollection $collection): array;
 
-    public function setValidator(ParamsValidator $validator)
+    public function setValidator(ParamsValidator $validator): void
     {
         $this->validator = $validator;
     }

@@ -7,8 +7,5 @@ namespace Romaind\PizzaStore\Domain\Model\Shared\Specification;
  */
 abstract class AbstractSpecification implements SpecificationInterface
 {
-    /**
-     * @param mixed $value
-     */
     abstract public function isSatisfiedBy($value): bool;
 }

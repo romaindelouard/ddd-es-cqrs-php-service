@@ -16,10 +16,15 @@ use Romaind\PizzaStore\Infrastructure\User\ReadModel\UserView;
 
 class PostgresReadModelUserRepository extends PostgresRepository implements CheckUserByEmailInterface, GetUserCredentialsByEmailInterface
 {
-    protected function setEntityManager(): void
+    // @phpstan-ignore-next-line
+    protected EntityRepository $repository;
+
+    protected function defineEntityManager(): void
     {
-        /** @var EntityRepository $objectRepository */
         $objectRepository = $this->entityManager->getRepository(UserView::class);
+        if (!$objectRepository instanceof EntityRepository) {
+            throw new \UnexpectedValueException('objectRepository is not an EntityRepository');
+        }
         $this->repository = $objectRepository;
     }
 
@@ -92,7 +97,11 @@ class PostgresReadModelUserRepository extends PostgresRepository implements Chec
     }
 
     /**
-     * @return array{0: \Ramsey\Uuid\UuidInterface, 1: Email, 2: \App\Domain\User\ValueObject\Auth\HashedPassword}
+     * @return array{
+     *  0: \Ramsey\Uuid\UuidInterface,
+     *  1: Email,
+     *  2: \Romaind\PizzaStore\Domain\Model\User\ValueObject\Authentication\HashedPassword
+     * }
      *
      * @throws NonUniqueResultException
      * @throws NotFoundException
