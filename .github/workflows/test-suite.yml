@@ -1,4 +1,4 @@
-name: push
+name: Test Suite
 
 on:
   push:
@@ -69,28 +69,13 @@ jobs:
           coverage: xdebug
       - name: Build application
         run: make build
-      - name: Checks the application readiness probe status
-        run: make healthz
       - name: Unit tests
         run: make test-unit
+      - name: Checks the application readiness probe status
+        run: make healthz
       - name: Functional tests
         run: make test-functional
       - name: Static analysis tests
         run: make test-static
       - name: Check issues with application layers
         run: make test-layer
-      #> with application docker container
-      - name: Create a new network
-        run: docker network create dev
-      - name: Build application in the docker container
-        run: make docker-build
-      - name: List all docker images
-        run: docker images
-      - name: List all docker containers
-        run: docker ps
-      - name: Unit tests in the docker container
-        run: docker run pizza-service:dev make test-unit
-      # Not works: Unable to create the "cache" directory (/var/www/html/var/cache/dev).
-      # - name: Functional tests
-      #  run: docker-compose run --service-ports --rm pizza-service make test-functional
-      #<
