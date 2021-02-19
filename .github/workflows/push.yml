@@ -75,6 +75,8 @@ jobs:
         run: make test-unit
       - name: Functional tests
         run: make test-functional
+      - name: Static analysis tests
+        run: make test-static
       #> with application docker container
       - name: Create a new network
         run: docker network create dev
