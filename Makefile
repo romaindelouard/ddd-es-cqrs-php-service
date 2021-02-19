@@ -110,6 +110,13 @@ docker-volumes-create:
 	docker volume create --name=dev-rabbitmq-data
 	docker volume create --name=dev-elasticsearch-data
 
+## This target remove all the docker volumes
+.PHONY: docker-volumes-remove
+docker-volumes-remove:
+	docker volume rm -f dev-postgres-data
+	docker volume rm -f dev-rabbitmq-data
+	docker volume rm -f dev-elasticsearch-data
+
 ## This target clean all docker containers
 .PHONY: docker-clean
 docker-clean:
