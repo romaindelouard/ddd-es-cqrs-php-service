@@ -1,5 +1,7 @@
 # DDD ES CQRS PHP service
 
+[![codecov](https://codecov.io/gh/romaindelouard/ddd-es-cqrs-php-service/branch/master/graph/badge.svg?token=PJ7P1ON7UH)](https://codecov.io/gh/romaindelouard/ddd-es-cqrs-php-service)
+
 ## Stack
 
 - Nginx 1.17.9
