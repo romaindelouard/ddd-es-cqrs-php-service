@@ -28,7 +28,7 @@ start:
 
 ## This target is used to run all tests define for an application
 .PHONY: test
-test: test-unit test-functional
+test: test-unit test-functional test-static
 
 ## This target is used to run the application functional tests
 .PHONY: test-functional
