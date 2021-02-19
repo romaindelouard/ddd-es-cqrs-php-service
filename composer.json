@@ -150,13 +150,16 @@
       "@test-unit",
       "@test-functional"
     ],
-    "test-unit": [
-      "phpspec --no-interaction run -fpretty"
-    ],
     "test-functional": [
       "@db-create-test",
       "@db-migrate-test",
       "@behat-run"
+    ],
+    "test-unit": [
+      "phpspec --no-interaction run -fpretty"
+    ],
+    "test-static": [
+      "@phpstan"
     ],
     "php-cs-fixer": [
       "php-cs-fixer fix --config=.php_cs.php --verbose --diff"

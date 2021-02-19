@@ -42,6 +42,11 @@ test-unit: APP_ENV:=test
 test-unit:
 	XDEBUG_MODE=coverage composer run-script test-unit
 
+## This target is used to run the application static analysis tool
+.PHONY: test-static
+test-static:
+	composer run-script test-static
+
 ## This target should return the application readiness probe status
 .PHONY: healthz
 healthz:
