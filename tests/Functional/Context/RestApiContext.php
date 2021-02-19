@@ -3,23 +3,15 @@
 namespace Tests\Functional\Context;
 
 use Assert\Assertion;
-use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\KernelInterface;
 
-class RestApiContext implements Context
+class RestApiContext extends AbstractContext
 {
     protected $lastResponse;
-    protected KernelInterface $kernel;
     protected Response $response;
     private ?string $token = null;
-
-    public function __construct(KernelInterface $kernel)
-    {
-        $this->kernel = $kernel;
-    }
 
     /**
      * @When I send a :method request to :path
@@ -35,7 +27,7 @@ class RestApiContext implements Context
           [],
           $this->headers()
         );
-        $this->response = $this->kernel->handle($request);
+        $this->response = $this->getKernel()->handle($request);
     }
 
     /**

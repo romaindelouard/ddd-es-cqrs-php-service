@@ -2,25 +2,16 @@
 
 namespace Tests\Functional\Context;
 
-use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
+use Coduo\PHPMatcher\PHPMatcher;
 use Seld\JsonLint\JsonParser;
-use Symfony\Component\HttpKernel\KernelInterface;
 
-class JsonRpcApiContext implements Context
+class JsonRpcApiContext extends AbstractContext
 {
     /**
      * @var \stdClass|string
      */
     protected $lastJsonRpcResponse;
-
-    protected string $userAgent;
-    protected KernelInterface $kernel;
-
-    public function __construct(KernelInterface $kernel)
-    {
-        $this->kernel = $kernel;
-    }
 
     /**
      * @Given I define a user agent for JSON-RPC HTTP client with :userAgent
@@ -366,7 +357,7 @@ class JsonRpcApiContext implements Context
         }
 
         $result = $matcher->match($responseValue, $expectedValue);
-        $this->lastMatcherError = $matcher->getError();
+        $this->lastMatcherError = $matcher->error();
 
         return $result;
     }
@@ -427,12 +418,12 @@ class JsonRpcApiContext implements Context
      */
     private function call(array $request)
     {
-        $client = $this->kernel->getContainer()->get('test.client');
+        $client = $this->getContainer()->get('test.client');
 
         $parametersServer = [
-            'CONTENT_TYPE' => 'application/json',
-            'HTTP_ACCEPT' => 'application/json',
-        ];
+          'CONTENT_TYPE' => 'application/json',
+          'HTTP_ACCEPT' => 'application/json',
+      ];
 
         if (!empty($this->userAgent)) {
             $parametersServer = array_merge($parametersServer, ['HTTP_USER_AGENT' => $this->userAgent]);

@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Functional\Context;
 
-use Behat\Behat\Context\Context;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
  * This context class contains the definitions of the steps used by the demo
@@ -15,25 +12,14 @@ use Symfony\Component\HttpKernel\KernelInterface;
  *
  * @see http://behat.org/en/latest/quick_start.html
  */
-final class DemoContext implements Context
+final class DemoContext extends AbstractContext
 {
-    /** @var KernelInterface */
-    private $kernel;
-
-    /** @var Response|null */
-    private $response;
-
-    public function __construct(KernelInterface $kernel)
-    {
-        $this->kernel = $kernel;
-    }
-
     /**
      * @When a demo scenario sends a request to :path
      */
     public function aDemoScenarioSendsARequestTo(string $path): void
     {
-        $this->response = $this->kernel->handle(Request::create($path, 'GET'));
+        $this->response = $this->getKernel()->handle(Request::create($path, 'GET'));
     }
 
     /**

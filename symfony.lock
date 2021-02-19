@@ -1,4 +1,7 @@
 {
+    "aeon-php/calendar": {
+        "version": "0.15.0"
+    },
     "amphp/amp": {
         "version": "v2.5.2"
     },
@@ -70,6 +73,12 @@
     },
     "broadway/uuid-generator": {
         "version": "1.0.0"
+    },
+    "coduo/php-matcher": {
+        "version": "6.0.1"
+    },
+    "coduo/php-to-string": {
+        "version": "3.1.0"
     },
     "composer/ca-bundle": {
         "version": "1.2.9"
@@ -549,6 +558,9 @@
     "symfony/http-kernel": {
         "version": "v5.2.1"
     },
+    "symfony/intl": {
+        "version": "v5.2.3"
+    },
     "symfony/maker-bundle": {
         "version": "1.0",
         "recipe": {
@@ -599,6 +611,9 @@
     },
     "symfony/polyfill-intl-grapheme": {
         "version": "v1.22.0"
+    },
+    "symfony/polyfill-intl-icu": {
+        "version": "v1.22.1"
     },
     "symfony/polyfill-intl-idn": {
         "version": "v1.22.0"

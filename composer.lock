@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "998f00cce0133f688b51d14f3ad496a6",
+    "content-hash": "c8d992aad850fa4361c61b2a48954515",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -7657,6 +7657,61 @@
     ],
     "packages-dev": [
         {
+            "name": "aeon-php/calendar",
+            "version": "0.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aeon-php/calendar.git",
+                "reference": "d4fe56303100e404e0071ea5ab2e91f9b5c7befb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aeon-php/calendar/zipball/d4fe56303100e404e0071ea5ab2e91f9b5c7befb",
+                "reference": "d4fe56303100e404e0071ea5ab2e91f9b5c7befb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4.2"
+            },
+            "require-dev": {
+                "ext-bcmath": "*"
+            },
+            "suggest": {
+                "ext-bcmath": "Compare time units with high precision"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Aeon\\": [
+                        "src/Aeon"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHP type safe, immutable calendar library",
+            "keywords": [
+                "calendar",
+                "date",
+                "datetime",
+                "immutable",
+                "time"
+            ],
+            "support": {
+                "issues": "https://github.com/aeon-php/calendar/issues",
+                "source": "https://github.com/aeon-php/calendar/tree/0.15.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/norberttech",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-02-01T23:15:31+00:00"
+        },
+        {
             "name": "amphp/amp",
             "version": "v2.5.2",
             "source": {
@@ -8382,6 +8437,130 @@
                 "source": "https://github.com/blackfireio/php-sdk/tree/v1.24.0"
             },
             "time": "2021-02-05T10:16:05+00:00"
+        },
+        {
+            "name": "coduo/php-matcher",
+            "version": "6.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/coduo/php-matcher.git",
+                "reference": "34ace91e87b3c16379a391de61e25b7ef917d704"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/coduo/php-matcher/zipball/34ace91e87b3c16379a391de61e25b7ef917d704",
+                "reference": "34ace91e87b3c16379a391de61e25b7ef917d704",
+                "shasum": ""
+            },
+            "require": {
+                "aeon-php/calendar": "^0.14.0 || ^0.15.0",
+                "coduo/php-to-string": "^3",
+                "doctrine/lexer": "^1.0",
+                "ext-filter": "*",
+                "ext-json": "*",
+                "ext-simplexml": "*",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "openlss/lib-array2xml": "^1.0",
+                "phpunit/phpunit": "^9.4",
+                "symfony/expression-language": "^2.3|^3.0|^4.0|^5.0"
+            },
+            "suggest": {
+                "openlss/lib-array2xml": "In order ot use Coduo\\PHPMatcher\\Matcher\\XmlMatcher",
+                "symfony/expression-language": "In order to use Coduo\\PHPMatcher\\Matcher\\ExpressionMatcher"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Coduo\\PHPMatcher\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michał Dąbrowski",
+                    "email": "dabrowski@brillante.pl"
+                },
+                {
+                    "name": "Norbert Orzechowicz",
+                    "email": "norbert@orzechowicz.pl"
+                }
+            ],
+            "description": "PHP Matcher enables you to match values with patterns",
+            "keywords": [
+                "Match",
+                "json",
+                "matcher",
+                "tests"
+            ],
+            "support": {
+                "issues": "https://github.com/coduo/php-matcher/issues",
+                "source": "https://github.com/coduo/php-matcher/tree/6.0.1"
+            },
+            "time": "2021-02-05T21:07:20+00:00"
+        },
+        {
+            "name": "coduo/php-to-string",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/coduo/php-to-string.git",
+                "reference": "5eab40b901e89484f3ea586c08099162e89f81ce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/coduo/php-to-string/zipball/5eab40b901e89484f3ea586c08099162e89f81ce",
+                "reference": "5eab40b901e89484f3ea586c08099162e89f81ce",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2",
+                "symfony/intl": "^3.4|^4.0|^5.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "^6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Coduo\\ToString\\": "src/Coduo/ToString"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michał Dąbrowski",
+                    "email": "dabrowski@brillante.pl"
+                },
+                {
+                    "name": "Norbert Orzechowicz",
+                    "email": "norbert@orzechowicz.pl"
+                }
+            ],
+            "description": "Simple library that converts PHP value into strings",
+            "keywords": [
+                "php",
+                "string",
+                "to",
+                "to string"
+            ],
+            "support": {
+                "issues": "https://github.com/coduo/php-to-string/issues",
+                "source": "https://github.com/coduo/php-to-string/tree/3.1.0"
+            },
+            "time": "2020-09-27T10:31:58+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -10606,6 +10785,94 @@
             "time": "2021-01-27T10:01:46+00:00"
         },
         {
+            "name": "symfony/intl",
+            "version": "v5.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/intl.git",
+                "reference": "930f17689729cc47d2ce18be21ed403bcbeeb6a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/intl/zipball/930f17689729cc47d2ce18be21ed403bcbeeb6a9",
+                "reference": "930f17689729cc47d2ce18be21ed403bcbeeb6a9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/polyfill-intl-icu": "~1.0",
+                "symfony/polyfill-php80": "^1.15"
+            },
+            "require-dev": {
+                "symfony/filesystem": "^4.4|^5.0"
+            },
+            "suggest": {
+                "ext-intl": "to use the component with locales other than \"en\""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Intl\\": ""
+                },
+                "classmap": [
+                    "Resources/stubs"
+                ],
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bernhard Schussek",
+                    "email": "bschussek@gmail.com"
+                },
+                {
+                    "name": "Eriksen Costa",
+                    "email": "eriksen.costa@infranology.com.br"
+                },
+                {
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Provides a PHP replacement layer for the C intl extension that includes additional data from the ICU library",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "i18n",
+                "icu",
+                "internationalization",
+                "intl",
+                "l10n",
+                "localization"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/intl/tree/v5.2.3"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-01-27T10:01:46+00:00"
+        },
+        {
             "name": "symfony/maker-bundle",
             "version": "v1.28.0",
             "source": {
@@ -10674,6 +10941,93 @@
                 "scaffolding"
             ],
             "time": "2021-01-15T18:19:20+00:00"
+        },
+        {
+            "name": "symfony/polyfill-intl-icu",
+            "version": "v1.22.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-intl-icu.git",
+                "reference": "af1842919c7e7364aaaa2798b29839e3ba168588"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-icu/zipball/af1842919c7e7364aaaa2798b29839e3ba168588",
+                "reference": "af1842919c7e7364aaaa2798b29839e3ba168588",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "suggest": {
+                "ext-intl": "For best performance and support of other locales than \"en\""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.22-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Intl\\Icu\\": ""
+                },
+                "classmap": [
+                    "Resources/stubs"
+                ],
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for intl's ICU-related data and classes",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "icu",
+                "intl",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-intl-icu/tree/v1.22.1"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-01-22T09:19:47+00:00"
         },
         {
             "name": "symfony/polyfill-php70",

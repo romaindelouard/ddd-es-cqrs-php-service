@@ -45,6 +45,7 @@
     "ext-xdebug": "*",
     "behat/behat": "^3.8",
     "blackfire/php-sdk": "^1.24",
+    "coduo/php-matcher": "^6.0",
     "dvdoug/behat-code-coverage": "^5.2",
     "friends-of-behat/symfony-extension": "^2.0",
     "friends-of-phpspec/phpspec-code-coverage": "^6.0",

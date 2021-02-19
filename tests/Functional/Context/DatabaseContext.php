@@ -2,19 +2,19 @@
 
 namespace Tests\Functional\Context;
 
-use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
 use Doctrine\DBAL\Connection;
-use Symfony\Component\HttpKernel\KernelInterface;
 
-class DatabaseContext implements Context
+class DatabaseContext extends AbstractContext
 {
-    protected Connection $connection;
-    private KernelInterface $kernel;
+    protected ?Connection $connection = null;
 
-    public function __construct(KernelInterface $kernel)
+    /**
+     * @BeforeScenario
+     */
+    public function initialize(): void
     {
-        $this->kernel = $kernel;
+        $this->connection = $this->getContainer()->get('doctrine.dbal.default_connection');
     }
 
     /**
@@ -23,17 +23,6 @@ class DatabaseContext implements Context
     public function theTableIsEmpty($tableName)
     {
         $this->connection->executeQuery(sprintf('TRUNCATE %s', $tableName));
-    }
-
-    /**
-     * @BeforeScenario
-     */
-    public function initialize(): void
-    {
-        $connection = $this->kernel->getContainer()->get('doctrine.dbal.default_connection');
-        if ($connection instanceof Connection) {
-            $this->connection = $connection;
-        }
     }
 
     /**

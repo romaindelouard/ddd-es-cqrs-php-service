@@ -119,6 +119,14 @@ services:
       - dev-elasticsearch-data:/var/lib/elasticsearch
     networks:
       - dev
+  elasticsearch-head:
+    image: mobz/elasticsearch-head:5-alpine
+    ports:
+      - 9100:9100
+    depends_on:
+      - elasticsearch
+    networks:
+      - dev
 
 networks:
   dev:
