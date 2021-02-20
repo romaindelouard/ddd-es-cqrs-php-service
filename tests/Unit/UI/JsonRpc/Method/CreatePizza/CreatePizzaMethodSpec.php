@@ -8,6 +8,7 @@ use Ramsey\Uuid\UuidInterface;
 use Romaind\PizzaStore\Application\Command\CommandBusInterface;
 use Romaind\PizzaStore\Domain\Model\Pizza\Pizza;
 use Romaind\PizzaStore\Domain\Model\Pizza\PizzaRepositoryInterface;
+use Romaind\PizzaStore\UI\JsonRpc\Method\AbstractCommandJsonRpcMethod;
 use Romaind\PizzaStore\UI\JsonRpc\Method\CreatePizza\CreatePizzaMethod;
 use Romaind\PizzaStore\UI\JsonRpc\Validation\ParamsValidator;
 
@@ -26,6 +27,7 @@ class CreatePizzaMethodSpec extends ObjectBehavior
     public function it_is_initializable()
     {
         $this->shouldHaveType(CreatePizzaMethod::class);
+        $this->shouldBeAnInstanceOf(AbstractCommandJsonRpcMethod::class);
     }
 
     public function it_should_create_a_pizza(

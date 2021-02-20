@@ -1,21 +1,20 @@
 <?php
 
-namespace tests\Unit\Romaind\PizzaStore\UI\JsonRpc\Method\GetPizzas;
+namespace tests\Unit\Romaind\PizzaStore\UI\JsonRpc\Method\GetEvents;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Romaind\PizzaStore\Application\Query\Collection;
-use Romaind\PizzaStore\Application\Query\Pizza\GetPizzas\GetPizzasQuery;
+use Romaind\PizzaStore\Application\Query\Event\GetEvents\GetEventsQuery;
 use Romaind\PizzaStore\Application\Query\QueryBusInterface;
 use Romaind\PizzaStore\UI\JsonRpc\Method\AbstractQueryJsonRpcMethod;
-use Romaind\PizzaStore\UI\JsonRpc\Method\GetPizzas\GetPizzasConstraint;
-use Romaind\PizzaStore\UI\JsonRpc\Method\GetPizzas\GetPizzasMethod;
+use Romaind\PizzaStore\UI\JsonRpc\Method\GetEvents\GetEventsMethod;
 use Romaind\PizzaStore\UI\JsonRpc\Validation\ParamsValidator;
 
-class GetPizzasMethodSpec extends ObjectBehavior
+class GetEventsMethodSpec extends ObjectBehavior
 {
     public function let(
-        GetPizzasQuery $query,
+        GetEventsQuery $query,
         QueryBusInterface $queryBus,
         ParamsValidator $validator
     ) {
@@ -26,12 +25,12 @@ class GetPizzasMethodSpec extends ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->shouldHaveType(GetPizzasMethod::class);
+        $this->shouldHaveType(GetEventsMethod::class);
         $this->shouldBeAnInstanceOf(AbstractQueryJsonRpcMethod::class);
     }
 
     public function it_should_get_pizzas(
-        GetPizzasQuery $query,
+        GetEventsQuery $query,
         QueryBusInterface $queryBus,
         ParamsValidator $validator,
         Collection $collection
@@ -43,11 +42,8 @@ class GetPizzasMethodSpec extends ObjectBehavior
         $collection->data = ['data'];
 
         $validator
-            ->validateParameters(
-                $parameters,
-                Argument::type(GetPizzasConstraint::class)
-            )
-            ->shouldBeCalledTimes(1);
+            ->validateParameters(Argument::cetera())
+            ->shouldNotBeCalled();
         $queryBus->ask($query)->willReturn($collection)->shouldBeCalledTimes(1);
 
         $this->apply($parameters)->shouldBe([
