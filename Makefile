@@ -16,10 +16,15 @@ endif
 
 ## This target should be used if you need to run some commands before to run the application
 .PHONY: init
-init: db-create db-migrate
+init: db-create db-migrate rmq-setup
 
 .PHONY: build-all
 build-all: build db-create init
+
+## This target is used to install rabbitmq configuration (queues, exchanges)
+.PHONY: rmq-setup
+rmq-setup:
+	composer run-script rmq-setup
 
 .PHONY: start
 start: APP_ENV:=dev

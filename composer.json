@@ -176,6 +176,9 @@
     ],
     "phpstan": [
       "phpstan analyse -l 6 -c phpstan.neon src"
+    ],
+    "rmq-setup": [
+      "console messenger:setup-transports --no-interaction"
     ]
   },
   "conflict": {

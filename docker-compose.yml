@@ -25,13 +25,15 @@ services:
     <<: *base
     image: pizza-service:dev
     command: make init
+    volumes:
+      - /var/www/html
     depends_on:
       postgres:
         condition: service_healthy
       rabbitmq:
         condition: service_healthy
       elasticsearch:
-        condition: service_started
+        condition: service_healthy
     restart: on-failure
   nginx:
     image: nginx:1.17.9
@@ -98,6 +100,8 @@ services:
     environment:
       - discovery.type=single-node
       - cluster.name=events
+      - bootstrap.memory_lock=true
+      #- cluster.routing.allocation.disk.threshold_enabled=false
       - xpack.security.enabled=false
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - http.host=0.0.0.0
@@ -110,11 +114,12 @@ services:
       memlock:
         soft: -1
         hard: -1
+    mem_limit: 1g
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:9200/_cluster/health" ]
       interval: 30s
       timeout: 30s
-      retries: 3
+      retries: 5
     volumes:
       - dev-elasticsearch-data:/var/lib/elasticsearch
     networks:
