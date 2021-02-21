@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c8d992aad850fa4361c61b2a48954515",
+    "content-hash": "319559a590aee53559f77372f6dd0ae2",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -350,6 +350,78 @@
             ],
             "description": "Event store implementation using doctrine/dbal",
             "time": "2020-03-08T14:20:20+00:00"
+        },
+        {
+            "name": "broadway/read-model-elasticsearch",
+            "version": "0.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/broadway/read-model-elasticsearch.git",
+                "reference": "f902089f8eeb5de815d4f468772ebdf1f2d205bb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/broadway/read-model-elasticsearch/zipball/f902089f8eeb5de815d4f468772ebdf1f2d205bb",
+                "reference": "f902089f8eeb5de815d4f468772ebdf1f2d205bb",
+                "shasum": ""
+            },
+            "require": {
+                "broadway/broadway": "^2.3.1",
+                "elasticsearch/elasticsearch": "^7.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "broadway/coding-standard": "^1.0",
+                "phpstan/phpstan": "@stable",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Broadway\\ReadModel\\ElasticSearch\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander",
+                    "email": "iam.asm89@gmail.com"
+                },
+                {
+                    "name": "Emil",
+                    "email": "emil@broekmeulen.com"
+                },
+                {
+                    "name": "Fritsjan",
+                    "email": "fritsjan@qandidate.com"
+                },
+                {
+                    "name": "othillo",
+                    "email": "othillo@othillo.nl"
+                },
+                {
+                    "name": "Willem-Jan",
+                    "email": "wjzijderveld@gmail.com"
+                },
+                {
+                    "name": "Qandidate.com",
+                    "homepage": "http://labs.qandidate.com/"
+                }
+            ],
+            "description": "Elasticsearch read model implementation using elastic/elasticsearch-php",
+            "support": {
+                "issues": "https://github.com/broadway/read-model-elasticsearch/issues",
+                "source": "https://github.com/broadway/read-model-elasticsearch/tree/0.7.1"
+            },
+            "time": "2021-01-20T14:12:17+00:00"
         },
         {
             "name": "broadway/uuid-generator",

@@ -6,7 +6,6 @@ use Broadway\Domain\DomainMessage;
 use Broadway\Domain\Metadata;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Romaind\PizzaStore\Infrastructure\Shared\Bus\AsyncEvent\AsyncEventHandlerInterface;
 use Romaind\PizzaStore\Infrastructure\Shared\Bus\AsyncEvent\MessengerAsyncEventBus;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
@@ -22,7 +21,6 @@ class MessengerAsyncEventBusSpec extends ObjectBehavior
     public function it_is_initializable()
     {
         $this->shouldHaveType(MessengerAsyncEventBus::class);
-        $this->shouldImplement(AsyncEventHandlerInterface::class);
     }
 
     public function it_should_handle_a_command(

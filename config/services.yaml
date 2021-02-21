@@ -7,6 +7,9 @@ parameters:
   elastic:
     hosts:
       - "%env(ELASTIC_ADDR)%"
+  elasticsearch:
+    hosts:
+      - "%env(ELASTIC_ADDR)%"
 
   exception_to_status:
     InvalidArgumentException: 400
@@ -14,6 +17,7 @@ parameters:
     Romaind\PizzaStore\Domain\User\Exception\ForbiddenException: 403
     Romaind\PizzaStore\Infrastructure\Shared\Persistence\ReadModel\Exception\NotFoundException: 404
     Broadway\Repository\AggregateNotFoundException: 404
+    elasticsearch: "~"
 
 services:
   # Needed since Since symfony/dependency-injection 5.1
@@ -35,7 +39,7 @@ services:
 
   _instanceof:
     Yoanm\JsonRpcServer\Domain\JsonRpcMethodInterface:
-      tags: [ "app.json_rpc_method" ]
+      tags: ["app.json_rpc_method"]
     Romaind\PizzaStore\UI\JsonRpc\Method\WithParamsValidatorInterface:
       calls:
         - method: setValidator
@@ -55,7 +59,6 @@ services:
       public: true
       tags:
         - { name: messenger.message_handler, bus: messenger.bus.command }
-
     Romaind\PizzaStore\Infrastructure\Shared\Bus\AsyncEvent\AsyncEventHandlerInterface:
       public: true
       tags:
@@ -74,7 +77,7 @@ services:
   mapping_aware_service:
     public: true # In order to allow Behat context to load it later
     class: Romaind\PizzaStore\Infrastructure\Server\JsonRpcServer\Collector\MappingCollector
-    tags: [ "json_rpc_http_server.method_aware" ]
+    tags: ["json_rpc_http_server.method_aware"]
 
   ### Event Store
   Broadway\EventStore\Dbal\DBALEventStore:
@@ -95,7 +98,7 @@ services:
   ### Messenger async event BUS
   Romaind\PizzaStore\Infrastructure\Shared\Bus\AsyncEvent\MessengerAsyncEventBus:
     arguments:
-      - '@messenger.bus.event.async'
+      - "@messenger.bus.event.async"
 
   ### Messenger query BUS
   Romaind\PizzaStore\Infrastructure\Shared\Bus\Query\MessengerQueryBus:
@@ -105,7 +108,7 @@ services:
   ### UI
   Romaind\PizzaStore\UI\Http\Rest\Controller\:
     resource: "../src/UI/Http/Rest/Controller/*"
-    tags: [ "controller.service_arguments" ]
+    tags: ["controller.service_arguments"]
 
   ### UI Listeners
   Romaind\PizzaStore\UI\Http\Rest\EventSubscriber\ExceptionSubscriber:
@@ -118,8 +121,8 @@ services:
   Romaind\PizzaStore\UI\Http\Rest\EventSubscriber\JsonBodyParserSubscriber:
     tags:
       - {
-        name: "kernel.event_listener",
-        event: "kernel.request",
-        method: "onKernelRequest",
-        priority: 100,
-      }
+          name: "kernel.event_listener",
+          event: "kernel.request",
+          method: "onKernelRequest",
+          priority: 100,
+        }

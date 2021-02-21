@@ -12,6 +12,7 @@
     "ext-json": "*",
     "broadway/broadway-bundle": "^0.5.0",
     "broadway/event-store-dbal": "^0.5.0",
+    "broadway/read-model-elasticsearch": "^0.7.1",
     "composer/package-versions-deprecated": "1.11.99.1",
     "doctrine/doctrine-bundle": "^2.2",
     "doctrine/doctrine-migrations-bundle": "^3.0",
