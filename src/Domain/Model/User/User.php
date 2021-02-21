@@ -79,7 +79,11 @@ class User extends EventSourcedAggregateRoot
      */
     protected function applyUserEmailChanged(UserEmailChanged $event): void
     {
-        Assertion::notEq($this->email->toString(), $event->email->toString(), 'New email should be different');
+        Assertion::notEq(
+            $this->email->toString(),
+            $event->email->toString(),
+            'New email should be different'
+        );
 
         $this->setEmail($event->email);
         $this->setUpdatedAt($event->updatedAt);

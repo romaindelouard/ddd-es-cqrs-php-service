@@ -20,7 +20,10 @@ class EmailSpec extends ObjectBehavior
 
     public function it_should_serializeand_return_a_json_value()
     {
-        $this->beConstructedThrough('fromString', ['toto@domain.com']);
-        $this->jsonSerialize()->shouldBe('toto@domain.com');
+        $emailString = 'toto@domain.com';
+        $this->beConstructedThrough('fromString', [$emailString]);
+        $this->jsonSerialize()->shouldBe($emailString);
+        $this->__toString()->shouldBe($emailString);
+        $this->toString()->shouldBe($emailString);
     }
 }

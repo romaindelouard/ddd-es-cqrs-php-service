@@ -51,6 +51,7 @@ class ComboPizzaSpec extends ObjectBehavior
             'buy 1 pizza get 1 free',
             [$pizza, $pizza2]
         );
+        $this->getPizzas()->shouldBe([$pizza, $pizza2]);
     }
 
     public function it_is_initializable(): void
