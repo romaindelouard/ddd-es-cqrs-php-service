@@ -22,8 +22,6 @@ default:
         include:
           directories:
             "src": ~
-            "tests":
-              suffix: ".php"
       reports:
         html:
           target: build/coverage-behat
