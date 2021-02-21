@@ -8,7 +8,7 @@ use Symfony\Component\Messenger\Bridge\Amqp\Transport\AmqpStamp;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-class MessengerAsyncEventBus
+class MessengerAsyncEventBus implements AsyncEventHandlerInterface
 {
     use MessageBusExceptionTrait;
 
