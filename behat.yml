@@ -6,6 +6,7 @@ default:
       contexts:
         - Tests\Functional\Context\DemoContext: ~
         - Tests\Functional\Context\DatabaseContext: ~
+        - Tests\Functional\Context\EventCollectorListenerContext: ~
         - Tests\Functional\Context\JsonRpcApiContext: ~
         - Tests\Functional\Context\RestApiContext: ~
   extensions:

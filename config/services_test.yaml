@@ -5,3 +5,7 @@ services:
 
   Tests\Functional\Context\:
     resource: "../tests/Functional/Context/*"
+  Romaind\PizzaStore\Infrastructure\Shared\Event\EventCollectorListener:
+    public: true
+    tags:
+      - { name: broadway.domain.event_listener }

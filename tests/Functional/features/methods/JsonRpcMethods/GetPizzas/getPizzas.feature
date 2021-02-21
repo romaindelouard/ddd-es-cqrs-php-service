@@ -23,3 +23,4 @@ Feature: Get Pizzas
         "total": 2
       }
       """
+    And I expect event collector listener to collect 0 event

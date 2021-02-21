@@ -18,3 +18,4 @@ Feature: Registration
     And the table "public.user" should contain the following rows:
       | uuid                                 | credentials_email         |
       | 2b604f2f-fa01-451e-8e8b-2ed1fa7ea8b1 | romain.delouard@gmail.com |
+    And I expect event collector listener to collect 1 event type "Romaind\PizzaStore\Domain\Event\User\UserWasCreated"

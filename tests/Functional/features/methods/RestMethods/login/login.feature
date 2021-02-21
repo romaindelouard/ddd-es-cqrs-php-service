@@ -16,6 +16,7 @@ Feature: Login
       }
       """
     Then I should get 201 HTTP response status code
+    And I expect event collector listener to collect 1 event type "Romaind\PizzaStore\Domain\Event\User\UserWasCreated"
 
     When I send a "POST" request to "/api/auth_check" with JSON params:
       """
