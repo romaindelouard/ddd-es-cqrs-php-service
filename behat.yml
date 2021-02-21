@@ -23,6 +23,9 @@ default:
         include:
           directories:
             "src": ~
+        exclude:
+          directories:
+            "src/Infrastructure/Shared/Persistence/Doctrine/Migrations": ~
       reports:
         html:
           target: build/coverage-behat

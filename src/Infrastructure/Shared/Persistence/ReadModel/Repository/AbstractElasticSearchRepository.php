@@ -5,23 +5,14 @@ namespace Romaind\PizzaStore\Infrastructure\Shared\Persistence\ReadModel\Reposit
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Elasticsearch\Client;
-use Elasticsearch\ClientBuilder;
-use Psr\Log\LoggerInterface;
 
 abstract class AbstractElasticSearchRepository
 {
     private Client $client;
 
-    public function __construct(array $elasticConfig, LoggerInterface $elasticsearchLogger = null)
+    public function __construct(Client $eventReadModelClient)
     {
-        $defaultConfig = [];
-
-        if ($elasticsearchLogger) {
-            $defaultConfig['logger'] = $elasticsearchLogger;
-            $defaultConfig['tracer'] = $elasticsearchLogger;
-        }
-
-        $this->client = ClientBuilder::fromConfig(\array_replace($defaultConfig, $elasticConfig), true);
+        $this->client = $eventReadModelClient;
     }
 
     abstract protected function index(): string;

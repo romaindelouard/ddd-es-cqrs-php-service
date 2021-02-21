@@ -13,6 +13,8 @@ extensions:
       #xml: coverage
     whitelist:
       - src
+    blacklist:
+      - src/Infrastructure/Shared/Persistence/Doctrine/Migrations
 suites:
   default:
     namespace: Romaind\PizzaStore
