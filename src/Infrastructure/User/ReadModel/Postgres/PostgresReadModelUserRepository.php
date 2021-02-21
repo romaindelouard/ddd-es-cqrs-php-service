@@ -10,11 +10,11 @@ use Ramsey\Uuid\UuidInterface;
 use Romaind\PizzaStore\Domain\Model\User\Repository\CheckUserByEmailInterface;
 use Romaind\PizzaStore\Domain\Model\User\Repository\GetUserCredentialsByEmailInterface;
 use Romaind\PizzaStore\Domain\Model\User\ValueObject\Email;
-use Romaind\PizzaStore\Infrastructure\Shared\Persistence\Doctrine\ReadModel\Repository\PostgresRepository;
+use Romaind\PizzaStore\Infrastructure\Shared\Persistence\Doctrine\ReadModel\Repository\AbstractPostgresRepository;
 use Romaind\PizzaStore\Infrastructure\Shared\Persistence\ReadModel\Exception\NotFoundException;
 use Romaind\PizzaStore\Infrastructure\User\ReadModel\UserView;
 
-class PostgresReadModelUserRepository extends PostgresRepository implements CheckUserByEmailInterface, GetUserCredentialsByEmailInterface
+class PostgresReadModelUserRepository extends AbstractPostgresRepository implements CheckUserByEmailInterface, GetUserCredentialsByEmailInterface
 {
     // @phpstan-ignore-next-line
     protected EntityRepository $repository;

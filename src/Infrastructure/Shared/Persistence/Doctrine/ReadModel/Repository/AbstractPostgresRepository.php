@@ -8,7 +8,7 @@ use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
 use Romaind\PizzaStore\Infrastructure\Shared\Persistence\ReadModel\Exception\NotFoundException;
 
-abstract class PostgresRepository
+abstract class AbstractPostgresRepository
 {
     protected EntityManagerInterface $entityManager;
 

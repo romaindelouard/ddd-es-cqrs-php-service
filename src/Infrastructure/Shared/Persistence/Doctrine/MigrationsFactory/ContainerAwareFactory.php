@@ -17,8 +17,11 @@ final class ContainerAwareFactory implements MigrationFactory
 
     private LoggerInterface $logger;
 
-    public function __construct(Connection $connection, LoggerInterface $logger, ContainerInterface $container)
-    {
+    public function __construct(
+        Connection $connection,
+        LoggerInterface $logger,
+        ContainerInterface $container
+    ) {
         $this->connection = $connection;
         $this->logger = $logger;
         $this->container = $container;
