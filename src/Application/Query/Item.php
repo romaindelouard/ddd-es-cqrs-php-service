@@ -11,8 +11,12 @@ class Item
     public array $resource;
     public array $relationships = [];
 
-    public function __construct(string $id, string $type, array $payload, array $relations = [])
-    {
+    private function __construct(
+        string $id,
+        string $type,
+        array $payload,
+        array $relations = []
+    ) {
         $this->id = $id;
         $this->type = $type;
         $this->resource = $payload;

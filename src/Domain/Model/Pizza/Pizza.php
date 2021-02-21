@@ -42,22 +42,15 @@ class Pizza extends EventSourcedAggregateRoot implements ProductInterface
      */
     private ?\DateTimeInterface $updatedAt = null;
 
-    private array $ingredients;
+    private array $ingredients = [];
 
-    public function __construct(
-        //        UuidInterface $uuid,
-        //        string $name,
-        //        string $description
-    ) {
-//        $this->uuid = $uuid;
-//        $this->name = $name;
-//        $this->description = $description;
+    public function __construct()
+    {
         $this->createdAt = new \DateTime();
     }
 
     public static function create(UuidInterface $uuid, string $name, ?string $description): Pizza
     {
-//        $pizza = new self($uuid, $name, $description);
         $pizza = new self();
         $pizza->setUuid($uuid);
         $pizza->setName($name);
@@ -132,8 +125,11 @@ class Pizza extends EventSourcedAggregateRoot implements ProductInterface
 
     public function getUnitPrice(): Money
     {
-        $totalPrice = $this->ingredients[0]->getUnitPrice();
         $max = count($this->ingredients);
+        if (0 === $max) {
+            throw new \LogicException('No price without ingredient');
+        }
+        $totalPrice = $this->ingredients[0]->getUnitPrice();
         for ($i = 1; $i < $max; ++$i) {
             $totalPrice = $totalPrice->add($this->ingredients[$i]->getUnitPrice());
         }

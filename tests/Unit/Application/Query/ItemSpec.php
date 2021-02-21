@@ -11,11 +11,14 @@ class ItemSpec extends ObjectBehavior
 {
     public function let()
     {
-        $this->beConstructedWith(
-            'fdfb7256-89ea-4722-b978-413ec67d70e3',
-            UserView::TYPE,
-            [],
-            []
+        $this->beConstructedThrough(
+            'fromPayload',
+            [
+                'fdfb7256-89ea-4722-b978-413ec67d70e3',
+                UserView::TYPE,
+                [],
+                [],
+            ]
         );
     }
 
