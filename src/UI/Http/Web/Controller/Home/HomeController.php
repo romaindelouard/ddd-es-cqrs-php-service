@@ -22,7 +22,7 @@ class HomeController extends AbstractRenderController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function homeAction(): Response
+    public function get(): Response
     {
         return $this->render('home/index.html.twig');
     }

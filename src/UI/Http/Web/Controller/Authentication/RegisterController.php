@@ -30,7 +30,7 @@ class RegisterController extends AbstractRenderController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function getAction(): Response
+    public function get(): Response
     {
         return $this->render(self::REGISTER_FORM_TEMPLATE_PATH);
     }

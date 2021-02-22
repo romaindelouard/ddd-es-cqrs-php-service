@@ -6,9 +6,11 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Ramsey\Uuid\UuidInterface;
 use Romaind\PizzaStore\Application\Command\CommandBusInterface;
+use Romaind\PizzaStore\Application\Command\Pizza\Create\CreateCommand as CreatePizzaCommand;
 use Romaind\PizzaStore\Domain\Model\Pizza\Pizza;
 use Romaind\PizzaStore\Domain\Model\Pizza\PizzaRepositoryInterface;
 use Romaind\PizzaStore\UI\JsonRpc\Method\AbstractCommandJsonRpcMethod;
+use Romaind\PizzaStore\UI\JsonRpc\Method\CreatePizza\CreatePizzaConstraint;
 use Romaind\PizzaStore\UI\JsonRpc\Method\CreatePizza\CreatePizzaMethod;
 use Romaind\PizzaStore\UI\JsonRpc\Validation\ParamsValidator;
 
@@ -32,12 +34,36 @@ class CreatePizzaMethodSpec extends ObjectBehavior
 
     public function it_should_create_a_pizza(
         PizzaRepositoryInterface $pizzaRepository,
+        CommandBusInterface $commandBus,
+        ParamsValidator $validator,
         Pizza $pizza,
         UuidInterface $pizzaUuid
     ) {
         $name = '4 cheeses';
         $description = 'mega cheese';
         $parameters = ['name' => $name, 'description' => $description];
+
+        $validator
+            ->validateParameters(
+                $parameters,
+                Argument::type(CreatePizzaConstraint::class)
+            )
+            ->shouldBeCalledTimes(1);
+        $commandBus
+            ->handle(Argument::allOf(
+                Argument::type(CreatePizzaCommand::class),
+                Argument::that(function ($command) use ($name, $description) {
+                    if ($command->name !== $name) {
+                        return false;
+                    }
+                    if ($command->description !== $description) {
+                        return false;
+                    }
+
+                    return true;
+                })
+            ))
+            ->shouldBeCalledTimes(1);
 
         $pizzaRepository
             ->get(Argument::any())

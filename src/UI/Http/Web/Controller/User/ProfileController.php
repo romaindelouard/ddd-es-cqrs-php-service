@@ -22,7 +22,7 @@ class ProfileController extends AbstractRenderController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function profile(): Response
+    public function get(): Response
     {
         return $this->render('profile/index.html.twig');
     }

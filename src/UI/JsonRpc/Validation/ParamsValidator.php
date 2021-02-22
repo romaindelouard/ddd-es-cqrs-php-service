@@ -13,8 +13,10 @@ class ParamsValidator
     private ValidatorInterface $validator;
     private LoggerInterface $logger;
 
-    public function __construct(ValidatorInterface $validator, LoggerInterface $logger = null)
-    {
+    public function __construct(
+        ValidatorInterface $validator,
+        LoggerInterface $logger = null
+    ) {
         $this->validator = $validator;
         $this->logger = $logger ?: new NullLogger();
     }
@@ -29,8 +31,11 @@ class ParamsValidator
      * @throws \Exception
      * @throws JsonRpcInvalidParamsException
      */
-    public function validateParameters($params, $constraint, array $groups = null): void
-    {
+    public function validateParameters(
+        $params,
+        $constraint,
+        array $groups = null
+    ): void {
         $errorList = $this->validator->validate($params, $constraint, $groups);
 
         if (count($errorList) > 0) {

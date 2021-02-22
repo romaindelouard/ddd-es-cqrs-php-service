@@ -14,6 +14,7 @@ class CreatePizzaMethod extends AbstractCommandJsonRpcMethod
     public function __construct(PizzaRepositoryInterface $pizzaRepository)
     {
         $this->pizzaRepository = $pizzaRepository;
+        $this->constraint = new CreatePizzaConstraint();
     }
 
     public function apply(array $parameters = null): array

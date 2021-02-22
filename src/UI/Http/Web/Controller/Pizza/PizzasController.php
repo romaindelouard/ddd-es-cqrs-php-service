@@ -8,24 +8,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class GetPizzasController extends AbstractRenderController
+class PizzasController extends AbstractRenderController
 {
     /**
      * @Route(
-     *     path="/pizzas{_format?}",
+     *     path="/pizzas",
      *     name="pizzas",
-     *     methods={"GET"},
-     *     requirements={"_format"="json|html"}
+     *     methods={"GET"}
      * )
      */
-    public function __invoke(Request $request): Response
+    public function get(Request $request): Response
     {
         $page = $request->get('page', 1);
         $limit = $request->get('limit', 10);
-
-        $query = new GetPizzasQuery($page, $limit);
-
-        $result = $this->ask($query);
+        $result = $this->ask(new GetPizzasQuery($page, $limit));
 
         return $this->render('pizza/index.html.twig', ['pizzas' => $result->data]);
     }
