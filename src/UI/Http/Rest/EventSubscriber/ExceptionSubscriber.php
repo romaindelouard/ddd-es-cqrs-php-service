@@ -12,7 +12,6 @@ use Symfony\Component\HttpKernel\KernelEvents;
 class ExceptionSubscriber implements EventSubscriberInterface
 {
     private string $environment;
-
     private array $exceptionToStatus;
 
     public function __construct(string $environment, array $exceptionToStatus = [])

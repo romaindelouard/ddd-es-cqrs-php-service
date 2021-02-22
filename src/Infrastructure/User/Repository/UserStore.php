@@ -3,7 +3,7 @@
 namespace Romaind\PizzaStore\Infrastructure\User\Repository;
 
 use Broadway\EventHandling\EventBus;
-use Broadway\EventSourcing\AggregateFactory\PublicConstructorAggregateFactory;
+use Broadway\EventSourcing\AggregateFactory\AggregateFactory;
 use Broadway\EventSourcing\EventSourcingRepository;
 use Broadway\EventStore\EventStore;
 use Ramsey\Uuid\UuidInterface;
@@ -15,13 +15,14 @@ class UserStore extends EventSourcingRepository implements UserRepositoryInterfa
     public function __construct(
         EventStore $eventStore,
         EventBus $eventBus,
+        AggregateFactory $aggregateFactory,
         array $eventStreamDecorators = []
     ) {
         parent::__construct(
             $eventStore,
             $eventBus,
             User::class,
-            new PublicConstructorAggregateFactory(),
+            $aggregateFactory,
             $eventStreamDecorators
         );
     }

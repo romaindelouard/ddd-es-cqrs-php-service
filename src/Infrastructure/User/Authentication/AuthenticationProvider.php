@@ -16,10 +16,13 @@ class AuthenticationProvider
         $this->JWTManager = $JWTManager;
     }
 
-    public function generateToken(UuidInterface $uuid, Email $email, HashedPassword $hashedPassword): string
-    {
-        $auth = Authentication::create($uuid, $email, $hashedPassword);
+    public function generateToken(
+        UuidInterface $uuid,
+        Email $email,
+        HashedPassword $hashedPassword
+    ): string {
+        $user = Authentication::create($uuid, $email, $hashedPassword);
 
-        return $this->JWTManager->create($auth);
+        return $this->JWTManager->create($user);
     }
 }
