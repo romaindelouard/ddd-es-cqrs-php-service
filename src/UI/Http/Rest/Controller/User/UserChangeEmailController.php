@@ -21,8 +21,10 @@ class UserChangeEmailController extends AbstractCommandController
 {
     private Session $session;
 
-    public function __construct(Session $session, CommandBusInterface $commandBus)
-    {
+    public function __construct(
+        Session $session,
+        CommandBusInterface $commandBus
+    ) {
         parent::__construct($commandBus);
         $this->session = $session;
     }

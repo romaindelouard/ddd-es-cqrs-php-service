@@ -8,6 +8,7 @@ use Nelmio\ApiDocBundle\Annotation\Security;
 use OpenApi\Annotations as OA;
 use Romaind\PizzaStore\Application\Query\Pizza\GetPizzas\GetPizzasQuery;
 use Romaind\PizzaStore\UI\Http\Rest\Controller\AbstractQueryController;
+use Romaind\PizzaStore\UI\Http\Rest\Response\OpenApi;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -58,6 +59,6 @@ class GetPizzasController extends AbstractQueryController
 
         $response = $this->ask($query);
 
-        return $this->jsonCollection($response, 200, true);
+        return $this->jsonCollection($response, OpenApi::HTTP_OK, true);
     }
 }
