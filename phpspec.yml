@@ -14,6 +14,7 @@ extensions:
       - src
     blacklist:
       - src/Infrastructure/Shared/Persistence/Doctrine/Migrations
+      - src/Infrastructure/Symfony5/Kernel.php
 suites:
   default:
     namespace: Romaind\PizzaStore

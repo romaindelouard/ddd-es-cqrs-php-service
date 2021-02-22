@@ -26,6 +26,8 @@ default:
         exclude:
           directories:
             "src/Infrastructure/Shared/Persistence/Doctrine/Migrations": ~
+          files:
+            - src/Infrastructure/Symfony5/Kernel.php
       reports:
         html:
           target: build/coverage-behat

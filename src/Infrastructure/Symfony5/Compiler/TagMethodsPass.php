@@ -7,12 +7,10 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class TagMethodsPass implements CompilerPassInterface
 {
-    /**
-     * @return void
-     */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
-        foreach ($container->findTaggedServiceIds('app.json_rpc_method') as $serviceId => $tags) {
+        $services = $container->findTaggedServiceIds('app.json_rpc_method');
+        foreach ($services as $serviceId => $tags) {
             $container->findDefinition($serviceId)->addTag(
                 'json_rpc_http_server.jsonrpc_method',
                 [
