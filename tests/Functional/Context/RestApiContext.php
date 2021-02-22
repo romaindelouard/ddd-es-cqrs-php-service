@@ -41,6 +41,25 @@ class RestApiContext extends AbstractContext
         Assertion::eq($statusCode, $this->response->getStatusCode());
     }
 
+    /**
+     * @Then I should get a HTTP response with error message:
+     */
+    public function iShouldGetAHttpResponseWithErrorMessage(PyStringNode $message)
+    {
+        $contentString = $this->response->getContent();
+        $content = json_decode($contentString, true);
+        $expectedErrorMessage = json_decode($message->getRaw(), true);
+        if (!isset($content['error'])) {
+            throw new \UnexpectedValueException('The response has no error message.');
+        }
+        try {
+            Assertion::eq($content['error'], $expectedErrorMessage);
+        } catch (\Exception $e) {
+            var_dump($content);
+            throw $e;
+        }
+    }
+
     private function headers(): array
     {
         $headers = [

@@ -46,7 +46,7 @@ class GetPizzasControllerSpec extends ObjectBehavior
         $queryBus->ask(Argument::type(GetPizzasQuery::class))
             ->willReturn($collection)->shouldBeCalledTimes(1);
 
-        $result = $this->__invoke($request);
+        $result = $this->get($request);
 
         $result->getStatusCode()->shouldBe(OpenApi::HTTP_OK);
     }

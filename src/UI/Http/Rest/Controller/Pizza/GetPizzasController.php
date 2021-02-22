@@ -18,28 +18,21 @@ class GetPizzasController extends AbstractQueryController
     /**
      * @Route(
      *     path="/pizzas",
-     *     name="pizzas",
+     *     name="getPizzas",
      *     methods={"GET"}
      * )
-     *
      * @OA\Response(
      *     response=200,
-     *     description="Return a pizza list",
-     *     ref="#/components/responses/pizzas"
+     *     description="Returns the user of the given email",
+     *     @OA\JsonContent(
+     *        type="object"
+     *      )
      * )
      * @OA\Response(
      *     response=400,
-     *     description="Bad request",
-     *     @OA\JsonContent(ref="#/components/schemas/Error")
+     *     description="Bad request"
      *
      * )
-     * @OA\Response(
-     *     response=409,
-     *     description="Conflict"
-     * )
-     *
-     * @OA\Parameter(ref="#/components/parameters/page")
-     * @OA\Parameter(ref="#/components/parameters/limit")
      *
      * @OA\Tag(name="Pizzas")
      *
@@ -47,7 +40,7 @@ class GetPizzasController extends AbstractQueryController
      *
      * @throws AssertionFailedException
      */
-    public function __invoke(Request $request): Response
+    public function get(Request $request): Response
     {
         $page = $request->get('page', 1);
         $limit = $request->get('limit', 10);
