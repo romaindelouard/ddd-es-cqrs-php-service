@@ -1,6 +1,6 @@
 <?php
 
-namespace Romaind\PizzaStore\UI\Http\Web\Controller\Authentication;
+namespace Romaind\PizzaStore\UI\Http\Web\Controller\User;
 
 use Romaind\PizzaStore\UI\Http\Web\Controller\AbstractRenderController;
 use Symfony\Component\HttpFoundation\Response;

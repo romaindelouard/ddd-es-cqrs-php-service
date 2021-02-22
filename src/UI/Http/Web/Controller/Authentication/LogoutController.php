@@ -2,11 +2,11 @@
 
 namespace Romaind\PizzaStore\UI\Http\Web\Controller\Authentication;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Romaind\PizzaStore\UI\Http\Web\Controller\AbstractRenderController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
-class LogoutController extends AbstractController
+class LogoutController extends AbstractRenderController
 {
     /**
      * @Route(
