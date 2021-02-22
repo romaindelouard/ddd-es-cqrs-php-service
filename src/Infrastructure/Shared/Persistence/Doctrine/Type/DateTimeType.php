@@ -55,11 +55,9 @@ class DateTimeType extends DateTimeImmutableType
         }
 
         try {
-            $dateTime = DateTime::fromString($value);
+            return DateTime::fromString($value);
         } catch (DateTimeException $e) {
             throw ConversionException::conversionFailedFormat($value, $this->getName(), $platform->getDateTimeFormatString());
         }
-
-        return $dateTime;
     }
 }
