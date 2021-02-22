@@ -3,7 +3,6 @@ extensions:
   # friends-of-phpspec/phpspec-code-coverage
   FriendsOfPhpSpec\PhpSpec\CodeCoverage\CodeCoverageExtension:
     format:
-      - text
       - html
       - clover
       #- xml

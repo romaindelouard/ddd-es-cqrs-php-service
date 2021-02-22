@@ -8,15 +8,13 @@ use Romaind\PizzaStore\Application\Query\Collection;
 use Romaind\PizzaStore\Application\Query\Item;
 use Romaind\PizzaStore\Application\Query\QueryBusInterface;
 use Romaind\PizzaStore\Application\Query\QueryInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Twig;
 
-abstract class AbstractRenderController extends AbstractController
+abstract class AbstractRenderController
 {
     private CommandBusInterface $commandBus;
-
     private QueryBusInterface $queryBus;
-
     protected Twig\Environment $template;
 
     public function __construct(
@@ -45,5 +43,15 @@ abstract class AbstractRenderController extends AbstractController
     protected function ask(QueryInterface $query)
     {
         return $this->queryBus->ask($query);
+    }
+
+    protected function render(
+        string $view,
+        array $parameters = [],
+        int $code = Response::HTTP_OK
+    ): Response {
+        $content = $this->template->render($view, $parameters);
+
+        return new Response($content, $code);
     }
 }

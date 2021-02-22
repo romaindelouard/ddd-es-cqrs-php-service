@@ -24,6 +24,7 @@ services:
   _defaults:
     autowire: true # Automatically injects dependencies in your services.
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+    public: false
     bind:
       $elasticConfig: "%elasticsearch%"
       $eventBus: "@broadway.event_handling.event_bus"
@@ -106,6 +107,10 @@ services:
   ### UI
   Romaind\PizzaStore\UI\Http\Rest\Controller\:
     resource: "../src/UI/Http/Rest/Controller/*"
+    tags: ["controller.service_arguments"]
+
+  Romaind\PizzaStore\UI\Http\Web\Controller\:
+    resource: "../src/UI/Http/Web/Controller/*"
     tags: ["controller.service_arguments"]
 
   ### UI Listeners

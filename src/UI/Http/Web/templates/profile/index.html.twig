@@ -4,6 +4,5 @@
     <div class="container">
         <h2 class="mdc-typography--headline3">Hi {{ app.user.username }}</h2>
         {% include 'components/card.html.twig' with { 'title': 'Your identifier', 'text': app.user.uuid } only %}
-        {% include 'components/card.html.twig' with { 'title': 'Your JWT Token', 'text': token } only %}
     </div>
 {% endblock body %}

@@ -65,13 +65,13 @@ class RegisterController extends AbstractRenderController
             return $this->render(
                 self::REGISTER_FORM_TEMPLATE_PATH,
                 ['error' => 'Email already exists.'],
-                new Response(null, Response::HTTP_CONFLICT)
+                Response::HTTP_CONFLICT
             );
         } catch (\InvalidArgumentException $exception) {
             return $this->render(
                 self::REGISTER_FORM_TEMPLATE_PATH,
                 ['error' => $exception->getMessage()],
-                new Response(null, Response::HTTP_BAD_REQUEST)
+                Response::HTTP_BAD_REQUEST
             );
         }
     }
