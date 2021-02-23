@@ -52,20 +52,4 @@ abstract class AbstractPostgresRepository
 
         return $model;
     }
-
-    public function isHealthy(): bool
-    {
-        $connection = $this->entityManager->getConnection();
-
-        try {
-            $dummySelectSQL = $connection->getDatabasePlatform()->getDummySelectSQL();
-            $connection->executeQuery($dummySelectSQL);
-
-            return true;
-        } catch (\Throwable $exception) {
-            $connection->close();
-
-            return false;
-        }
-    }
 }

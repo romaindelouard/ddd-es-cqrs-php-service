@@ -19,24 +19,27 @@ abstract class AbstractElasticSearchRepository
 
     public function search(array $query): array
     {
-        $finalQuery = [];
+        return $this->client->search([
+            'index' => $this->index(),
+            'body' => $query,
+        ]);
+    }
 
-        $finalQuery['index'] = $this->index();
-        $finalQuery['body'] = $query;
-
-        return $this->client->search($finalQuery);
+    private function hasIndex(): bool
+    {
+        return $this->client->indices()->exists(['index' => $this->index()]);
     }
 
     public function refresh(): void
     {
-        if ($this->client->indices()->exists(['index' => $this->index()])) {
+        if ($this->hasIndex()) {
             $this->client->indices()->refresh(['index' => $this->index()]);
         }
     }
 
     public function delete(): void
     {
-        if ($this->client->indices()->exists(['index' => $this->index()])) {
+        if ($this->hasIndex()) {
             $this->client->indices()->delete(['index' => $this->index()]);
         }
     }
@@ -49,7 +52,7 @@ abstract class AbstractElasticSearchRepository
 
     public function boot(): void
     {
-        if (!$this->client->indices()->exists(['index' => $this->index()])) {
+        if (!$this->hasIndex()) {
             $this->client->indices()->create(['index' => $this->index()]);
         }
     }
