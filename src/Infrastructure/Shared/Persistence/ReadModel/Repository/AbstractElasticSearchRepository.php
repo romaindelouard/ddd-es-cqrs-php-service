@@ -72,29 +72,15 @@ abstract class AbstractElasticSearchRepository
     public function page(int $page = 1, int $limit = 50): array
     {
         Assertion::greaterThan($page, 0, 'Pagination need to be > 0');
-
-        $query = [];
-
-        $query['index'] = $this->index();
-        $query['from'] = ($page - 1) * $limit;
-        $query['size'] = $limit;
-
-        $response = $this->client->search($query);
+        $response = $this->client->search([
+            'index' => $this->index(),
+            'from' => ($page - 1) * $limit,
+            'size' => $limit,
+        ]);
 
         return [
             'data' => \array_column($response['hits']['hits'], '_source'),
             'total' => $response['hits']['total'],
         ];
-    }
-
-    public function isHealthly(): bool
-    {
-        try {
-            $response = $this->client->cluster()->health();
-
-            return 'red' !== $response['status'];
-        } catch (\Throwable $err) {
-            return false;
-        }
     }
 }
