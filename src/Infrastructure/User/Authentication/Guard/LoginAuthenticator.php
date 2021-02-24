@@ -43,7 +43,8 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator
      */
     public function supports(Request $request): bool
     {
-        return $request->getPathInfo() === $this->router->generate(self::LOGIN) && $request->isMethod('POST');
+        return $request->getPathInfo() === $this->router->generate(self::LOGIN)
+            && $request->isMethod('POST');
     }
 
     /**
@@ -134,9 +135,14 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator
      *
      * @param string $providerKey The provider (i.e. firewall) key
      */
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): ?Response
-    {
-        return new RedirectResponse($this->router->generate(self::SUCCESS_REDIRECT));
+    public function onAuthenticationSuccess(
+        Request $request,
+        TokenInterface $token,
+        $providerKey
+    ): ?Response {
+        return new RedirectResponse(
+            $this->router->generate(self::SUCCESS_REDIRECT)
+        );
     }
 
     protected function getLoginUrl(): string
