@@ -60,32 +60,33 @@ openssl rsa -in config/jwt/jwtRS256.key -pubout -outform PEM -out config/jwt/jwt
 ![100-explicit-architecture-svg](https://user-images.githubusercontent.com/181649/107484965-6e478200-6b83-11eb-833c-fda0492680f6.png)
 
 `make test-layer` is used to check application layers.
+
 This command use deptrac with a configuration in the file [depfile.yaml](depfile.yaml). 
 
 ### Command BUS
 
-[CommandBusInterface](src/Application/Command/CommandBusInterface.php) is an interface to implemented.
-[MessengerCommandBus](src/Infrastructure/Shared/Bus/Command/MessengerCommandBus.php) using the symfony message command bus
+- [CommandBusInterface](src/Application/Command/CommandBusInterface.php) is an interface to implemented.
+- [MessengerCommandBus](src/Infrastructure/Shared/Bus/Command/MessengerCommandBus.php) using the symfony message command bus
 
 You can to create a command and his handler.
-[CommandInterface](src/Application/Command/CommandInterface.php)
-[CommandHandlerInterface](src/Application/Command/CommandHandlerInterface.php)
+- [CommandInterface](src/Application/Command/CommandInterface.php)
+- [CommandHandlerInterface](src/Application/Command/CommandHandlerInterface.php)
 
 ### Query BUS
 
-[CommandBusInterface](src/Application/Query/QueryBusInterface.php) is an interface to implemented.
-[MessengerQueryBus](src/Infrastructure/Shared/Bus/Query/MessengerQueryBus.php) using the symfony message query bus
+- [CommandBusInterface](src/Application/Query/QueryBusInterface.php) is an interface to implemented.
+- [MessengerQueryBus](src/Infrastructure/Shared/Bus/Query/MessengerQueryBus.php) using the symfony message query bus
 
 You can to create a query and his handler.
-[QueryInterface](src/Application/Query/QueryInterface.php)
-[QueryHandlerInterface](src/Application/Query/QueryHandlerInterface.php)
+- [QueryInterface](src/Application/Query/QueryInterface.php)
+- [QueryHandlerInterface](src/Application/Query/QueryHandlerInterface.php)
 
 ### Asynchronous event BUS
 
 [MessengerAsyncEventBus](src/Infrastructure/Shared/Bus/AsyncEvent/MessengerAsyncEventBus.php) using the symfony message async event bus
 
-[AsyncEventPublisher](src/Infrastructure/Shared/Event/Publisher/AsyncEventPublisher.php) publishes each event message.
-[SendEventsToElasticConsumer](src/Infrastructure/Shared/Event/Consumer/SendEventsToElasticConsumer.php) consumes each event message.
+- [AsyncEventPublisher](src/Infrastructure/Shared/Event/Publisher/AsyncEventPublisher.php) publishes each event message.
+- [SendEventsToElasticConsumer](src/Infrastructure/Shared/Event/Consumer/SendEventsToElasticConsumer.php) consumes each event message.
 
 # Developer tooltip
 
@@ -105,6 +106,7 @@ You can run the application unit tests: `make test-functional`
 GitHub Actions workflow are defined here: https://docs.github.com/en/actions/quickstart
 
 This project uses GitHub workflow to execute the unit and functional tests.
+
 https://github.com/romaindelouard/ddd-es-cqrs-php-service/blob/master/.github/workflows/push.yml
 
 ## GrumPHP, each commit is tested
