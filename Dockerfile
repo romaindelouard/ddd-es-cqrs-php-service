@@ -75,12 +75,12 @@ RUN chmod +x /entrypoint.sh && chown -R www-data:www-data /entrypoint.sh
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 ## PHP optimizations
-RUN echo 'opcache.enable=1' > $PHP_INI_DIR/conf.d/60-optimizations.ini \
-    && echo 'opcache.memory_consumption=256' >> $PHP_INI_DIR/conf.d/60-optimizations.ini \
-    && echo 'opcache.max_accelerated_files=20000' >> $PHP_INI_DIR/conf.d/60-optimizations.ini \
-    && echo 'opcache.interned_strings_buffer=16' >> $PHP_INI_DIR/conf.d/60-optimizations.ini \
-    && echo 'realpath_cache_size=4096K' >> $PHP_INI_DIR/conf.d/60-optimizations.ini \
-    && echo 'realpath_cache_ttl=600' >> $PHP_INI_DIR/conf.d/60-optimizations.ini
+RUN echo 'opcache.enable=1' > $PHP_INI_DIR/conf.d/60-lf.ini \
+    && echo 'opcache.memory_consumption=256' >> $PHP_INI_DIR/conf.d/60-lf.ini \
+    && echo 'opcache.max_accelerated_files=20000' >> $PHP_INI_DIR/conf.d/60-lf.ini \
+    && echo 'opcache.interned_strings_buffer=16' >> $PHP_INI_DIR/conf.d/60-lf.ini \
+    && echo 'realpath_cache_size=4096K' >> $PHP_INI_DIR/conf.d/60-lf.ini \
+    && echo 'realpath_cache_ttl=600' >> $PHP_INI_DIR/conf.d/60-lf.ini
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["bin/console swoole:server:run"]
@@ -124,7 +124,7 @@ FROM base as release
 USER root
 
 ## PHP optimizations
-RUN echo 'opcache.validate_timestamps=0' >> $PHP_INI_DIR/conf.d/60-optimizations.ini
+RUN echo 'opcache.validate_timestamps=0' >> $PHP_INI_DIR/conf.d/60-lf.ini
 
 USER www-data:www-data
 
