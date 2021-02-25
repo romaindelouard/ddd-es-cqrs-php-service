@@ -2,6 +2,7 @@
 
 [![codecov](https://codecov.io/gh/romaindelouard/ddd-es-cqrs-php-service/branch/master/graph/badge.svg?token=PJ7P1ON7UH)](https://codecov.io/gh/romaindelouard/ddd-es-cqrs-php-service)
 [![Test suite](https://github.com/romaindelouard/ddd-es-cqrs-php-service/workflows/Test%20Suite/badge.svg?branch=master)](https://github.com/romaindelouard/ddd-es-cqrs-php-service/actions/workflows/test-suite.yml?query=branch%3Amaster)
+[![Maintainability](https://api.codeclimate.com/v1/badges/040180137dbcbdcb0d5f/maintainability)](https://codeclimate.com/github/romaindelouard/ddd-es-cqrs-php-service/maintainability)
 
 ## Stack
 
