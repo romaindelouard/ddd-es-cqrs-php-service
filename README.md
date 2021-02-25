@@ -1,6 +1,7 @@
 # DDD ES CQRS PHP service
 
 [![codecov](https://codecov.io/gh/romaindelouard/ddd-es-cqrs-php-service/branch/master/graph/badge.svg?token=PJ7P1ON7UH)](https://codecov.io/gh/romaindelouard/ddd-es-cqrs-php-service)
+[![Test suite](https://github.com/romaindelouard/ddd-es-cqrs-php-service/workflows/Test%20Suite/badge.svg?branch=master)](https://github.com/romaindelouard/ddd-es-cqrs-php-service/actions/workflows/test-suite.yml?query=branch%3Amaster)
 
 ## Stack
 
@@ -61,7 +62,7 @@ openssl rsa -in config/jwt/jwtRS256.key -pubout -outform PEM -out config/jwt/jwt
 
 `make test-layer` is used to check application layers.
 
-This command use deptrac with a configuration in the file [depfile.yaml](depfile.yaml). 
+This command use deptrac with a configuration in the file [depfile.yaml](depfile.yaml).
 
 ### Command BUS
 
@@ -69,6 +70,7 @@ This command use deptrac with a configuration in the file [depfile.yaml](depfile
 - [MessengerCommandBus](src/Infrastructure/Shared/Bus/Command/MessengerCommandBus.php) using the symfony message command bus
 
 You can to create a command and his handler.
+
 - [CommandInterface](src/Application/Command/CommandInterface.php)
 - [CommandHandlerInterface](src/Application/Command/CommandHandlerInterface.php)
 
@@ -78,6 +80,7 @@ You can to create a command and his handler.
 - [MessengerQueryBus](src/Infrastructure/Shared/Bus/Query/MessengerQueryBus.php) using the symfony message query bus
 
 You can to create a query and his handler.
+
 - [QueryInterface](src/Application/Query/QueryInterface.php)
 - [QueryHandlerInterface](src/Application/Query/QueryHandlerInterface.php)
 
@@ -91,14 +94,17 @@ You can to create a query and his handler.
 # Developer tooltip
 
 ## Unit tests with phpspec
+
 You can run the application unit tests: `make test-unit`
 
 You can generate a test unit class.
+
 ```
 XDEBUG_MODE=coverage bin/phpspec describe Romaind/PizzaStore/Domain/Model/User/User
 ```
 
 ## Functional tests with behat
+
 You can run the application unit tests: `make test-functional`
 
 ## GitHub Actions workflow
