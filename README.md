@@ -40,14 +40,16 @@
 
 ### All Makefile commands
 
-| Action               | Command                |
-| -------------------- | ---------------------- |
-| Shell                | `make dev`             |
-| Start                | `make up`              |
-| Run tests            | `make test`            |
-| Run unit tests       | `make test-unit`       |
-| Run functional tests | `make test-functional` |
-| Run the linter       | `make lint`            |
+| Action                   | Command                |
+| ------------------------ | ---------------------- |
+| Shell                    | `make dev`             |
+| Start                    | `make up`              |
+| Run tests                | `make test`            |
+| Run unit tests           | `make test-unit`       |
+| Run functional tests     | `make test-functional` |
+| Run the linter           | `make lint`            |
+| Run static analysis tool | `make test-static`     |
+| Check application layers | `make test-layer`      |
 
 ### Generate JWT keys
 
