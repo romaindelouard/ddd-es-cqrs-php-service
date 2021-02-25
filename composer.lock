@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "224b14341df9fdb05d6485e161d1919f",
+    "content-hash": "678f7bc64b0464f384649aaf00568c56",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -3227,6 +3227,71 @@
                 }
             ],
             "time": "2020-12-17T05:42:04+00:00"
+        },
+        {
+            "name": "pixelfederation/doctrine-resettable-em-bundle",
+            "version": "1.3.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pixelfederation/doctrine-resettable-em-bundle.git",
+                "reference": "1e598c126dedd39782be21e8813da0cc9da37cde"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pixelfederation/doctrine-resettable-em-bundle/zipball/1e598c126dedd39782be21e8813da0cc9da37cde",
+                "reference": "1e598c126dedd39782be21e8813da0cc9da37cde",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/doctrine-bundle": "^2.2",
+                "doctrine/orm": "^2.7",
+                "php": ">=7.2",
+                "sensio/framework-extra-bundle": "^5.2",
+                "symfony/config": "^4.1|^5.0|^5.1",
+                "symfony/dependency-injection": "^4.1|^5.0|^5.1",
+                "symfony/yaml": "^4.1|^5.0|^5.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.15",
+                "nikic/php-parser": "^4.2",
+                "php-parallel-lint/php-parallel-lint": "^1.2",
+                "phpcompatibility/php-compatibility": "^9.1",
+                "phpmd/phpmd": "^2.6",
+                "phpro/grumphp": "^0.19",
+                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan-webmozart-assert": "^0.12.2",
+                "phpunit/phpunit": "^8.1",
+                "roave/security-advisories": "dev-master",
+                "squizlabs/php_codesniffer": "^3.4",
+                "symfony/browser-kit": "^4.1|^5.0|^5.1",
+                "symfony/framework-bundle": "^4.1|^5.0|^5.1",
+                "symfony/http-kernel": "^4.1|^5.0|^5.1",
+                "symfony/phpunit-bridge": "^4.0|^5.0|^5.1",
+                "vimeo/psalm": "^3.2"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "PixelFederation\\DoctrineResettableEmBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martin Fris",
+                    "email": "mfris@pixelfederation.com"
+                }
+            ],
+            "description": "Symfony bundle for decorating default entity managers using a resettable decorator.",
+            "homepage": "https://github.com/pixelfederation/doctrine-resettable-em-bundle",
+            "support": {
+                "issues": "https://github.com/pixelfederation/doctrine-resettable-em-bundle/issues",
+                "source": "https://github.com/pixelfederation/doctrine-resettable-em-bundle/tree/1.3.9"
+            },
+            "time": "2020-11-20T09:16:25+00:00"
         },
         {
             "name": "psr/cache",
