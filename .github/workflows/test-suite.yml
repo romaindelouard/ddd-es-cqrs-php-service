@@ -90,7 +90,7 @@ jobs:
         run: make test-static
       - name: Check issues with application layers
         run: make test-layer
-      - name: Upload units test code coverage data on codecov
+      - name: Upload test code coverage data on codecov
         uses: codecov/codecov-action@v1
         with:
           files: build/coverage-phpspec/coverage.xml,build/coverage-behat/coverage.xml
@@ -99,3 +99,12 @@ jobs:
           fail_ci_if_error: true # optional (default = false)
           verbose: false # optional (default = false)
           token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Upload test code coverage data on codeclimate
+        uses: paambaati/codeclimate-action@v2.7.5
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_TOKEN }}
+        with:
+          debug: true
+          coverageLocations: |
+            ${{github.workspace}}/build/coverage-phpspec/coverage.xml:clover
+            ${{github.workspace}}/build/coverage-behat/coverage.xml:clover
