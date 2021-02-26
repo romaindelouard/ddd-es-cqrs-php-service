@@ -1,12 +1,15 @@
 APP_ENV?=dev
 APP_NAME:=pizza-service
+PHP_VERSION?=7.4
 
 # Default targets
 
 ## This target is used to install or compile an application without its configuration
 .PHONY: build
 build:
-ifeq ($(APP_ENV),prod)
+ifneq ($(PHP_VERSION),7.4)
+	composer update --no-scripts
+else ifeq ($(APP_ENV),prod)
 	composer run-script build-no-dev
 else ifeq ($(APP_ENV),test)
 	composer run-script build-test
@@ -111,7 +114,7 @@ down:
 ## This target build the application container including its dependencies and create docker volumes
 .PHONY: docker-build
 docker-build: docker-volumes-create
-	DOCKER_BUILDKIT=1 docker build --build-arg=APP_ENV=$(APP_ENV) --target dev -t $(APP_NAME):dev .
+	DOCKER_BUILDKIT=1 docker build --build-arg=APP_ENV=$(APP_ENV) --build-arg=PHP_VERSION=$(PHP_VERSION) --target dev -t $(APP_NAME)-php-$(PHP_VERSION):$(APP_ENV) .
 
 # Custom targets
 

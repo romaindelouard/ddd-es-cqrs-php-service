@@ -69,7 +69,7 @@ jobs:
           extensions: amqp, apcu, bcmath, curl, ctype, date, intl, json, mbstring, pcntl, pdo, pdo_pgsql, sockets, xml
           coverage: xdebug
       - name: Build application
-        run: make build
+        run: make PHP_VERSION=${{ matrix.php-versions }} build
       - name: Unit tests
         run: make test-unit
       - name: Upload units test code coverage data

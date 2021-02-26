@@ -1,9 +1,16 @@
 # syntax=docker/dockerfile:experimental
 
-FROM php:7.4-fpm as base
+ARG PHP_VERSION="7.4"
 
+FROM php:${PHP_VERSION}-fpm as base
 ARG APP_ENV=prod
 ENV APP_ENV=${APP_ENV}
+# @see https://pecl.php.net/package/APCU
+ARG APCU_VERSION="5.1.19"
+# @see https://pecl.php.net/package/mcrypt
+ARG MCRYPT_VERSION="1.0.4"
+# @see https://www.exploit.cz/how-to-compile-amqp-extension-for-php-8-0-via-multistage-dockerfile/
+ENV EXT_AMQP_VERSION=master
 
 ARG TIMEZONE=UTC
 
@@ -30,11 +37,13 @@ RUN apt-get update && apt-get install -y \
         librabbitmq-dev \
         libxml2-dev \
     && docker-php-ext-install bcmath \
-    && pecl install amqp \
+    && git clone --branch $EXT_AMQP_VERSION --depth 1 https://github.com/php-amqp/php-amqp.git /usr/src/php/ext/amqp \
+    && cd /usr/src/php/ext/amqp && git submodule update --init \
+    && docker-php-ext-install amqp \
     && docker-php-ext-enable amqp \
-    && pecl install apcu-5.1.18 \
-    && pecl install mcrypt-1.0.3 \
+    && pecl install apcu-${APCU_VERSION} \
     && docker-php-ext-enable apcu \
+    && pecl install mcrypt-${MCRYPT_VERSION} \
     && docker-php-ext-install curl \
     && docker-php-ext-install opcache \
     && docker-php-ext-install mbstring \
@@ -101,7 +110,7 @@ USER www-data
 COPY --chown=www-data:www-data Makefile composer.* /var/www/html/
 COPY --chown=www-data:www-data src/Infrastructure/Symfony5/Kernel.php /var/www/html/src/Infrastructure/Symfony5/Kernel.php
 COPY --chown=www-data:www-data bin/console /var/www/html/bin/console
-RUN make build
+RUN make APP_ENV=${APP_ENV} PHP_VERSION=${PHP_VERSION} build
 
 FROM builder as dev
 
