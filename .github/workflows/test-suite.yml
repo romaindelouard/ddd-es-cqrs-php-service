@@ -20,7 +20,7 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: ["7.4"]
+        php-versions: ["7.4", "8.0"]
     # Service containers to run with `container-job`
     services:
       # Label used to access the service container
@@ -69,23 +69,13 @@ jobs:
           extensions: amqp, apcu, bcmath, curl, ctype, date, intl, json, mbstring, pcntl, pdo, pdo_pgsql, sockets, xml
           coverage: xdebug
       - name: Build application
-        run: make build
+        run: make PHP_VERSION=${{ matrix.php-versions }} build
       - name: Unit tests
         run: make test-unit
-      - name: Upload units test code coverage data
-        uses: actions/upload-artifact@v2
-        with:
-          name: coverage-phpspec
-          path: build/coverage-phpspec/
       - name: Checks the application readiness probe status
         run: make healthz
       - name: Functional tests
         run: make test-functional
-      - name: Upload functional tests code coverage data
-        uses: actions/upload-artifact@v2
-        with:
-          name: coverage-behat
-          path: build/coverage-behat/
       - name: Static analysis tests
         run: make test-static
       - name: Check issues with application layers

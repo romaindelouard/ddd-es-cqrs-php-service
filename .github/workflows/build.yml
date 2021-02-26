@@ -13,19 +13,20 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ubuntu-latest]
+        php-versions: ["7.4", "8.0"]
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
       - name: Create a new network
         run: docker network create dev
       - name: Build application in the docker container
-        run: make docker-build
+        run: make PHP_VERSION=${{ matrix.php-versions }} docker-build
       - name: List all docker images
         run: docker images
       - name: List all docker containers
         run: docker ps
       - name: Unit tests in the docker container
-        run: docker run pizza-service:dev make test-unit
+        run: docker run pizza-service-php-${{ matrix.php-versions }}:dev make test-unit
       # Not works: Unable to create the "cache" directory (/var/www/html/var/cache/dev).
       # - name: Functional tests
       #  run: docker-compose run --service-ports --rm pizza-service make test-functional
