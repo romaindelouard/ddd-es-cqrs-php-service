@@ -7,6 +7,7 @@ use Broadway\Domain\Metadata;
 use Elasticsearch\Client;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Romaind\PizzaStore\Domain\Event\SearchEventRepositoryInterface;
 use Romaind\PizzaStore\Infrastructure\Shared\Event\ReadModel\ElasticSearchEventRepository;
 use Romaind\PizzaStore\Infrastructure\Shared\Persistence\ReadModel\Repository\AbstractElasticSearchRepository;
 
@@ -21,6 +22,7 @@ class ElasticSearchEventRepositorySpec extends ObjectBehavior
     {
         $this->shouldHaveType(ElasticSearchEventRepository::class);
         $this->shouldBeAnInstanceOf(AbstractElasticSearchRepository::class);
+        $this->shouldImplement(SearchEventRepositoryInterface::class);
     }
 
     public function it_should_store_a_event(Client $client)

@@ -4,6 +4,7 @@ default:
       paths:
         - "%paths.base%/tests/Functional/features"
       contexts:
+        - Tests\Functional\Context\CommandContext: ~
         - Tests\Functional\Context\DemoContext: ~
         - Tests\Functional\Context\DatabaseContext: ~
         - Tests\Functional\Context\EventCollectorListenerContext: ~

@@ -6,6 +6,7 @@ use Elasticsearch\Client;
 use Elasticsearch\Namespaces\IndicesNamespace;
 use PhpSpec\ObjectBehavior;
 use Romaind\PizzaStore\Infrastructure\Shared\Persistence\ReadModel\Repository\AbstractElasticSearchRepository;
+use Romaind\PizzaStore\Infrastructure\Shared\Persistence\ReadModel\Repository\ElasticSearchRepositoryInterface;
 
 class AbstractElasticSearchRepositorySpec extends ObjectBehavior
 {
@@ -18,6 +19,7 @@ class AbstractElasticSearchRepositorySpec extends ObjectBehavior
     public function it_is_initializable()
     {
         $this->shouldHaveType(AbstractElasticSearchRepository::class);
+        $this->shouldImplement(ElasticSearchRepositoryInterface::class);
     }
 
     public function it_should_search(Client $client)
