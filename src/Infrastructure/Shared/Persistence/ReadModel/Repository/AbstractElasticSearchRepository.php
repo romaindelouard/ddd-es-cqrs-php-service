@@ -6,7 +6,7 @@ use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Elasticsearch\Client;
 
-abstract class AbstractElasticSearchRepository
+abstract class AbstractElasticSearchRepository implements ElasticSearchRepositoryInterface
 {
     private Client $client;
 

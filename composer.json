@@ -151,6 +151,9 @@
     "lint": [
       "@php-cs-fixer"
     ],
+    "event-search-create": [
+      "console app:create-event-search"
+    ],
     "test": [
       "@cache-clear-test",
       "@test-unit",

@@ -1,8 +1,8 @@
 <?php
 
-namespace Romaind\PizzaStore\Infrastructure\Shared\Persistence\ReadModel\Repository;
+namespace Romaind\PizzaStore\Domain\Event;
 
-interface ElasticSearchRepositoryInterface
+interface SearchEventRepositoryInterface
 {
     public function boot(): void;
 

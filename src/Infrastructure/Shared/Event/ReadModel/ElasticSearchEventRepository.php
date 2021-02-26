@@ -3,9 +3,10 @@
 namespace Romaind\PizzaStore\Infrastructure\Shared\Event\ReadModel;
 
 use Broadway\Domain\DomainMessage;
+use Romaind\PizzaStore\Domain\Event\SearchEventRepositoryInterface;
 use Romaind\PizzaStore\Infrastructure\Shared\Persistence\ReadModel\Repository\AbstractElasticSearchRepository;
 
-class ElasticSearchEventRepository extends AbstractElasticSearchRepository
+class ElasticSearchEventRepository extends AbstractElasticSearchRepository implements SearchEventRepositoryInterface
 {
     private const INDEX = 'events';
 

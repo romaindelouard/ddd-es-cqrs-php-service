@@ -16,7 +16,7 @@ endif
 
 ## This target should be used if you need to run some commands before to run the application
 .PHONY: init
-init: db-create db-migrate rmq-setup
+init: db-create db-migrate rmq-setup event-search-create
 
 .PHONY: build-all
 build-all: build db-create init
@@ -83,6 +83,13 @@ db-drop:
 .PHONY: db-migrate
 db-migrate:
 	composer run-script db-migrate
+
+# Elasticsearch targets
+
+## This target is used to create a search event index
+.PHONY: search-event-create
+search-event-create:
+	composer run-script search-event-create
 
 # Docker targets
 

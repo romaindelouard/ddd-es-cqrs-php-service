@@ -6,13 +6,13 @@ use PhpSpec\ObjectBehavior;
 use Romaind\PizzaStore\Application\Query\Event\GetEvents\GetEventsHandler;
 use Romaind\PizzaStore\Application\Query\Event\GetEvents\GetEventsQuery;
 use Romaind\PizzaStore\Application\Query\QueryHandlerInterface;
-use Romaind\PizzaStore\Infrastructure\Shared\Event\ReadModel\ElasticSearchEventRepository;
+use Romaind\PizzaStore\Domain\Event\SearchEventRepositoryInterface;
 
 class GetEventsHandlerSpec extends ObjectBehavior
 {
-    public function let(ElasticSearchEventRepository $eventRepository)
+    public function let(SearchEventRepositoryInterface $searchEventRepository)
     {
-        $this->beConstructedWith($eventRepository);
+        $this->beConstructedWith($searchEventRepository);
     }
 
     public function it_is_initializable()
@@ -22,7 +22,7 @@ class GetEventsHandlerSpec extends ObjectBehavior
     }
 
     public function it_should_handle(
-        ElasticSearchEventRepository $eventRepository,
+        SearchEventRepositoryInterface $searchEventRepository,
         GetEventsQuery $query
     ) {
         $page = 1;
@@ -31,7 +31,7 @@ class GetEventsHandlerSpec extends ObjectBehavior
         $query->limit = $limit;
 
         $result = ['total' => ['value' => 123], 'data' => ['name' => 'pizza']];
-        $eventRepository->page($page, $query->limit)
+        $searchEventRepository->page($page, $query->limit)
             ->willReturn($result)->shouldBeCalledTimes(1);
 
         $collection = $this->__invoke($query);
