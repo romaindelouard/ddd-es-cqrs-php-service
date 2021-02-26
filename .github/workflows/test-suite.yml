@@ -20,7 +20,7 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: ["7.4"]
+        php-versions: ["7.4", "8.0"]
     # Service containers to run with `container-job`
     services:
       # Label used to access the service container
