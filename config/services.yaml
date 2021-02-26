@@ -116,6 +116,8 @@ services:
   Romaind\PizzaStore\UI\Http\Web\Controller\:
     resource: "../src/UI/Http/Web/Controller/*"
     tags: ["controller.service_arguments"]
+  Romaind\PizzaStore\UI\Cli\Command\:
+      resource: '../src/UI/Cli/Command'
 
   ### UI Listeners
   Romaind\PizzaStore\UI\Http\Rest\EventSubscriber\ExceptionSubscriber:

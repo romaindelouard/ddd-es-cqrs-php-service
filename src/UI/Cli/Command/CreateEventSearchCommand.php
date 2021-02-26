@@ -32,7 +32,7 @@ class CreateEventSearchCommand extends Command
     ): int {
         $this->commandBus->handle(new CreateSearchEvent());
 
-        $output->writeln('<info>Search event was created!</info>');
+        $output->writeln('<info>Event search was created!</info>');
 
         return 0;
     }

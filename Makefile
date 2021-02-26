@@ -87,9 +87,9 @@ db-migrate:
 # Elasticsearch targets
 
 ## This target is used to create a search event index
-.PHONY: search-event-create
-search-event-create:
-	composer run-script search-event-create
+.PHONY: event-search-create
+event-search-create:
+	composer run-script event-search-create
 
 # Docker targets
 
