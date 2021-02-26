@@ -76,6 +76,10 @@ sudo apt install php7.4-cli php7.4-curl php7.4-mbstring php7.4-xml php7.4-pgsql
 sudo apt install php7.4-xdebug
 sudo apt install php7.4-intl
 sudo apt install php7.4-amqp
+sudo apt install php7.4-dev
+sudo apt install php-pear
+sudo  pecl install swoole
+sudo sh -c "echo 'extension=swoole.so' > /etc/php/7.4/cli/conf.d/20-swoole.ini"
 
 # clean vendor directory and composer.lock file
 rm composer.lock

@@ -1,7 +1,19 @@
 # syntax=docker/dockerfile:experimental
 
-FROM php:7.4-fpm as base
+FROM php:7.4-cli as php-base
 
+FROM php-base as ext-swoole
+RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+ARG SWOOLE_VERSION="4.5.2"
+RUN git clone https://github.com/swoole/swoole-src.git --branch "v$SWOOLE_VERSION" --depth 1 && \
+    cd swoole-src && \
+    phpize && \
+    ./configure && \
+    make && \
+    make install && \
+    docker-php-ext-enable swoole
+
+FROM php-base as app-base
 ARG APP_ENV=prod
 ENV APP_ENV=${APP_ENV}
 
@@ -34,6 +46,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-enable amqp \
     && pecl install apcu-5.1.18 \
     && pecl install mcrypt-1.0.3 \
+    && pecl install swoole \
     && docker-php-ext-enable apcu \
     && docker-php-ext-install curl \
     && docker-php-ext-install opcache \
@@ -41,6 +54,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pcntl \
     && docker-php-ext-install sockets \
     && docker-php-ext-install xml \
+    && docker-php-ext-enable swoole \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install pdo pdo_pgsql pgsql \
     && docker-php-ext-configure intl && docker-php-ext-install intl \
@@ -68,21 +82,14 @@ RUN echo 'opcache.enable=1' > $PHP_INI_DIR/conf.d/60-lf.ini \
     && echo 'realpath_cache_size=4096K' >> $PHP_INI_DIR/conf.d/60-lf.ini \
     && echo 'realpath_cache_ttl=600' >> $PHP_INI_DIR/conf.d/60-lf.ini
 
-## FPM Optimizations
-RUN find /usr/local/etc/php-fpm.d/ -type f -name "*.conf" | xargs sed -i "s/pm.max_children = 5/pm.max_children = 50/g" \
-    && find /usr/local/etc/php-fpm.d/ -type f -name "*.conf" | xargs sed -i "s/pm = dynamic/pm = static/g" \
-    && find /usr/local/etc/php-fpm.d/ -type f -name "*.conf" | xargs sed -i "s/;pm.max_requests = 500/pm.max_requests = 10000/g" \
-    && find /usr/local/etc/php-fpm.d/ -type f -name "*.conf" | xargs sed -i "s/;pm.status_path/pm.status_path/g" \
-    && find /usr/local/etc/php-fpm.d/ -type f -name "*.conf" | xargs sed -i "s/access.log = \/proc\/self\/fd\/2/access.log = \/dev\/null/g"
-
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["php-fpm"]
+CMD ["bin/console swoole:server:run"]
 
 WORKDIR /var/www/html
 
-USER www-data
+USER www-data:www-data
 
-FROM base as base-coverage-xdebug
+FROM app-base as base-coverage-xdebug
 
 USER root
 
@@ -96,7 +103,7 @@ FROM base-coverage-xdebug as builder
 # Don't execute composer scripts during composer intall
 ENV COMPOSER_ARGS --no-scripts --no-progress --no-suggest --prefer-dist --no-interaction --no-autoloader
 
-USER www-data
+USER www-data:www-data
 
 COPY --chown=www-data:www-data Makefile composer.* /var/www/html/
 COPY --chown=www-data:www-data src/Infrastructure/Symfony5/Kernel.php /var/www/html/src/Infrastructure/Symfony5/Kernel.php
@@ -108,10 +115,8 @@ FROM builder as dev
 USER root
 #RUN pecl install xdebug \
 #    && docker-php-ext-enable xdebug \
-# PHP-FPM access log send to /proc/self/fd/1
-RUN find /usr/local/etc/php-fpm.d/ -type f -name "*.conf" | xargs sed -i "s/access.log = \/dev\/null/access.log = \/proc\/self\/fd\/1/g"
 
-USER www-data
+USER www-data:www-data
 COPY --chown=www-data:www-data . /var/www/html
 
 FROM base as release
@@ -121,7 +126,7 @@ USER root
 ## PHP optimizations
 RUN echo 'opcache.validate_timestamps=0' >> $PHP_INI_DIR/conf.d/60-lf.ini
 
-USER www-data
+USER www-data:www-data
 
 COPY --from=builder --chown=www-data:www-data /var/www/html/vendor /var/www/html/vendor
 COPY --chown=www-data:www-data . /var/www/html
