@@ -157,6 +157,7 @@
     "lint": [
       "@composer-validate",
       "@php-cs-fixer",
+      "@twig-lint",
       "@yaml-lint"
     ],
     "event-search-create": [
@@ -182,6 +183,9 @@
     ],
     "test-static": [
       "@phpstan"
+    ],
+    "twig-lint": [
+      "console lint:twig src/UI/Http/Web/templates"
     ],
     "php-cs-fixer": [
       "php-cs-fixer fix --config=.php_cs.php --verbose --diff"
