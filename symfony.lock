@@ -409,6 +409,9 @@
     "react/promise": {
         "version": "v2.8.0"
     },
+    "sebastian/cli-parser": {
+        "version": "1.0.1"
+    },
     "sebastian/code-unit-reverse-lookup": {
         "version": "2.0.3"
     },
@@ -429,6 +432,9 @@
     },
     "sebastian/lines-of-code": {
         "version": "1.0.3"
+    },
+    "sebastian/phpcpd": {
+        "version": "6.0.3"
     },
     "sebastian/recursion-context": {
         "version": "4.0.4"
