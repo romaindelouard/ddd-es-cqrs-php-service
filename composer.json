@@ -55,6 +55,7 @@
     "friends-of-phpspec/phpspec-code-coverage": "^6.0",
     "friendsofphp/php-cs-fixer": "^2.18",
     "php-parallel-lint/php-parallel-lint": "^1.2",
+    "phpmd/phpmd": "^2.9",
     "phpro/grumphp": "^1.3",
     "phpspec/phpspec": "^7.0",
     "phpstan/phpstan": "^0.12.70",
@@ -141,6 +142,7 @@
       "@yaml-lint"
     ],
     "php-cs-fixer": "php-cs-fixer fix --config=.php_cs.php --verbose --diff",
+    "phpmd": "phpmd src ansi cleancode,codesize,controversial,design,naming,unusedcode --ignore-violations-on-exit",
     "phpmnd": "phpmnd src/ --non-zero-exit-on-violation",
     "phpstan": "phpstan analyse -c phpstan.neon",
     "rmq-setup": "console messenger:setup-transports --no-interaction",
@@ -168,6 +170,7 @@
     "test-layer": "@deptrac",
     "test-unit": "phpspec --no-interaction run -fpretty",
     "test-static": [
+      "@phpmd",
       "@phpmnd",
       "@phpstan"
     ],
@@ -187,6 +190,7 @@
     "healthz": "Checks the application readiness probe status",
     "lint": "Checks all files syntax (composer files, PHP, Symfony Containers, Twig, YAML)",
     "php-cs-fixer": "Detect violations of defined coding standards",
+    "phpmd": "Detect mess in source code",
     "phpmnd": "Detect magic numbers in source code",
     "phpstan": "Analyze static source code",
     "rmq-setup": "Install rabbitmq configuration (queues, exchanges)",
