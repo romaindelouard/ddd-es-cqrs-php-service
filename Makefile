@@ -34,6 +34,11 @@ start: APP_ENV:=dev
 start:
 	symfony serve
 
+## This target is used to run all continuous integration tasks
+.PHONY: ci
+ci:
+	XDEBUG_MODE=coverage composer run-script ci
+
 ## This target is used to run all tests define for an application
 .PHONY: test
 test: test-unit test-functional test-static

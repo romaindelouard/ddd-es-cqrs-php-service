@@ -58,6 +58,7 @@
     "phpro/grumphp": "^1.3",
     "phpspec/phpspec": "^7.0",
     "phpstan/phpstan": "^0.12.70",
+    "povils/phpmnd": "dev-master",
     "qossmic/deptrac-shim": "^0.11.1",
     "seld/jsonlint": "^1.8",
     "squizlabs/php_codesniffer": "^3.5",
@@ -106,57 +107,32 @@
       "cache:clear": "symfony-cmd",
       "assets:install %PUBLIC_DIR%": "symfony-cmd"
     },
-    "post-install-cmd": [
-      "@auto-scripts"
+    "post-install-cmd": "@auto-scripts",
+    "post-update-cmd": "@auto-scripts",
+    "build-test": "@composer install --prefer-dist --optimize-autoloader --ansi --verbose",
+    "behat-run": "php -d memory_limit=512M -d date.timezone=\"Europe/Paris\" bin/behat --colors -vvv",
+    "build": "@composer install --prefer-dist --optimize-autoloader --ansi --verbose --no-scripts",
+    "cache-clear-test": "console --ansi --no-interaction cache:clear --env=test",
+    "ci": [
+      "@system-check",
+      "@lint",
+      "@test"
     ],
-    "post-update-cmd": [
-      "@auto-scripts"
-    ],
-    "build-test": [
-      "@composer install --prefer-dist --optimize-autoloader --ansi --verbose"
-    ],
-    "behat-run": [
-      "php -d memory_limit=512M -d date.timezone=\"Europe/Paris\" bin/behat --colors -vvv"
-    ],
-    "build": [
-      "@composer install --prefer-dist --optimize-autoloader --ansi --verbose --no-scripts"
-    ],
-    "cache-clear-test": [
-      "console --ansi --no-interaction cache:clear --env=test"
-    ],
-    "composer-validate": [
-      "@composer validate --no-check-all --strict --ansi"
-    ],
-    "container-lint": [
-      "console lint:container --ansi"
-    ],
-    "db-create": [
-      "console --ansi doctrine:database:create --if-not-exists"
-    ],
-    "db-create-test": [
-      "console --ansi doctrine:database:create --if-not-exists --env=test"
-    ],
-    "db-drop": [
-      "console --ansi doctrine:database:drop --force"
-    ],
-    "db-drop-test": [
-      "console --ansi doctrine:database:drop --force --env=test"
-    ],
-    "db-migrate": [
-      "console --ansi doctrine:migrations:migrate --no-interaction --allow-no-migration"
-    ],
-    "db-migrate-test": [
-      "console --ansi doctrine:migrations:migrate --no-interaction --env=test"
-    ],
-    "db-schema-validate": [
-      "console --ansi doctrine:schema:validate"
-    ],
-    "deptrac": [
-      "deptrac analyze --formatter-graphviz=0"
-    ],
-    "healthz": [
-      "console --ansi monitor:health"
-    ],
+    "composer-validate": "@composer validate --no-check-all --strict --ansi",
+    "composer-diagnose": "@composer diagnose --ansi || echo \"Ignore warnings\"",
+    "composer-check-platform": "@composer check-platform-reqs",
+    "composer-outdated": "@composer outdated --direct",
+    "container-lint": "console lint:container --ansi",
+    "db-create": "console --ansi doctrine:database:create --if-not-exists",
+    "db-create-test": "console --ansi doctrine:database:create --if-not-exists --env=test",
+    "db-drop": "console --ansi doctrine:database:drop --force",
+    "db-drop-test": "console --ansi doctrine:database:drop --force --env=test",
+    "db-migrate": "console --ansi doctrine:migrations:migrate --no-interaction --allow-no-migration",
+    "db-migrate-test": "console --ansi doctrine:migrations:migrate --no-interaction --env=test",
+    "db-schema-validate": "console --ansi doctrine:schema:validate",
+    "deptrac": "deptrac analyze --formatter-graphviz=0",
+    "event-search-create": "console app:create-event-search",
+    "healthz": "console --ansi monitor:health",
     "lint": [
       "@composer-validate",
       "@container-lint",
@@ -164,8 +140,18 @@
       "@twig-lint",
       "@yaml-lint"
     ],
-    "event-search-create": [
-      "console app:create-event-search"
+    "php-cs-fixer": "php-cs-fixer fix --config=.php_cs.php --verbose --diff",
+    "phpmnd": "phpmnd src/ --non-zero-exit-on-violation",
+    "phpstan": "phpstan analyse -c phpstan.neon",
+    "rmq-setup": "console messenger:setup-transports --no-interaction",
+    "system-check": [
+      "php --version",
+      "php -m",
+      "php --info | grep -E \"(max_execution_time|memory_limit)\"",
+      "@composer --version",
+      "@composer-diagnose",
+      "@composer-check-platform",
+      "@composer-outdated"
     ],
     "test": [
       "@cache-clear-test",
@@ -179,30 +165,39 @@
       "@db-migrate-test",
       "@behat-run"
     ],
-    "test-layer": [
-      "@deptrac"
-    ],
-    "test-unit": [
-      "phpspec --no-interaction run -fpretty"
-    ],
+    "test-layer": "@deptrac",
+    "test-unit": "phpspec --no-interaction run -fpretty",
     "test-static": [
+      "@phpmnd",
       "@phpstan"
     ],
-    "twig-lint": [
-      "console lint:twig src/UI/Http/Web/templates"
-    ],
-    "php-cs-fixer": [
-      "php-cs-fixer fix --config=.php_cs.php --verbose --diff"
-    ],
-    "phpstan": [
-      "phpstan analyse -c phpstan.neon"
-    ],
-    "rmq-setup": [
-      "console messenger:setup-transports --no-interaction"
-    ],
-    "yaml-lint": [
-      "yaml-lint config *.yaml  *.yml"
-    ]
+    "twig-lint": "console lint:twig src/UI/Http/Web/templates",
+    "yaml-lint": "yaml-lint config *.yaml  *.yml"
+  },
+  "scripts-descriptions": {
+    "build": "Install application without its configuration",
+    "cache-clear-test": "Clear application cache on test environment",
+    "ci": "Perform continuous integration tasks",
+    "composer-validate": "Checks composer files syntax",
+    "composer-diagnose": "Run to perform automated checks for many common problems",
+    "composer-check-platform": "Checks that your PHP and extensions versions match the platform requirements of the installed packages",
+    "composer-outdated": "Shows a list of installed packages that have updates available",
+    "deptrac": "Checks the dependencies between software layers",
+    "event-search-create": "Create an event store search (elasticsearch index)",
+    "healthz": "Checks the application readiness probe status",
+    "lint": "Checks all files syntax (composer files, PHP, Symfony Containers, Twig, YAML)",
+    "php-cs-fixer": "Detect violations of defined coding standards",
+    "phpmnd": "Detect magic numbers in source code",
+    "phpstan": "Analyze static source code",
+    "rmq-setup": "Install rabbitmq configuration (queues, exchanges)",
+    "system-check": "Run system Checks tasks",
+    "test": "Run all tests (unit, functional, static, layer)",
+    "test-functional": "Perform functional tests",
+    "test-layer": "Checks application architecture layers",
+    "test-unit": "Perform unit tests",
+    "test-static": "Analyze static source code",
+    "twig-lint": "Checks Twig files syntax",
+    "yaml-lint": "Checks YAML files syntax"
   },
   "conflict": {
     "symfony/symfony": "*"
