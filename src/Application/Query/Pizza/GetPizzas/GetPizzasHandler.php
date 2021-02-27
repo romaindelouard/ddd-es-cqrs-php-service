@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romaind\PizzaStore\Application\Query\Pizza\GetPizzas;
 
 use Romaind\PizzaStore\Application\Query\Collection;

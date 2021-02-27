@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace tests\Unit\Romaind\PizzaStore\Domain\Model\User\ValueObject;
 
 use PhpSpec\ObjectBehavior;

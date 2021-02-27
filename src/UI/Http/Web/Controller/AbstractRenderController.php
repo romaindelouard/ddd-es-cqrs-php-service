@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romaind\PizzaStore\UI\Http\Web\Controller;
 
 use Romaind\PizzaStore\Application\Command\CommandBusInterface;

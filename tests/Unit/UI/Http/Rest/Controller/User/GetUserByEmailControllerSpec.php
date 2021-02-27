@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace tests\Unit\Romaind\PizzaStore\UI\Http\Rest\Controller\User;
 
 use PhpSpec\ObjectBehavior;

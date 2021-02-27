@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace tests\Unit\Romaind\PizzaStore\Infrastructure\Shared\Event\ReadModel;
 
 use Broadway\Domain\DomainMessage;

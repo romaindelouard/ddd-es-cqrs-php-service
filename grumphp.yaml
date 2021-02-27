@@ -15,7 +15,6 @@ grumphp:
     phpstan:
       autoload_file: ~
       configuration: ~
-      level: 6
       force_patterns: []
       ignore_patterns: []
       triggered_by: ['php']

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romaind\PizzaStore\Application\Query;
 
 use Romaind\PizzaStore\Infrastructure\Shared\Persistence\ReadModel\Exception\NotFoundException;

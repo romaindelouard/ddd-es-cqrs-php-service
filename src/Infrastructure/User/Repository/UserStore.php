@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romaind\PizzaStore\Infrastructure\User\Repository;
 
 use Broadway\EventHandling\EventBus;

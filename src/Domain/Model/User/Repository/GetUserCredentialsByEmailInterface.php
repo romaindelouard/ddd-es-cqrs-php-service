@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romaind\PizzaStore\Domain\Model\User\Repository;
 
 use Romaind\PizzaStore\Domain\Model\User\ValueObject\Email;

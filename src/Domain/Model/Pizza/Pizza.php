@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romaind\PizzaStore\Domain\Model\Pizza;
 
 use Broadway\EventSourcing\EventSourcedAggregateRoot;

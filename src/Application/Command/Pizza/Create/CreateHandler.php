@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romaind\PizzaStore\Application\Command\Pizza\Create;
 
 use Ramsey\Uuid\Uuid;

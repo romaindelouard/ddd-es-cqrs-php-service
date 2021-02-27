@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romaind\PizzaStore\Application\Query\Authentication\GetUserByEmail;
 
 use Romaind\PizzaStore\Application\Query\QueryHandlerInterface;
