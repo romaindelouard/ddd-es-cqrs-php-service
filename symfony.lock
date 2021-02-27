@@ -301,6 +301,12 @@
     "opis/closure": {
         "version": "3.6.1"
     },
+    "paragonie/constant_time_encoding": {
+        "version": "v2.4.0"
+    },
+    "paragonie/random_compat": {
+        "version": "v9.99.100"
+    },
     "php": {
         "version": "7.4"
     },
