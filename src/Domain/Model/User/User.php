@@ -24,8 +24,8 @@ class User extends EventSourcedAggregateRoot
     private UuidInterface $uuid;
     private Email $email;
     private HashedPassword $hashedPassword;
-    private ?DateTime $createdAt;
-    private ?DateTime $updatedAt;
+    private DateTime $createdAt;
+    private ?DateTime $updatedAt = null;
 
     /**
      * @throws DateTimeException
