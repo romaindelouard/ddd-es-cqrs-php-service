@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romaind\PizzaStore\Infrastructure\Symfony5\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;

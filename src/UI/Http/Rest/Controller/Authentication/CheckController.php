@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romaind\PizzaStore\UI\Http\Rest\Controller\Authentication;
 
 use Assert\Assertion;

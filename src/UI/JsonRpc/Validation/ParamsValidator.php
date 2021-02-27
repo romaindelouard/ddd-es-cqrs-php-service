@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romaind\PizzaStore\UI\JsonRpc\Validation;
 
 use Psr\Log\LoggerInterface;

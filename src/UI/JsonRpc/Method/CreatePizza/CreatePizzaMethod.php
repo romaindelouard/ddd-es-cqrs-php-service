@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romaind\PizzaStore\UI\JsonRpc\Method\CreatePizza;
 
 use Ramsey\Uuid\Uuid;
@@ -19,16 +21,16 @@ class CreatePizzaMethod extends AbstractCommandJsonRpcMethod
 
     public function apply(array $parameters = null): array
     {
-        $pizzaId = Uuid::uuid4();
+        $pizzaUuid = Uuid::uuid4();
         $this->command = new CreatePizza(
-            $pizzaId,
+            $pizzaUuid->toString(),
             $parameters['name'],
             $parameters['description']
         );
 
         parent::apply($parameters);
 
-        $pizza = $this->pizzaRepository->get($pizzaId);
+        $pizza = $this->pizzaRepository->get($pizzaUuid);
 
         return [
             'pizza' => [

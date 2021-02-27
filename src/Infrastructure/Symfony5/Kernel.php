@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romaind\PizzaStore\Infrastructure\Symfony5;
 
 use Romaind\PizzaStore\Infrastructure\Symfony5\Compiler\TagMethodsPass;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace tests\Unit\Romaind\PizzaStore\Domain\Event\User;
 
 use Broadway\Serializer\Serializable;

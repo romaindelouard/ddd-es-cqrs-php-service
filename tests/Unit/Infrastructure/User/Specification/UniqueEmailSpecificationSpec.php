@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace tests\Unit\Romaind\PizzaStore\Infrastructure\User\Specification;
 
 use Doctrine\ORM\NonUniqueResultException;

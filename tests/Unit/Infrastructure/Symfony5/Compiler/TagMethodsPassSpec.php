@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace tests\Unit\Romaind\PizzaStore\Infrastructure\Symfony5\Compiler;
 
 use PhpSpec\ObjectBehavior;

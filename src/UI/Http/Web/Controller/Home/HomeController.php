@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romaind\PizzaStore\UI\Http\Web\Controller\Home;
 
 use Romaind\PizzaStore\UI\Http\Web\Controller\AbstractRenderController;

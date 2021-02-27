@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace tests\Unit\Romaind\PizzaStore\Application\Command\Pizza\Create;
 
 use PhpSpec\ObjectBehavior;

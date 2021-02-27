@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romaind\PizzaStore\Application\Query\Event\GetEvents;
 
 use Assert\AssertionFailedException;

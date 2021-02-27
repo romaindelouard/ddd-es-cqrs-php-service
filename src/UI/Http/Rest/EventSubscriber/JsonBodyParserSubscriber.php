@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romaind\PizzaStore\UI\Http\Rest\EventSubscriber;
 
 use const JSON_THROW_ON_ERROR;
