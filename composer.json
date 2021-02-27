@@ -180,7 +180,7 @@
       "php-cs-fixer fix --config=.php_cs.php --verbose --diff"
     ],
     "phpstan": [
-      "phpstan analyse -l 6 -c phpstan.neon src"
+      "phpstan analyse -c phpstan.neon"
     ],
     "rmq-setup": [
       "console messenger:setup-transports --no-interaction"
