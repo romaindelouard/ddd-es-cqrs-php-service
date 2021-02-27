@@ -149,7 +149,8 @@
       "console --ansi monitor:health"
     ],
     "lint": [
-      "@php-cs-fixer"
+      "@php-cs-fixer",
+      "@yaml-lint"
     ],
     "event-search-create": [
       "console app:create-event-search"
@@ -183,6 +184,9 @@
     ],
     "rmq-setup": [
       "console messenger:setup-transports --no-interaction"
+    ],
+    "yaml-lint": [
+      "yaml-lint config *.yaml  *.yml"
     ]
   },
   "conflict": {
