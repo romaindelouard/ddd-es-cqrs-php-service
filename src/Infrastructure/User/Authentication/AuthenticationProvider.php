@@ -11,11 +11,11 @@ use Romaind\PizzaStore\Domain\Model\User\ValueObject\Email;
 
 class AuthenticationProvider
 {
-    private JWTTokenManagerInterface $JWTManager;
+    private JWTTokenManagerInterface $jwtTokenManager;
 
-    public function __construct(JWTTokenManagerInterface $JWTManager)
+    public function __construct(JWTTokenManagerInterface $jwtTokenManager)
     {
-        $this->JWTManager = $JWTManager;
+        $this->jwtTokenManager = $jwtTokenManager;
     }
 
     public function generateToken(
@@ -25,6 +25,6 @@ class AuthenticationProvider
     ): string {
         $user = Authentication::create($uuid, $email, $hashedPassword);
 
-        return $this->JWTManager->create($user);
+        return $this->jwtTokenManager->create($user);
     }
 }

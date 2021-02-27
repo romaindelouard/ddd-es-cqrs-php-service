@@ -15,9 +15,9 @@ use Romaind\PizzaStore\Infrastructure\User\Authentication\AuthenticationProvider
 
 class AuthenticationProviderSpec extends ObjectBehavior
 {
-    public function let(JWTTokenManagerInterface $JWTManager)
+    public function let(JWTTokenManagerInterface $jwtTokenManager)
     {
-        $this->beConstructedWith($JWTManager);
+        $this->beConstructedWith($jwtTokenManager);
     }
 
     public function it_is_initializable()
@@ -26,14 +26,14 @@ class AuthenticationProviderSpec extends ObjectBehavior
     }
 
     public function it_should_generate_a_token(
-        JWTTokenManagerInterface $JWTManager,
+        JWTTokenManagerInterface $jwtTokenManager,
         UuidInterface $uuid,
         Email $email,
         HashedPassword $hashedPassword
     ) {
         $emailString = 'toto@gmail.com';
         $email->toString()->willReturn($emailString);
-        $JWTManager
+        $jwtTokenManager
             ->create(Argument::allOf(
                 Argument::type(Authentication::class),
                 Argument::that(function ($authentication) use ($emailString) {
