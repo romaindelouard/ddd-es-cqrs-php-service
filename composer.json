@@ -190,6 +190,7 @@
     "healthz": "Checks the application readiness probe status",
     "lint": "Checks all files syntax (composer files, PHP, Symfony Containers, Twig, YAML)",
     "php-cs-fixer": "Detect violations of defined coding standards",
+    "phpmd": "Detect mess in source code",
     "phpmnd": "Detect magic numbers in source code",
     "phpstan": "Analyze static source code",
     "rmq-setup": "Install rabbitmq configuration (queues, exchanges)",
