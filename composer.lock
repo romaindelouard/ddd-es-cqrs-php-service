@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92eef0d815f37a22b74972c325cca804",
+    "content-hash": "e3b595858c3ee893c4c79c48989b58cb",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -11859,28 +11859,28 @@
         },
         {
             "name": "phpunit/php-timer",
-            "version": "3.1.4",
+            "version": "5.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "dc9368fae6ef2ffa57eba80a7410bcef81df6258"
+                "reference": "5a63ce20ed1b5bf577850e2c4e87f4aa902afbd2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/dc9368fae6ef2ffa57eba80a7410bcef81df6258",
-                "reference": "dc9368fae6ef2ffa57eba80a7410bcef81df6258",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/5a63ce20ed1b5bf577850e2c4e87f4aa902afbd2",
+                "reference": "5a63ce20ed1b5bf577850e2c4e87f4aa902afbd2",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.3"
+                "php": ">=7.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0"
+                "phpunit/phpunit": "^9.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.1-dev"
+                    "dev-master": "5.0-dev"
                 }
             },
             "autoload": {
@@ -11906,7 +11906,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-timer/issues",
-                "source": "https://github.com/sebastianbergmann/php-timer/tree/master"
+                "source": "https://github.com/sebastianbergmann/php-timer/tree/5.0.3"
             },
             "funding": [
                 {
@@ -11914,27 +11914,27 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-04-20T06:00:37+00:00"
+            "time": "2020-10-26T13:16:10+00:00"
         },
         {
             "name": "povils/phpmnd",
-            "version": "v2.3.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/povils/phpmnd.git",
-                "reference": "51861e5f5fbd9edbd5c45da10d8e94952e8ba701"
+                "reference": "0692961ad3e310ac577445a04548d2a44ad06fe0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/povils/phpmnd/zipball/51861e5f5fbd9edbd5c45da10d8e94952e8ba701",
-                "reference": "51861e5f5fbd9edbd5c45da10d8e94952e8ba701",
+                "url": "https://api.github.com/repos/povils/phpmnd/zipball/0692961ad3e310ac577445a04548d2a44ad06fe0",
+                "reference": "0692961ad3e310ac577445a04548d2a44ad06fe0",
                 "shasum": ""
             },
             "require": {
                 "nikic/php-parser": "^4.0",
-                "php": "^7.1",
+                "php": "^7.1|^8.0",
                 "php-parallel-lint/php-console-highlighter": "^0.4",
-                "phpunit/php-timer": "^2.0||^3.0",
+                "phpunit/php-timer": "^2.0||^3.0||^4.0||^5.0",
                 "symfony/console": "^4.0||^5.0",
                 "symfony/finder": "^4.0||^5.0"
             },
@@ -11942,6 +11942,7 @@
                 "phpunit/phpunit": "^7.0||^8.0||^9.0",
                 "squizlabs/php_codesniffer": "^2.8.1||^3.5"
             },
+            "default-branch": true,
             "bin": [
                 "bin/phpmnd"
             ],
@@ -11971,7 +11972,7 @@
                 "issues": "https://github.com/povils/phpmnd/issues",
                 "source": "https://github.com/povils/phpmnd/tree/master"
             },
-            "time": "2020-05-03T16:20:58+00:00"
+            "time": "2021-02-27T16:42:51+00:00"
         },
         {
             "name": "qossmic/deptrac-shim",
@@ -13370,7 +13371,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "povils/phpmnd": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
