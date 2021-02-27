@@ -54,6 +54,8 @@
     "friends-of-behat/symfony-extension": "^2.0",
     "friends-of-phpspec/phpspec-code-coverage": "^6.0",
     "friendsofphp/php-cs-fixer": "^2.18",
+    "infection/infection": "^0.21.2",
+    "infection/phpspec-adapter": "^0.1.2",
     "php-parallel-lint/php-parallel-lint": "^1.2",
     "phploc/phploc": "^7.0",
     "phpmd/phpmd": "^2.9",
@@ -136,6 +138,7 @@
     "deptrac": "deptrac analyze --formatter-graphviz=0",
     "event-search-create": "console app:create-event-search",
     "healthz": "console --ansi monitor:health",
+    "infection": "infection -s --threads=4 --coverage=build/coverage-phpspec-xml -v",
     "lint": [
       "@composer-validate",
       "@container-lint",
@@ -172,6 +175,7 @@
       "@behat-run"
     ],
     "test-layer": "@deptrac",
+    "test-mutation": "@infection",
     "test-unit": "phpspec --no-interaction run -fpretty",
     "test-static": [
       "@phpcpd",
@@ -194,6 +198,7 @@
     "deptrac": "Checks the dependencies between software layers",
     "event-search-create": "Create an event store search (elasticsearch index)",
     "healthz": "Checks the application readiness probe status",
+    "infection": "Run PHP mutation testing framework",
     "lint": "Checks all files syntax (composer files, PHP, Symfony Containers, Twig, YAML)",
     "php-cs-fixer": "Detect violations of defined coding standards",
     "phpcpd": "Detect copy/paste in source code",
@@ -206,6 +211,7 @@
     "test": "Run all tests (unit, functional, static, layer)",
     "test-functional": "Perform functional tests",
     "test-layer": "Checks application architecture layers",
+    "test-mutation": "Perform mutation testing",
     "test-unit": "Perform unit tests",
     "test-static": "Analyze static source code",
     "twig-lint": "Checks Twig files syntax",

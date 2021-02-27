@@ -228,8 +228,26 @@
     "gitonomy/gitlib": {
         "version": "v1.2.3"
     },
+    "infection/abstract-testframework-adapter": {
+        "version": "0.3.1"
+    },
+    "infection/extension-installer": {
+        "version": "0.1.1"
+    },
+    "infection/include-interceptor": {
+        "version": "0.2.4"
+    },
+    "infection/infection": {
+        "version": "0.21.2"
+    },
+    "infection/phpspec-adapter": {
+        "version": "0.1.2"
+    },
     "jakub-onderka/php-console-color": {
         "version": "v0.2"
+    },
+    "justinrainbow/json-schema": {
+        "version": "5.2.10"
     },
     "laminas/laminas-code": {
         "version": "4.0.0"
@@ -411,6 +429,12 @@
     },
     "react/promise": {
         "version": "v2.8.0"
+    },
+    "sanmai/later": {
+        "version": "0.1.2"
+    },
+    "sanmai/pipeline": {
+        "version": "v5.1.0"
     },
     "sebastian/cli-parser": {
         "version": "1.0.1"
@@ -818,6 +842,9 @@
     "symfony/yaml": {
         "version": "v5.2.1"
     },
+    "thecodingmachine/safe": {
+        "version": "v1.3.3"
+    },
     "theseer/tokenizer": {
         "version": "1.2.0"
     },
@@ -826,6 +853,9 @@
     },
     "webmozart/assert": {
         "version": "1.9.1"
+    },
+    "webmozart/path-util": {
+        "version": "2.3.0"
     },
     "yoanm/jsonrpc-server-doc-sdk": {
         "version": "v0.2.1"

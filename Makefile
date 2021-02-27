@@ -49,6 +49,11 @@ test-functional: APP_ENV:=test
 test-functional:
 	XDEBUG_MODE=coverage composer run-script test-functional
 
+## This target is used to run the Mutation Testing
+.PHONY: test-mutation
+test-mutation:
+	XDEBUG_MODE=coverage composer run-script test-mutation
+
 ## This target is used to check application layers
 .PHONY: test-layer
 test-layer:

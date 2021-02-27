@@ -5,11 +5,11 @@ extensions:
     format:
       - html
       - clover
-      #- xml
+      - xml
     output:
       html: build/coverage-phpspec
       clover: build/coverage-phpspec/coverage.xml
-      #xml: coverage
+      xml: build/coverage-phpspec-xml
     whitelist:
       - src
     blacklist:
