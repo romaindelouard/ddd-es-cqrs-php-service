@@ -1,4 +1,6 @@
 {
+  "name": "romaindelouard/ddd-es-cqrs-php-service",
+  "description":"DDD ES CQRS PHP service",
   "type": "project",
   "license": "MIT",
   "minimum-stability": "dev",
@@ -121,6 +123,9 @@
     "cache-clear-test": [
       "console --ansi --no-interaction cache:clear --env=test"
     ],
+    "composer-validate": [
+      "@composer validate --no-check-all --strict --ansi"
+    ],
     "db-create": [
       "console --ansi doctrine:database:create --if-not-exists"
     ],
@@ -149,6 +154,7 @@
       "console --ansi monitor:health"
     ],
     "lint": [
+      "@composer-validate",
       "@php-cs-fixer",
       "@yaml-lint"
     ],

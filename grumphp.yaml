@@ -5,11 +5,9 @@ grumphp:
   tasks:
     git_commit_message:
       enforce_capitalized_subject: false
-    phpcsfixer:
-      config: .php_cs.php
-      allow_risky: true
-      using_cache: true
-      cache_file: .php_cs.cache
+    make:
+      make_file: ~
+      task: lint
     phpversion:
       project: "7.4"
     phpstan:
@@ -20,8 +18,3 @@ grumphp:
       triggered_by: ["php"]
       memory_limit: "-1"
       use_grumphp_paths: true
-    yamllint:
-      whitelist_patterns:
-        - config
-        - /^(.*).yaml/
-        - /^(.*).yml/
