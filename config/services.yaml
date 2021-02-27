@@ -36,6 +36,7 @@ services:
   # this creates a service per class whose id is the fully-qualified class name
   Romaind\PizzaStore\:
     resource: "../src/"
+    exclude: "../src/**/{Migrations}"
 
   _instanceof:
     Yoanm\JsonRpcServer\Domain\JsonRpcMethodInterface:

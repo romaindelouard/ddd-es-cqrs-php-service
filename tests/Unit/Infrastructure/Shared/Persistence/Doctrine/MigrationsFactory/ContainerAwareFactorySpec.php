@@ -30,6 +30,12 @@ class ContainerAwareFactorySpec extends ObjectBehavior
         $this->shouldImplement(MigrationFactory::class);
     }
 
+    public function it_should_invoke_with_a_migration_version()
+    {
+        $this->__invoke(MigrationTest::class);
+        $this->__invoke(MigrationWithContainerTest::class);
+    }
+
     public function it_should_create_a_version()
     {
         $this->createVersion(MigrationTest::class);

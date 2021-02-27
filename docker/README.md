@@ -81,6 +81,8 @@ sudo apt install php8.0-cli php8.0-curl php8.0-mbstring php8.0-xml php8.0-pgsql
 sudo apt install php8.0-xdebug
 sudo apt install php8.0-intl
 sudo apt install php8.0-amqp
+# You can choose the php version
+sudo update-alternatives --config php
 
 # clean vendor directory and composer.lock file
 rm composer.lock
