@@ -95,9 +95,6 @@
     "composer/ca-bundle": {
         "version": "1.2.9"
     },
-    "composer/package-versions-deprecated": {
-        "version": "1.11.99.1"
-    },
     "composer/semver": {
         "version": "3.2.4"
     },
@@ -243,9 +240,6 @@
     "infection/phpspec-adapter": {
         "version": "0.1.2"
     },
-    "jakub-onderka/php-console-color": {
-        "version": "v0.2"
-    },
     "justinrainbow/json-schema": {
         "version": "5.2.10"
     },
@@ -316,6 +310,9 @@
     "nikic/php-parser": {
         "version": "v4.10.4"
     },
+    "ocramius/package-versions": {
+        "version": "2.1.0"
+    },
     "ondram/ci-detector": {
         "version": "3.5.1"
     },
@@ -339,6 +336,9 @@
     },
     "php-cs-fixer/diff": {
         "version": "v1.3.1"
+    },
+    "php-parallel-lint/php-console-color": {
+        "version": "v0.3"
     },
     "php-parallel-lint/php-console-highlighter": {
         "version": "v0.4"
@@ -376,8 +376,23 @@
     "phpspec/prophecy": {
         "version": "1.12.2"
     },
+    "phpstan/extension-installer": {
+        "version": "1.1.0"
+    },
     "phpstan/phpstan": {
         "version": "0.12.70"
+    },
+    "phpstan/phpstan-deprecation-rules": {
+        "version": "0.12.6"
+    },
+    "phpstan/phpstan-doctrine": {
+        "version": "0.12.32"
+    },
+    "phpstan/phpstan-strict-rules": {
+        "version": "0.12.9"
+    },
+    "phpstan/phpstan-symfony": {
+        "version": "0.12.20"
     },
     "phpunit/php-code-coverage": {
         "version": "9.2.5"
