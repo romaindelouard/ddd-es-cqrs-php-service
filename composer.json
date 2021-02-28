@@ -156,7 +156,7 @@
     "phploc": "phploc --exclude=vendor --exclude=build .",
     "phpmd": "phpmd src ansi cleancode,codesize,controversial,design,naming,unusedcode --ignore-violations-on-exit",
     "phpmnd": "phpmnd src/ --non-zero-exit-on-violation",
-    "phpstan": "phpstan analyse -c phpstan.neon",
+    "phpstan": "phpstan analyse -c phpstan.neon --ansi",
     "rmq-setup": "console messenger:setup-transports --no-interaction",
     "system-check": [
       "php --version",

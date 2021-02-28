@@ -30,12 +30,13 @@ class UniqueEmailSpecification extends AbstractSpecification implements UniqueEm
 
     /**
      * @param Email $value
-     * @psalm-suppress MoreSpecificImplementedParamType
+     *
+     * @throws EmailAlreadyExistException
      */
     public function isSatisfiedBy($value): bool
     {
         try {
-            if ($this->checkUserByEmail->existsEmail($value)) {
+            if (null !== $this->checkUserByEmail->existsEmail($value)) {
                 throw new EmailAlreadyExistException();
             }
         } catch (NonUniqueResultException $e) {

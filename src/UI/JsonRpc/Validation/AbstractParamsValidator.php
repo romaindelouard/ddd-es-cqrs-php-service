@@ -25,7 +25,7 @@ abstract class AbstractParamsValidator extends ConstraintValidator
         }
 
         foreach ($this->getMandatoryParams() as $mandatory) {
-            if (empty($value[$mandatory])) {
+            if (!isset($value[$mandatory])) {
                 $this->context->buildViolation($constraint->mandatoryParamsMessage)
                     ->setParameter('%params%', implode(', ', $this->getMandatoryParams()))
                     ->setInvalidValue($value)

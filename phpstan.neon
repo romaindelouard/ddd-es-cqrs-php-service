@@ -3,6 +3,13 @@ parameters:
 	paths:
 		- src
 	checkMissingIterableValueType: false
+	checkGenericClassInNonGenericObjectType: false
 	excludes_analyse:
 		- tests/*
 		- .php_cs.php
+	ignoreErrors:
+		- '#MessengerQueryBus::ask\(\) should return mixed but return statement is missing*#'
+		- '#EmailType::convertToPHPValue\(\) should be contravariant with parameter \$value \(mixed\)*#'
+		- '#HashedPasswordType::convertToPHPValue\(\) should be contravariant with parameter \$value \(mixed\)*#'
+		- '#LoginAuthenticator::getUser\(\) should be contravariant with parameter \$credentials \(mixed\)*#'
+		- '#UniqueEmailSpecification::isSatisfiedBy\(\) should be contravariant with parameter \$value \(mixed\)*#'

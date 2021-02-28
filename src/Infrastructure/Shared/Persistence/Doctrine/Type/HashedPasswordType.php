@@ -16,11 +16,9 @@ class HashedPasswordType extends StringType
     /**
      * @param mixed $value
      *
-     * @return mixed|string|null
-     *
      * @throws ConversionException
      */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         if (null === $value) {
             return null;
@@ -36,11 +34,9 @@ class HashedPasswordType extends StringType
     /**
      * @param HashedPassword|string|null $value
      *
-     * @return HashedPassword|null
-     *
      * @throws ConversionException
      */
-    public function convertToPHPValue($value, AbstractPlatform $platform)
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?HashedPassword
     {
         if (null === $value || $value instanceof HashedPassword) {
             return $value;
@@ -58,15 +54,12 @@ class HashedPasswordType extends StringType
     /**
      * {@inheritdoc}
      */
-    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
     {
         return true;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return self::TYPE;
     }
