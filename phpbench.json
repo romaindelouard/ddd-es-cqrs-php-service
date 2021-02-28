@@ -1,0 +1,20 @@
+{
+  "bootstrap": "vendor/autoload.php",
+  "path": "tests/Performance",
+  "xml_storage_path": "build/benchmarks",
+  "progress": "verbose",
+  "reports": {
+    "test": {
+      "extends": "aggregate",
+      "cols": [
+        "benchmark",
+        "suite",
+        "subject",
+        "mean",
+        "mem_peak",
+        "mem_real",
+        "diff"
+      ]
+    }
+  }
+}

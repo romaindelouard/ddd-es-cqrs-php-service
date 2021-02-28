@@ -285,6 +285,9 @@
             "config/packages/monitor.yaml"
         ]
     },
+    "lstrojny/functional-php": {
+        "version": "1.15.0"
+    },
     "moneyphp/money": {
         "version": "v3.3.1"
     },
@@ -345,6 +348,15 @@
     },
     "php-parallel-lint/php-parallel-lint": {
         "version": "v1.2.0"
+    },
+    "phpbench/container": {
+        "version": "1.2.1"
+    },
+    "phpbench/dom": {
+        "version": "0.2.0"
+    },
+    "phpbench/phpbench": {
+        "version": "0.17.1"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
@@ -552,6 +564,9 @@
         "files": [
             "bin/console"
         ]
+    },
+    "symfony/debug": {
+        "version": "v4.4.19"
     },
     "symfony/debug-bundle": {
         "version": "4.1",

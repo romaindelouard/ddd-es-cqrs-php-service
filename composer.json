@@ -57,6 +57,7 @@
     "infection/infection": "^0.21.2",
     "infection/phpspec-adapter": "^0.1.2",
     "php-parallel-lint/php-parallel-lint": "^1.2",
+    "phpbench/phpbench": "^0.17.1",
     "phploc/phploc": "^7.0",
     "phpmd/phpmd": "^2.9",
     "phpro/grumphp": "^1.3",
@@ -104,7 +105,8 @@
   "autoload-dev": {
     "psr-4": {
       "Tests\\Unit\\Romaind\\PizzaStore\\": "tests/Unit",
-      "Tests\\Functional\\": "tests/Functional"
+      "Tests\\Functional\\": "tests/Functional",
+      "Tests\\Performance\\": "tests/Performance"
     }
   },
   "replace": {
@@ -151,6 +153,7 @@
       "@twig-lint",
       "@yaml-lint"
     ],
+    "phpbench": "phpbench run --ansi -vvv",
     "php-cs-fixer": "php-cs-fixer fix --config=.php_cs.php --verbose --diff",
     "phpcpd": "phpcpd src",
     "phploc": "phploc --exclude=vendor --exclude=build .",
@@ -206,6 +209,7 @@
     "infection": "Run PHP mutation testing framework",
     "lint": "Checks all files syntax (composer files, PHP, Symfony Containers, Twig, YAML)",
     "php-cs-fixer": "Detect violations of defined coding standards",
+    "phpbench": "Benchmark runner for PHP analogous to PHPUnit but for performance rather than correctness.",
     "phpcpd": "Detect copy/paste in source code",
     "phploc": "Mesure the size and analyse the structure of project",
     "phpmd": "Detect mess in source code",
