@@ -25,6 +25,8 @@ jobs:
           coverage: xdebug
       - name: Build application
         run: make PHP_VERSION=${{ matrix.php-versions }} build
+      - name: Install infection/phpspec-adapter
+        run: composer run-script post-install-cmd
       - name: Run unit tests
         run: make test-unit
       - name: Run the mutation testing
