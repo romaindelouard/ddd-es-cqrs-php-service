@@ -18,15 +18,11 @@ use Romaind\PizzaStore\Infrastructure\User\ReadModel\UserView;
 
 class PostgresReadModelUserRepository extends AbstractPostgresRepository implements CheckUserByEmailInterface, GetUserCredentialsByEmailInterface
 {
-    // @phpstan-ignore-next-line
-    protected EntityRepository $repository;
+    protected ?EntityRepository $repository = null;
 
     protected function defineEntityManager(): void
     {
         $objectRepository = $this->entityManager->getRepository(UserView::class);
-        if (!$objectRepository instanceof EntityRepository) {
-            throw new \UnexpectedValueException('objectRepository is not an EntityRepository');
-        }
         $this->repository = $objectRepository;
     }
 

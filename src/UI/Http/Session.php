@@ -21,7 +21,7 @@ class Session
     {
         $token = $this->tokenStorage->getToken();
 
-        if (!$token) {
+        if (null === $token) {
             throw new InvalidCredentialsException();
         }
 

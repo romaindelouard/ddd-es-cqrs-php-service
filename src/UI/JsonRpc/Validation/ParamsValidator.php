@@ -20,7 +20,7 @@ class ParamsValidator
         LoggerInterface $logger = null
     ) {
         $this->validator = $validator;
-        $this->logger = $logger ?: new NullLogger();
+        $this->logger = $logger ?? new NullLogger();
     }
 
     /**

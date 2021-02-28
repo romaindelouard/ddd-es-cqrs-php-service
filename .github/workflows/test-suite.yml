@@ -70,6 +70,8 @@ jobs:
           coverage: xdebug
       - name: Build application
         run: make PHP_VERSION=${{ matrix.php-versions }} build
+      - name: Run scripts post install
+        run: composer run-script post-install-cmd
       - name: Checks the application readiness probe status
         run: make healthz
       - name: run all continuous integration tasks

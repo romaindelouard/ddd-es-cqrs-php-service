@@ -28,7 +28,7 @@ class JsonBodyParserSubscriber implements EventSubscriberInterface
         }
 
         $content = $request->getContent();
-        if (empty($content)) {
+        if ('' === $content) {
             return;
         }
 
@@ -47,7 +47,7 @@ class JsonBodyParserSubscriber implements EventSubscriberInterface
     {
         try {
             $data = \json_decode(
-                (string) $request->getContent(),
+                $request->getContent(),
                 true,
                 512,
                 JSON_THROW_ON_ERROR

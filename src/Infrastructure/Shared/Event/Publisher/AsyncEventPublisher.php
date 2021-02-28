@@ -28,7 +28,7 @@ class AsyncEventPublisher implements EventSubscriberInterface, EventListener
         $this->messages[] = $message;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             KernelEvents::TERMINATE => 'publish',
@@ -41,7 +41,7 @@ class AsyncEventPublisher implements EventSubscriberInterface, EventListener
      */
     public function publish(): void
     {
-        if (empty($this->messages)) {
+        if (0 === count($this->messages)) {
             return;
         }
 
