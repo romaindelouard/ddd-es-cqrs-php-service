@@ -80,11 +80,12 @@ class PostgresReadModelUserRepository extends AbstractPostgresRepository impleme
     {
         return $this->oneOrException(
             $this->getUserByEmailQueryBuilder($email)
-                ->select('
-                user.uuid, 
-                user.credentials.email, 
-                user.createdAt, 
-                user.updatedAt'),
+                ->select([
+                    'user.uuid',
+                    'user.credentials.email',
+                    'user.createdAt',
+                    'user.updatedAt',
+                ]),
             AbstractQuery::HYDRATE_ARRAY
         );
     }

@@ -42,8 +42,10 @@ abstract class AbstractPostgresRepository
      * @throws NotFoundException
      * @throws NonUniqueResultException
      */
-    protected function oneOrException(QueryBuilder $queryBuilder, int $hydration = AbstractQuery::HYDRATE_OBJECT)
-    {
+    protected function oneOrException(
+        QueryBuilder $queryBuilder,
+        int $hydration = AbstractQuery::HYDRATE_OBJECT
+    ) {
         $model = $queryBuilder
             ->getQuery()
             ->getOneOrNullResult($hydration);
