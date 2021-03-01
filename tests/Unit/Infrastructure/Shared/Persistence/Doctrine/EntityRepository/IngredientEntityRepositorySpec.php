@@ -8,7 +8,6 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\Persistence\ObjectManager;
 use PhpSpec\ObjectBehavior;
 use Romaind\PizzaStore\Domain\Model\Ingredient\Ingredient;
 use Romaind\PizzaStore\Infrastructure\Shared\Persistence\Doctrine\EntityRepository\IngredientEntityRepository;
