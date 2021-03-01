@@ -5,15 +5,13 @@ filebeat.inputs:
   - type: log
     enabled: true
     paths:
-      - '/var/lib/docker/containers/logs/*.log'
+      - "/var/lib/docker/containers/logs/*.log"
     json.keys_under_root: true
 
     processors:
       - decode_json_fields:
-          fields: [ 'message' ]
+          fields: ["message"]
           target: json
 
 output.elasticsearch:
-  hosts: [ "elasticsearch:9200" ]
-#  username: elastic
-#  password: changeme
+  hosts: ["elasticsearch:9200"]
