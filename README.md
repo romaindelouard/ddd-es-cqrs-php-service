@@ -17,6 +17,7 @@
 - ElasticSearch 7.10.2
 - Kibana 7.10.2
 - PgAdmin 4
+- Blackfire
 
 ## Project & environment setup
 
@@ -135,4 +136,19 @@ Running tasks with priority 0!
 Running task 1/3: phpcsfixer... ✔
 Running task 2/3: phpversion... ✔
 Running task 3/3: yamllint... ✔
+```
+
+## Blackfire, performance testing
+
+Define environment variables in `.env` file
+```
+BLACKFIRE_SERVER_ID=define-a-token
+BLACKFIRE_SERVER_TOKEN=define-a-token
+BLACKFIRE_CLIENT_ID=define-a-token
+BLACKFIRE_CLIENT_TOKEN=define-a-token
+```
+
+Execute a request profiling
+```
+docker-compose exec blackfire blackfire curl --request GET --url http://nginx:8080/
 ```

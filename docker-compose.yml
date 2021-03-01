@@ -32,6 +32,8 @@ services:
         condition: service_healthy
       elasticsearch:
         condition: service_healthy
+      blackfire:
+        condition: service_started
     restart: on-failure
   nginx:
     image: nginx:1.17.9
