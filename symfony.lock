@@ -285,9 +285,6 @@
             "config/packages/monitor.yaml"
         ]
     },
-    "lstrojny/functional-php": {
-        "version": "1.15.0"
-    },
     "moneyphp/money": {
         "version": "v3.3.1"
     },
@@ -564,9 +561,6 @@
         "files": [
             "bin/console"
         ]
-    },
-    "symfony/debug": {
-        "version": "v4.4.19"
     },
     "symfony/debug-bundle": {
         "version": "4.1",
