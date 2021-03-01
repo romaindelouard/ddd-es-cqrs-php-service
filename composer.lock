@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5e5813c9826e844b1635c6dede71d87c",
+    "content-hash": "c442498bc271edad0869e60059e595ab",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -3220,22 +3220,22 @@
         },
         {
             "name": "php-amqplib/php-amqplib",
-            "version": "2.12.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-amqplib/php-amqplib.git",
-                "reference": "199f89c377df6e7a52d127af63b7c52b4e677c6c"
+                "reference": "c9d103822fe830a0aaeed94170faf8074de5ce98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/199f89c377df6e7a52d127af63b7c52b4e677c6c",
-                "reference": "199f89c377df6e7a52d127af63b7c52b4e677c6c",
+                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/c9d103822fe830a0aaeed94170faf8074de5ce98",
+                "reference": "c9d103822fe830a0aaeed94170faf8074de5ce98",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
                 "ext-sockets": "*",
-                "php": ">=5.6.3,<8.0",
+                "php": ">=7.0",
                 "phpseclib/phpseclib": "^2.0|^3.0"
             },
             "conflict": {
@@ -3247,9 +3247,10 @@
             "require-dev": {
                 "ext-curl": "*",
                 "nategood/httpful": "^0.2.20",
-                "phpunit/phpunit": "^5.7|^6.5|^7.0",
+                "phpunit/phpunit": "^6.5|^7.0|^9.5",
                 "squizlabs/php_codesniffer": "^3.5"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -3295,9 +3296,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-amqplib/php-amqplib/issues",
-                "source": "https://github.com/php-amqplib/php-amqplib/tree/2.12.2"
+                "source": "https://github.com/php-amqplib/php-amqplib/tree/master"
             },
-            "time": "2021-02-12T17:50:22+00:00"
+            "time": "2021-02-26T14:41:12+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -14880,6 +14881,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "php-amqplib/php-amqplib": 20,
         "phpbench/phpbench": 20,
         "povils/phpmnd": 20
     },
