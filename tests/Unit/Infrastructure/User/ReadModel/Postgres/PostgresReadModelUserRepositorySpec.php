@@ -146,7 +146,7 @@ class PostgresReadModelUserRepositorySpec extends ObjectBehavior
         $credentials = [
             'uuid' => $uuid,
             'credentials.email' => $email,
-            'credentials.password' => $hashedPassword
+            'credentials.password' => $hashedPassword,
         ];
         $emailString = 'toto@domain.com';
         $email->toString()->willReturn($emailString)->shouldBeCalledTimes(1);
@@ -164,7 +164,7 @@ class PostgresReadModelUserRepositorySpec extends ObjectBehavior
         $this->getCredentialsByEmail($email)->shouldBe([
             $uuid,
             $email,
-            $hashedPassword
+            $hashedPassword,
         ]);
     }
 }
