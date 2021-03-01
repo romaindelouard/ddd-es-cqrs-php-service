@@ -10,7 +10,6 @@ use Broadway\EventSourcing\EventSourcingRepository;
 use Broadway\EventStore\EventStore;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use PhpSpec\ObjectBehavior;
 use Ramsey\Uuid\UuidInterface;
@@ -88,7 +87,7 @@ class PizzaRepositorySpec extends ObjectBehavior
         $queryBuilder->setMaxResults(2)->willReturn($queryBuilder);
         $queryBuilder->getQuery()->willReturn($query);
         $query->getArrayResult()->willReturn($pizzas);
-        
+
         $this->page(5, 2)->shouldbe($pizzas);
     }
 }
