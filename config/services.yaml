@@ -31,6 +31,7 @@ services:
       $eventStore: '@Broadway\EventStore\Dbal\DBALEventStore'
       $eventReadModelClient: "@broadway.elasticsearch.client"
       $aggregateFactory: '@event_sourcing.factory.aggregate'
+      $rabbitMqMonitorConfig: "%liip_monitor.check.rabbit_mq.default%"
 
   # makes classes in src/ available to be used as services
   # this creates a service per class whose id is the fully-qualified class name
@@ -79,6 +80,16 @@ services:
     public: true # In order to allow Behat context to load it later
     class: Romaind\PizzaStore\Infrastructure\Server\JsonRpcServer\Collector\MappingCollector
     tags: ["json_rpc_http_server.method_aware"]
+
+  ## Liip monitor rabbit mq custom check
+  ## Error because PhpAmqpLib\Connection\AMQPConnection is not exists
+  Romaind\PizzaStore\Infrastructure\Shared\Monitor\Check\RabbitMQCheck:
+    autoconfigure: false
+  liip_monitor.check.rabbit_mq:
+    public: true
+    class: Romaind\PizzaStore\Infrastructure\Shared\Monitor\Check\RabbitMQCollection
+    tags:
+        - { name: liip_monitor.check_collection, alias: rabbit_mq }
 
   ### Event Store
   event_sourcing.factory.aggregate:
