@@ -1,6 +1,7 @@
 name: Build docker container
 
 on:
+  pull_request:
   create:
     tags:
       - "v[0-9]+.[0-9]+.[0-9]+*"
