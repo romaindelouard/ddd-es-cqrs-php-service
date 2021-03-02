@@ -56,6 +56,21 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/pear
 
+ENV EXT_REDIS_VERSION=5.3.3 EXT_IGBINARY_VERSION=3.2.1
+
+RUN docker-php-source extract \
+    # igbinary
+    && mkdir -p /usr/src/php/ext/igbinary \
+    &&  curl -fsSL https://github.com/igbinary/igbinary/archive/$EXT_IGBINARY_VERSION.tar.gz | tar xvz -C /usr/src/php/ext/igbinary --strip 1 \
+    && docker-php-ext-install igbinary \
+    # redis
+    && mkdir -p /usr/src/php/ext/redis \
+    && curl -fsSL https://github.com/phpredis/phpredis/archive/$EXT_REDIS_VERSION.tar.gz | tar xvz -C /usr/src/php/ext/redis --strip 1 \
+    && docker-php-ext-configure redis --enable-redis-igbinary \
+    && docker-php-ext-install redis \
+    # cleanup
+    && docker-php-source delete
+
 ## Install Composer
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 RUN composer self-update

@@ -26,6 +26,20 @@
     "amphp/sync": {
         "version": "v1.4.0"
     },
+    "artprima/prometheus-metrics-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "a07f1cab0b63419f2153b744a254d9d6c3d732e9"
+        },
+        "files": [
+            "config/packages/prometheus_metrics.yaml",
+            "config/packages/test/prometheus_metrics.yaml",
+            "config/routes/metrics.yaml"
+        ]
+    },
     "beberlei/assert": {
         "version": "v3.3.0"
     },
@@ -418,6 +432,9 @@
     "povils/phpmnd": {
         "version": "v2.3.0"
     },
+    "promphp/prometheus_client_php": {
+        "version": "v2.2.1"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -704,6 +721,9 @@
     },
     "symfony/orm-pack": {
         "version": "v2.1.0"
+    },
+    "symfony/polyfill-apcu": {
+        "version": "v1.22.1"
     },
     "symfony/polyfill-intl-grapheme": {
         "version": "v1.22.0"

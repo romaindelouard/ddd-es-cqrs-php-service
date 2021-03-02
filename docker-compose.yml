@@ -16,9 +16,9 @@ services:
     command: php-fpm
     depends_on:
       - init
-  #workers_events:
-  #  <<: *base
-  #  command: ["bin/console", "messenger:consume", "events", "-vv"]
+  workers_events:
+    <<: *base
+    command: ["bin/console", "messenger:consume", "events", "-vv"]
   init:
     <<: *base
     image: pizza-service-php-${PHP_VERSION}:${APP_ENV}
@@ -34,6 +34,8 @@ services:
         condition: service_healthy
       blackfire:
         condition: service_started
+      redis:
+        condition: service_healthy
     restart: on-failure
   nginx:
     image: nginx:1.17.9
@@ -46,6 +48,11 @@ services:
       - dev
     depends_on:
       - pizza-service
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 30s
+      retries: 5
   # Postgres database server
   postgres:
     image: postgres:13
@@ -129,7 +136,8 @@ services:
     ports:
       - 9100:9100
     depends_on:
-      - elasticsearch
+      elasticsearch:
+        condition: service_healthy
     networks:
       - dev
   blackfire:
@@ -153,6 +161,9 @@ services:
       - ./docker/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
       - ./var/log:/var/lib/docker/containers/logs:ro
     command: ["--strict.perms=false"]
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
     networks:
       - dev
   kibana:
@@ -160,7 +171,8 @@ services:
     ports:
       - 5601:5601
     depends_on:
-      - elasticsearch
+      elasticsearch:
+        condition: service_healthy
     networks:
       - dev
   logstash:
@@ -174,7 +186,40 @@ services:
       - ./docker/logstash/conf.d:/etc/logstash/conf.d:cached
       - ./var/log:/logs
     depends_on:
-      - elasticsearch
+      elasticsearch:
+        condition: service_healthy
+    networks:
+      - dev
+  prometheus:
+    image: prom/prometheus:v2.25.0
+    ports:
+      - 9090:9090
+    volumes:
+      - ./docker/prometheus/:/etc/prometheus/
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/usr/share/prometheus/console_libraries"
+      - "--web.console.templates=/usr/share/prometheus/consoles"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-t 1", "--spider", "http://localhost:9090"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    depends_on:
+      nginx:
+        condition: service_started
+    networks:
+      - dev
+  redis:
+    image: redis:6.2-alpine
+    ports:
+      - 6379:6379
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 1s
+      timeout: 3s
+      retries: 30
     networks:
       - dev
 networks:

@@ -12,7 +12,9 @@ framework:
       messenger.bus.query:
         default_middleware: false
         middleware:
+          - add_bus_name_stamp_middleware: ["messenger.bus.query"]
           - handle_message
+          - Romaind\PizzaStore\Infrastructure\Shared\Middleware\PrometheusMiddleware
 
       messenger.bus.event.async:
         default_middleware: allow_no_handlers
