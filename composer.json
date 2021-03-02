@@ -21,7 +21,7 @@
     "doctrine/orm": "^2.8",
     "elasticsearch/elasticsearch": "^7.10",
     "lexik/jwt-authentication-bundle": "^2.11",
-    "liip/monitor-bundle": "^2.14",
+    "liip/monitor-bundle": "^2.15",
     "moneyphp/money": "^3.3",
     "nelmio/api-doc-bundle": "^4.1",
     "php-amqplib/php-amqplib": "dev-master",

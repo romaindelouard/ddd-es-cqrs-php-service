@@ -14,7 +14,6 @@ liip_monitor:
       - pcntl
       - pdo
       - pdo_pgsql
-      - sockets
       - xml
     php_version:
       7.4.1: ">="
