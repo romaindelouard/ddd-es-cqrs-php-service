@@ -32,6 +32,8 @@ services:
         condition: service_healthy
       elasticsearch:
         condition: service_healthy
+      blackfire:
+        condition: service_started
     restart: on-failure
   nginx:
     image: nginx:1.17.9
@@ -130,7 +132,51 @@ services:
       - elasticsearch
     networks:
       - dev
-
+  blackfire:
+    image: blackfire/blackfire
+    ports:
+      - 8707:8707
+    environment:
+      BLACKFIRE_SERVER_ID: ~
+      BLACKFIRE_SERVER_TOKEN: ~
+      BLACKFIRE_CLIENT_ID: ~
+      BLACKFIRE_CLIENT_TOKEN: ~
+      BLACKFIRE_LOG_LEVEL: 4
+    networks:
+      - dev
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.10.2
+    user: root
+    volumes:
+      - ./var/filebeat/log/:/var/log/:ro
+      - ./var/filebeat/docker.sock:/var/run/docker.sock
+      - ./docker/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - ./var/log:/var/lib/docker/containers/logs:ro
+    command: ["--strict.perms=false"]
+    networks:
+      - dev
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.10.2
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
+    networks:
+      - dev
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.10.2
+    ports:
+      - 5000:5000
+      - 5044:5044
+      - 9600:9600
+    volumes:
+      - ./docker/logstash/pipelines.yml:/usr/share/logstash/config/pipelines.yml:cached
+      - ./docker/logstash/conf.d:/etc/logstash/conf.d:cached
+      - ./var/log:/logs
+    depends_on:
+      - elasticsearch
+    networks:
+      - dev
 networks:
   dev:
     external: true
