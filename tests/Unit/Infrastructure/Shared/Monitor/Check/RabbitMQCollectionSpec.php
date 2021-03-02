@@ -19,6 +19,9 @@ class RabbitMQCollectionSpec extends ObjectBehavior
                 'password' => 'guest',
                 'vhost' => '/',
             ],
+            'other' => [
+                'dsn' => 'amqp://guest:guest@localhost:5672/%2F'
+            ]
         ]);
     }
 
@@ -30,6 +33,6 @@ class RabbitMQCollectionSpec extends ObjectBehavior
     public function it_should_create_rabbitmq_check_collection()
     {
         $check = $this->getChecks();
-        $check->shouldHaveCount(1);
+        $check->shouldHaveCount(2);
     }
 }
