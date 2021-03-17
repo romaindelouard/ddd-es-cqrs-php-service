@@ -1,0 +1,108 @@
+# PHP service
+#################
+# www persistent Volume
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: www-pv
+  namespace: homespace
+  labels:
+    type: local
+spec:
+  storageClassName: do-block-storage
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /data/www-pv
+---
+# www persistent Volume Claim
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: www-pvc
+  namespace: homespace
+  labels:
+    type: local
+spec:
+  storageClassName: do-block-storage
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  volumeName: www-pv
+---
+# PHP service config map
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: php-service-config
+  namespace: homespace
+  labels:
+    app: php-service
+data:
+  DATABASE_URL: "postgresql://username:password@postgres:5432/pizza?serverVersion=13&charset=utf8"
+  MESSENGER_TRANSPORT_DSN: "amqp://guest:guest@rabbitmq:5672/%2f/messages"
+  RABBITMQ_PORT: "5672"
+---
+# PHP service deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: homespace
+  labels:
+    app: php-service
+  name: php-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php-service
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: php-service
+    spec:
+      containers:
+        - image: pizza-service-php-7.4:dev
+          imagePullPolicy: Never
+          name: php-service
+          ports:
+            - containerPort: 9000
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: php-service-config
+                  key: DATABASE_URL
+            - name: PHP_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: RABBITMQ_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: php-service-config
+                  key: RABBITMQ_PORT
+          resources: {}
+status: {}
+---
+# PHP service
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: homespace
+  labels:
+    app: php-service
+  name: php-service
+spec:
+  ports:
+    - name: php-fpm
+      port: 9000
+      targetPort: 9000
+  selector:
+    app: php-service
+  type: NodePort

@@ -1,0 +1,133 @@
+# Nginx
+#################
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: homespace
+  name: nginx-config-map
+data:
+  default.conf: |
+    server {
+        listen 8080;
+        server_name _;
+        root /var/www/html/public;
+
+        gzip on;
+        gzip_disable "msie6";
+
+        gzip_vary on;
+        gzip_proxied any;
+        gzip_comp_level 6;
+        gzip_buffers 16 8k;
+        gzip_http_version 1.1;
+        gzip_min_length 256;
+        gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/vnd.ms-fontobject application/x-font-ttf font/opentype image/svg+xml image/x-icon;
+
+        location / {
+            try_files $uri /index.php$is_args$args;
+        }
+
+        location ~ ^/index\.php(/|$) {
+            fastcgi_pass php-service:9000;
+            fastcgi_split_path_info ^(.+\.php)(/.*)$;
+            include fastcgi_params;
+
+            fastcgi_buffer_size 128k;
+            fastcgi_buffers 4 256k;
+
+            fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+            fastcgi_param DOCUMENT_ROOT $realpath_root;
+            internal;
+        }
+
+        location ~ \.php$ {
+            return 404;
+        }
+    }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: homespace
+  labels:
+    app: nginx-deployment
+  name: nginx-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-container
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: nginx-container
+    spec:
+      initContainers:
+        - name: init
+          image: pizza-service-php-7.4:dev
+          imagePullPolicy: Never
+          volumeMounts:
+            - name: shared-files
+              mountPath: /volume
+          command:
+            - /bin/sh
+            - -c
+          args:
+            - "cp -r /var/www/html/public /volume/"
+      containers:
+        - name: nginx-container
+          image: nginx:1.17.9
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: nginx-config-volume
+              mountPath: /etc/nginx/conf.d/default.conf
+              subPath: default.conf
+              readOnly: true
+            - name: shared-files
+              mountPath: /var/www/html/
+      volumes:
+        - name: nginx-config-volume
+          configMap:
+            name: nginx-config-map
+            items:
+              - key: default.conf
+                path: default.conf
+        - name: shared-files
+          emptyDir: {}
+---
+# Nginx service
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: homespace
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: nginx-container
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: homespace
+  name: nginx-ingress
+spec:
+  rules:
+    - host: nginx.192.168.49.2.nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx
+                port:
+                  number: 8080

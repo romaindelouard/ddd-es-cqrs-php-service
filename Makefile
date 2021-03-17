@@ -151,3 +151,11 @@ docker-clean:
 .PHONY: docker-kill
 docker-kill:
 	docker kill `docker ps -a -q -f label=com.docker.compose.project=$(APP_NAME)`
+
+.PHONY: helm-install
+helm-install:
+	helm install php-service docker/helm/
+
+.PHONY: helm-uninstall
+helm-uninstall:
+	helm uninstall php-service
