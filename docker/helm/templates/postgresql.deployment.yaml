@@ -99,10 +99,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgresql
+  name: postgres
   namespace: homespace
   labels:
-    app: postgresql
+    app: postgres
 spec:
   ports:
     - port: 5432
