@@ -5,7 +5,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: www-pv
-  namespace: homespace
+  namespace: {{ .Release.Namespace }}
   labels:
     type: local
 spec:
@@ -22,7 +22,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: www-pvc
-  namespace: homespace
+  namespace: {{ .Release.Namespace }}
   labels:
     type: local
 spec:
@@ -39,7 +39,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: php-service-config
-  namespace: homespace
+  namespace: {{ .Release.Namespace }}
   labels:
     app: php-service
 data:
@@ -59,7 +59,7 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: homespace
+  namespace: {{ .Release.Namespace }}
   labels:
     app: php-service
   name: php-service
@@ -102,7 +102,7 @@ status: {}
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: homespace
+  namespace: {{ .Release.Namespace }}
   labels:
     app: php-service
   name: php-service

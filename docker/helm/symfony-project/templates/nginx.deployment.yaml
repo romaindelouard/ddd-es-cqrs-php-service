@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  namespace: homespace
+  namespace: {{ .Release.Namespace }}
   name: nginx-config-map
 data:
   default.conf: |
@@ -48,7 +48,7 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: homespace
+  namespace: {{ .Release.Namespace }}
   labels:
     app: nginx-deployment
   name: nginx-deployment
@@ -101,7 +101,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: homespace
+  namespace: {{ .Release.Namespace }}
   labels:
     app: nginx
   name: nginx
@@ -117,10 +117,11 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  namespace: homespace
+  namespace: {{ .Release.Namespace }}
   name: nginx-ingress
 spec:
   rules:
+    {{- range .Values.nginx.ingress.hosts }}
     - host: nginx.192.168.49.2.nip.io
       http:
         paths:
@@ -131,3 +132,4 @@ spec:
                 name: nginx
                 port:
                   number: 8080
+    {{- end }}

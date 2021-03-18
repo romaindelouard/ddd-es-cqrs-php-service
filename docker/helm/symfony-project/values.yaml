@@ -1,0 +1,9 @@
+rabbitmq:
+  ingress:
+    hosts:
+        - rabbitmq.192.168.49.2.nip.io
+nginx:
+  ingress:
+    hosts:
+        - nginx.192.168.49.2.nip.io
+  

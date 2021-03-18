@@ -5,7 +5,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: rabbitmq-credentials
-  namespace: homespace
+  namespace: {{ .Release.Namespace }}
   labels:
     app: rabbitmq
 data:
@@ -20,7 +20,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: rabbitmq-pv
-  namespace: homespace
+  namespace: {{ .Release.Namespace }}
   labels:
     type: local
 spec:
@@ -37,7 +37,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: rabbitmq-pvc
-  namespace: homespace
+  namespace: {{ .Release.Namespace }}
   labels:
     type: local
 spec:
@@ -54,7 +54,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rabbitmq-deployment
-  namespace: homespace
+  namespace: {{ .Release.Namespace }}
 spec:
   replicas: 1
   selector:
@@ -112,7 +112,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: rabbitmq
-  namespace: homespace
+  namespace: {{ .Release.Namespace }}
   labels:
     app: rabbitmq
 spec:
@@ -133,10 +133,11 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: rabbitmq-ingress
-  namespace: homespace
+  namespace: {{ .Release.Namespace }}
 spec:
   rules:
-    - host: rabbitmq.192.168.49.2.nip.io
+  {{- range .Values.rabbitmq.ingress.hosts }}
+    - host: {{ . | quote }}
       http:
         paths:
           - path: /
@@ -146,3 +147,4 @@ spec:
                 name: rabbitmq
                 port:
                   number: 15672
+  {{- end }}
