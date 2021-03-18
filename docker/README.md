@@ -76,6 +76,8 @@ sudo apt install php7.4-cli php7.4-curl php7.4-mbstring php7.4-xml php7.4-pgsql
 sudo apt install php7.4-xdebug
 sudo apt install php7.4-intl
 sudo apt install php7.4-amqp
+sudo apt install php7.4-apcu
+sudo apt install php7.4-redis
 # setup php 8.0 on ubuntu desktop
 sudo apt install php8.0-cli php8.0-curl php8.0-mbstring php8.0-xml php8.0-pgsql
 sudo apt install php8.0-xdebug

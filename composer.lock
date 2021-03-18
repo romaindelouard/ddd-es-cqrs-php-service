@@ -4,8 +4,74 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cdc82a64c70441aacc7cff7ac01203e4",
+    "content-hash": "76e1a2b5e388a1d3e0ef5587ec7edee2",
     "packages": [
+        {
+            "name": "artprima/prometheus-metrics-bundle",
+            "version": "1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/artprima/prometheus-metrics-bundle.git",
+                "reference": "100e928f13dd5a2f4b895e4c653a80deef01dea0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/artprima/prometheus-metrics-bundle/zipball/100e928f13dd5a2f4b895e4c653a80deef01dea0",
+                "reference": "100e928f13dd5a2f4b895e4c653a80deef01dea0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.2|^8.0",
+                "promphp/prometheus_client_php": "^2.2",
+                "symfony/config": "^4.4|^5.1.5",
+                "symfony/dependency-injection": "^4.4|^5.1.5",
+                "symfony/http-kernel": "^4.4|^5.1.5"
+            },
+            "require-dev": {
+                "escapestudios/symfony2-coding-standard": "^3.11",
+                "friendsofphp/php-cs-fixer": "^2.17",
+                "phpunit/phpunit": "^8.0|^9.0",
+                "squizlabs/php_codesniffer": "^3.5",
+                "symfony/browser-kit": "^4.4|^5.0",
+                "symfony/framework-bundle": "^4.4|^5.0",
+                "symfony/stopwatch": "^4.4|^5.0",
+                "symfony/yaml": "^4.4|^5.0"
+            },
+            "suggest": {
+                "ext-apcu": "Required if using APCu as prometheus metrics backend",
+                "ext-redis": "Required if using Redis as prometheus metrics backend",
+                "symfony/stopwatch": "Required if you want to measure request duration"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Artprima\\PrometheusMetricsBundle\\": "./"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Denis Voytyuk",
+                    "email": "ask@artprima.cz"
+                }
+            ],
+            "description": "Symfony 4/5 Prometheus Metrics Bundle",
+            "keywords": [
+                "Metrics",
+                "prometheus",
+                "symfony",
+                "symfony-bundle"
+            ],
+            "support": {
+                "issues": "https://github.com/artprima/prometheus-metrics-bundle/issues",
+                "source": "https://github.com/artprima/prometheus-metrics-bundle/tree/1.8.0"
+            },
+            "time": "2021-02-10T11:29:28+00:00"
+        },
         {
             "name": "beberlei/assert",
             "version": "v3.3.0",
@@ -3224,12 +3290,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-amqplib/php-amqplib.git",
-                "reference": "c9d103822fe830a0aaeed94170faf8074de5ce98"
+                "reference": "64fa6e40d3fab87d7b87a136b81969587a9b0cf9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/c9d103822fe830a0aaeed94170faf8074de5ce98",
-                "reference": "c9d103822fe830a0aaeed94170faf8074de5ce98",
+                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/64fa6e40d3fab87d7b87a136b81969587a9b0cf9",
+                "reference": "64fa6e40d3fab87d7b87a136b81969587a9b0cf9",
                 "shasum": ""
             },
             "require": {
@@ -3298,7 +3364,7 @@
                 "issues": "https://github.com/php-amqplib/php-amqplib/issues",
                 "source": "https://github.com/php-amqplib/php-amqplib/tree/master"
             },
-            "time": "2021-02-26T14:41:12+00:00"
+            "time": "2021-03-01T12:24:02+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -3568,6 +3634,72 @@
                 }
             ],
             "time": "2021-02-12T16:18:16+00:00"
+        },
+        {
+            "name": "promphp/prometheus_client_php",
+            "version": "v2.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PromPHP/prometheus_client_php.git",
+                "reference": "ec124c7ac1a5559b5e0b246b34595b3a8aa6599c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PromPHP/prometheus_client_php/zipball/ec124c7ac1a5559b5e0b246b34595b3a8aa6599c",
+                "reference": "ec124c7ac1a5559b5e0b246b34595b3a8aa6599c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.2|^8.0",
+                "symfony/polyfill-apcu": "^1.6"
+            },
+            "replace": {
+                "endclothing/prometheus_client_php": "*",
+                "jimdo/prometheus_client_php": "*",
+                "lkaemmerling/prometheus_client_php": "*"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6.3|^7.0",
+                "phpstan/extension-installer": "^1.0",
+                "phpstan/phpstan": "^0.12.50",
+                "phpstan/phpstan-phpunit": "^0.12.16",
+                "phpstan/phpstan-strict-rules": "^0.12.5",
+                "phpunit/phpunit": "^8.4|^9.4",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "suggest": {
+                "ext-apc": "Required if using APCu.",
+                "ext-redis": "Required if using Redis.",
+                "promphp/prometheus_push_gateway_php": "An easy client for using Prometheus PushGateway."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Prometheus\\": "src/Prometheus/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Lukas Kämmerling",
+                    "email": "kontakt@lukas-kaemmerling.de"
+                }
+            ],
+            "description": "Prometheus instrumentation library for PHP applications.",
+            "support": {
+                "issues": "https://github.com/PromPHP/prometheus_client_php/issues",
+                "source": "https://github.com/PromPHP/prometheus_client_php/tree/v2.2.1"
+            },
+            "time": "2020-12-01T06:05:50+00:00"
         },
         {
             "name": "psr/cache",
@@ -6585,6 +6717,83 @@
                 }
             ],
             "time": "2021-01-27T12:56:27+00:00"
+        },
+        {
+            "name": "symfony/polyfill-apcu",
+            "version": "v1.22.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-apcu.git",
+                "reference": "bc9974e74f8c05f4ceb500b1e0603e36be7d8223"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-apcu/zipball/bc9974e74f8c05f4ceb500b1e0603e36be7d8223",
+                "reference": "bc9974e74f8c05f4ceb500b1e0603e36be7d8223",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.22-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Apcu\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting apcu_* functions to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "apcu",
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-apcu/tree/v1.22.1"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-01-22T09:19:47+00:00"
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
@@ -10115,16 +10324,16 @@
         },
         {
             "name": "coduo/php-matcher",
-            "version": "6.0.3",
+            "version": "6.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/coduo/php-matcher.git",
-                "reference": "8d089461a7662013f2c6a638d58c30e9d9d518fc"
+                "reference": "b8f52e736165966c4e467e292349ecd88aa401cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/coduo/php-matcher/zipball/8d089461a7662013f2c6a638d58c30e9d9d518fc",
-                "reference": "8d089461a7662013f2c6a638d58c30e9d9d518fc",
+                "url": "https://api.github.com/repos/coduo/php-matcher/zipball/b8f52e736165966c4e467e292349ecd88aa401cc",
+                "reference": "b8f52e736165966c4e467e292349ecd88aa401cc",
                 "shasum": ""
             },
             "require": {
@@ -10174,9 +10383,9 @@
             ],
             "support": {
                 "issues": "https://github.com/coduo/php-matcher/issues",
-                "source": "https://github.com/coduo/php-matcher/tree/6.0.3"
+                "source": "https://github.com/coduo/php-matcher/tree/6.0.4"
             },
-            "time": "2021-02-25T19:17:51+00:00"
+            "time": "2021-03-01T14:44:45+00:00"
         },
         {
             "name": "coduo/php-to-string",
@@ -11028,16 +11237,16 @@
         },
         {
             "name": "infection/infection",
-            "version": "0.21.2",
+            "version": "0.21.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/infection/infection.git",
-                "reference": "c7d3d6ee744e8520e44a4590ac4bb2419e813f1e"
+                "reference": "31e13ed53503233f942fc66b03d68b0092900891"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/infection/infection/zipball/c7d3d6ee744e8520e44a4590ac4bb2419e813f1e",
-                "reference": "c7d3d6ee744e8520e44a4590ac4bb2419e813f1e",
+                "url": "https://api.github.com/repos/infection/infection/zipball/31e13ed53503233f942fc66b03d68b0092900891",
+                "reference": "31e13ed53503233f942fc66b03d68b0092900891",
                 "shasum": ""
             },
             "require": {
@@ -11137,7 +11346,7 @@
             ],
             "support": {
                 "issues": "https://github.com/infection/infection/issues",
-                "source": "https://github.com/infection/infection/tree/0.21.2"
+                "source": "https://github.com/infection/infection/tree/0.21.3"
             },
             "funding": [
                 {
@@ -11149,7 +11358,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2021-02-25T21:09:10+00:00"
+            "time": "2021-03-01T10:52:26+00:00"
         },
         {
             "name": "infection/phpspec-adapter",
@@ -11864,18 +12073,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpbench/phpbench.git",
-                "reference": "23150076842a9a51c220c192f855c8c69e016ef7"
+                "reference": "7bc301cb138295635c8498075e6b547d2f0741a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpbench/phpbench/zipball/23150076842a9a51c220c192f855c8c69e016ef7",
-                "reference": "23150076842a9a51c220c192f855c8c69e016ef7",
+                "url": "https://api.github.com/repos/phpbench/phpbench/zipball/7bc301cb138295635c8498075e6b547d2f0741a0",
+                "reference": "7bc301cb138295635c8498075e6b547d2f0741a0",
                 "shasum": ""
             },
             "require": {
                 "beberlei/assert": "^2.4 || ^3.0",
                 "doctrine/annotations": "^1.2.7",
-                "doctrine/lexer": "^1.2",
                 "ext-dom": "*",
                 "ext-json": "*",
                 "ext-pcre": "*",
@@ -11939,7 +12147,7 @@
                 "issues": "https://github.com/phpbench/phpbench/issues",
                 "source": "https://github.com/phpbench/phpbench/tree/master"
             },
-            "time": "2021-02-28T21:33:05+00:00"
+            "time": "2021-03-01T10:50:23+00:00"
         },
         {
             "name": "phploc/phploc",
@@ -14890,10 +15098,12 @@
     "platform": {
         "php": "^7.4|^8.0",
         "ext-amqp": "*",
+        "ext-apcu": "*",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-intl": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-redis": "*"
     },
     "platform-dev": {
         "ext-xdebug": "*"

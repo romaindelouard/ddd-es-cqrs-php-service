@@ -14,12 +14,13 @@ liip_monitor:
       - pcntl
       - pdo
       - pdo_pgsql
+      - redis
       - xml
     php_version:
       7.4.1: ">="
-    readable_directory: [ "%kernel.cache_dir%", "%kernel.logs_dir%" ]
-    writable_directory: [ "%kernel.cache_dir%", "%kernel.logs_dir%" ]
-    doctrine_dbal: [ default ]
+    readable_directory: ["%kernel.cache_dir%", "%kernel.logs_dir%"]
+    writable_directory: ["%kernel.cache_dir%", "%kernel.logs_dir%"]
+    doctrine_dbal: [default]
     symfony_version: ~
     rabbit_mq:
       default:
@@ -28,3 +29,8 @@ liip_monitor:
         password: "%env(RABBITMQ_PASS)%"
         port: "%env(int:RABBITMQ_PORT)%"
         vhost: "/"
+    redis:
+      default:
+        host: "%env(REDIS_HOST)%"
+        port: "%env(int:REDIS_PORT)%"
+        password: null

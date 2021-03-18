@@ -1,0 +1,16 @@
+artprima_prometheus_metrics:
+  # namespace is used to prefix the prometheus metrics
+  namespace: php_service
+  # metrics backend type
+  type: redis # possible values: in_memory, apcu, redis
+
+  ignored_routes:
+    - prometheus_bundle_prometheus
+    - _wdt
+  redis:
+    host: "%env(REDIS_HOST)%"
+    port: "%env(int:REDIS_PORT)%"
+    timeout: 0.1
+    read_timeout: 10
+    persistent_connections: false
+    password: ~
