@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: ["7.4", "8.0"]
+        php-versions: ["7.4"]
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -22,10 +22,11 @@ jobs:
         run: docker network create dev
       - name: Build application in the docker container
         run: make PHP_VERSION=${{ matrix.php-versions }} docker-build
+      - name: start the application and dependencies
+        run: docker-compose up --remove-orphans -d
       - name: List all docker images
         run: docker images
       - name: List all docker containers
         run: docker ps
-      - name: Unit tests in the docker container
-        run: docker run pizza-service-php-${{ matrix.php-versions }}:dev make test-unit
-
+      - name: Run tests in the docker container
+        run: docker run pizza-service-php-${{ matrix.php-versions }}:dev make test
