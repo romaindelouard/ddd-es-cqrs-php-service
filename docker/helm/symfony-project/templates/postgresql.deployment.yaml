@@ -1,0 +1,113 @@
+# Postgres database server
+##########################
+# PostgreSQL config map
+# can be replaced by secrets https://stackoverflow.com/questions/61143161/how-to-get-into-postgres-in-kubernetes-with-local-dev-minikube
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-credentials
+  namespace: { { .Release.Namespace } }
+  labels:
+    app: postgres
+data:
+  POSTGRES_DB: pizza
+  POSTGRES_USER: username
+  POSTGRES_PASSWORD: password
+---
+# PostgreSQL persistent Volume
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-pv
+  namespace: { { .Release.Namespace } }
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /data/postgres-pv
+---
+# PostgreSQL persistent Volume Claim
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+  namespace: { { .Release.Namespace } }
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+  volumeName: postgres-pv
+---
+# PostgreSQL deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  namespace: { { .Release.Namespace } }
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-container
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: postgres-container
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-credentials
+                  key: POSTGRES_DB
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-credentials
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-credentials
+                  key: POSTGRES_USER
+          image: postgres:13-alpine
+          name: postgres-container
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgres-volume-mount
+      restartPolicy: Always
+      volumes:
+        - name: postgres-volume-mount
+          persistentVolumeClaim:
+            claimName: postgres-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: { { .Release.Namespace } }
+  labels:
+    app: postgres
+spec:
+  ports:
+    - port: 5432
+      protocol: TCP
+      targetPort: 5432
+  selector:
+    app: postgres-container
+  type: ClusterIP

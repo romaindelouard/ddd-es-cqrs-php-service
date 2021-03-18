@@ -151,3 +151,15 @@ docker-clean:
 .PHONY: docker-kill
 docker-kill:
 	docker kill `docker ps -a -q -f label=com.docker.compose.project=$(APP_NAME)`
+
+.PHONY: helm-install
+helm-install:
+	helm install php-service docker/helm/symfony-project
+	helm install opendistro-es docker/helm/opendistro-es/
+	helm install fluentd-elasticsearch docker/helm/fluentd-elasticsearch/
+
+.PHONY: helm-uninstall
+helm-uninstall:
+	helm uninstall php-service
+	helm uninstall opendistro-es
+	helm uninstall fluentd-elasticsearch
