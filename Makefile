@@ -163,3 +163,9 @@ helm-uninstall:
 	helm uninstall php-service
 	helm uninstall opendistro-es
 	helm uninstall fluentd-elasticsearch
+
+.PHONY: helm-lint
+helm-lint:
+	helm lint docker/helm/symfony-project/
+	helm lint docker/helm/opendistro-es/
+	helm lint docker/helm/fluentd-elasticsearch/
