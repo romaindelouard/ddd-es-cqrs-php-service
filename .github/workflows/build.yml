@@ -3,7 +3,8 @@ name: Build docker container
 on:
   create:
     tags:
-      - "v[0-9]+.[0-9]+.[0-9]+*"
+      - v*
+  pull_request:
 
 jobs:
   build:
@@ -13,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: ["7.4", "8.0"]
+        php-versions: ["7.4"]
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -21,13 +22,11 @@ jobs:
         run: docker network create dev
       - name: Build application in the docker container
         run: make PHP_VERSION=${{ matrix.php-versions }} docker-build
+      - name: start the application and dependencies
+        run: docker-compose up --remove-orphans -d
       - name: List all docker images
         run: docker images
       - name: List all docker containers
         run: docker ps
-      - name: Unit tests in the docker container
-        run: docker run pizza-service-php-${{ matrix.php-versions }}:dev make test-unit
-      # Not works: Unable to create the "cache" directory (/var/www/html/var/cache/dev).
-      # - name: Functional tests
-      #  run: docker-compose run --service-ports --rm pizza-service make test-functional
-      #<
+      - name: Run tests in the docker container
+        run: docker run pizza-service-php-${{ matrix.php-versions }}:dev make test
