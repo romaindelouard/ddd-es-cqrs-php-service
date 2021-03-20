@@ -28,3 +28,7 @@ liip_monitor:
         password: "%env(RABBITMQ_PASS)%"
         port: "%env(int:RABBITMQ_PORT)%"
         vhost: "/"
+    guzzle_http_service:
+      elasticsearch:
+          url: "%env(ELASTIC_URI_SHEME)%://%env(ELASTIC_HOST)%:%env(int:ELASTIC_PORT)%/_cluster/health"
+          status_code: 200

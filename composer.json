@@ -20,6 +20,7 @@
     "doctrine/doctrine-migrations-bundle": "^3.0",
     "doctrine/orm": "^2.8",
     "elasticsearch/elasticsearch": "^7.10",
+    "guzzlehttp/guzzle": "^7.2",
     "lexik/jwt-authentication-bundle": "^2.11",
     "liip/monitor-bundle": "^2.15",
     "moneyphp/money": "^3.3",
