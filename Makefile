@@ -108,12 +108,12 @@ event-search-create:
 
 ## This target run the application container including its dependencies and open a bash session to develop it.
 .PHONY: dev
-dev: docker-build
+dev: docker-volumes-create docker-build
 	docker-compose run --service-ports --rm $(APP_NAME) bash
 
 ## This target start the application and dependencies defined in your docker-compose.yml.
 .PHONY: up
-up: docker-build
+up: docker-volumes-create docker-build
 	docker-compose up --remove-orphans
 
 ## This target stop the application and dependencies defined in your docker-compose.yml.
@@ -123,7 +123,7 @@ down:
 
 ## This target build the application container including its dependencies and create docker volumes
 .PHONY: docker-build
-docker-build: docker-volumes-create
+docker-build:
 	DOCKER_BUILDKIT=1 docker build --build-arg=APP_ENV=$(APP_ENV) --build-arg=PHP_VERSION=$(PHP_VERSION) --target dev -t $(APP_NAME)-php-$(PHP_VERSION):$(APP_ENV) .
 
 # Custom targets
@@ -151,6 +151,10 @@ docker-clean:
 .PHONY: docker-kill
 docker-kill:
 	docker kill `docker ps -a -q -f label=com.docker.compose.project=$(APP_NAME)`
+
+.PHONY: docker-build-release
+docker-build-release:
+	DOCKER_BUILDKIT=1 docker build --build-arg=APP_ENV=prod --build-arg=PHP_VERSION=$(PHP_VERSION) --target release -t $(APP_NAME)-php-$(PHP_VERSION):release .
 
 .PHONY: helm-install
 helm-install:
