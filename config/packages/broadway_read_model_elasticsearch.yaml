@@ -1,18 +1,24 @@
 broadway:
-    read_model: broadway.read_model.elasticsearch.repository_factory
-
+  read_model: broadway.read_model.elasticsearch.repository_factory
+parameters:
+  elasticsearch:
+    hosts:
+      master:
+        host: "%env(ELASTIC_HOST)%"
+        port: "%env(ELASTIC_PORT)%"
+        scheme: "%env(ELASTIC_URI_SHEME)%"
 services:
-    broadway.elasticsearch.client_factory:
-        class: Broadway\ReadModel\ElasticSearch\ElasticSearchClientFactory
+  broadway.elasticsearch.client_factory:
+    class: Broadway\ReadModel\ElasticSearch\ElasticSearchClientFactory
 
-    broadway.read_model.elasticsearch.repository_factory:
-        class: Broadway\ReadModel\ElasticSearch\ElasticSearchRepositoryFactory
-        arguments:
-            - "@broadway.elasticsearch.client"
-            - "@broadway.serializer.readmodel"
+  broadway.read_model.elasticsearch.repository_factory:
+    class: Broadway\ReadModel\ElasticSearch\ElasticSearchRepositoryFactory
+    arguments:
+      - "@broadway.elasticsearch.client"
+      - "@broadway.serializer.readmodel"
 
-    broadway.elasticsearch.client:
-        class: Elasticsearch\Client
-        factory: ['@broadway.elasticsearch.client_factory', create]
-        arguments:
-            - "%elasticsearch%"
+  broadway.elasticsearch.client:
+    class: Elasticsearch\Client
+    factory: ["@broadway.elasticsearch.client_factory", create]
+    arguments:
+      - "%elasticsearch%"

@@ -4,10 +4,6 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-  elasticsearch:
-    hosts:
-      - "%env(ELASTIC_ADDR)%"
-
   exception_to_status:
     InvalidArgumentException: 400
     Romaind\PizzaStore\Domain\User\Exception\InvalidCredentialsException: 401
@@ -26,7 +22,6 @@ services:
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
     public: false
     bind:
-      $elasticConfig: "%elasticsearch%"
       $eventBus: "@broadway.event_handling.event_bus"
       $eventStore: '@Broadway\EventStore\Dbal\DBALEventStore'
       $eventReadModelClient: "@broadway.elasticsearch.client"
