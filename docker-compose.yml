@@ -5,7 +5,7 @@ services:
     image: pizza-service-php-${PHP_VERSION}:${APP_ENV}
     ports:
       - 9000
-    user: 33:1000
+    #user: 33:1000
     volumes:
       - .:/var/www/html:cached
       - /var/www/html/public/bundles
