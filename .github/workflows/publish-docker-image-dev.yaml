@@ -12,11 +12,10 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
       - name: Push to Docker Hub
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: romaind/ddd-es-cqrs-php-service
-          tag_with_ref: false
-          tags: romaind/ddd-es-cqrs-php-service:dev
+          tags: dev
           target: dev
